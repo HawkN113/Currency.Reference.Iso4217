@@ -1,0 +1,1 @@
+# Currency.Reference.Iso4217
