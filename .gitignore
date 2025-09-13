@@ -1,0 +1,14 @@
+**/.idea/*
+
+src/packages/Currency.Reference.Iso4217/obj/**
+src/packages/Currency.Reference.Iso4217/bin/**
+src/tests/Currency.Reference.Iso4217.Tests/obj/**
+src/tests/Currency.Reference.Iso4217.Tests/bin/**
+src/samples/Currency.Reference.Iso4217.Console/obj/**
+src/samples/Currency.Reference.Iso4217.Console/bin/**
+src/samples/Currency.Reference.Iso4217.WebApi/obj/**
+src/samples/Currency.Reference.Iso4217.WebApi/bin/**
+
+src/NuGetPackages/**
+
+**/*.user
