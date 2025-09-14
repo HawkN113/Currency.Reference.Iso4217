@@ -1,3 +1,29 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using Currency.Reference.Iso4217.Abstractions;
+using Currency.Reference.Iso4217.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-Console.WriteLine("Hello, World!");
+using var host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices(services =>
+    {
+        services.AddSingleton<ICurrencyService, CurrencyService>();
+    })
+    .Build();
+try
+{
+    var container = host.Services;
+    using var scope = container.CreateScope();
+    var currencyService = scope.ServiceProvider.GetRequiredService<ICurrencyService>();
+
+    var allCurrencies = currencyService.GetAll();
+    var uniqueCurrencies = currencyService.GetUniqueCodesWithNames();
+    
+    //var eur = CurrencyCode.EUR;
+    //var info = CurrencyCodeExtensions.Dictionary[eur];
+    
+    await host.RunAsync();
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex);
+}

@@ -11,4 +11,8 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\packages\Currency.Reference.Iso4217\Currency.Reference.Iso4217.csproj" />
+    </ItemGroup>
+
 </Project>
