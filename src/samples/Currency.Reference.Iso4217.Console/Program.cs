@@ -1,4 +1,6 @@
 ﻿using Currency.Reference.Iso4217.Abstractions;
+using Currency.Reference.Iso4217.Extensions;
+using Currency.Reference.Iso4217.Models;
 using Currency.Reference.Iso4217.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -6,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
-        services.AddSingleton<ICurrencyService, CurrencyService>();
+        services.AddCurrencyService();
     })
     .Build();
 try
@@ -17,6 +19,11 @@ try
 
     var allCurrencies = currencyService.GetAll();
     var uniqueCurrencies = currencyService.GetUniqueCodesWithNames();
+    var isValidEuro = currencyService.IsValid("EUR", [Field.Code]);
+    var getEuro = currencyService.Get("EUR", Field.Code);
+    
+    foreach (var currency in uniqueCurrencies)
+        Console.WriteLine(currency);
     
     /*
     foreach (var kv in CurrencyCodeExtensions.Dictionary)

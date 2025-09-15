@@ -1,16 +1,12 @@
-﻿namespace Currency.Reference.Iso4217.Abstractions;
+﻿using Currency.Reference.Iso4217.Models;
+
+namespace Currency.Reference.Iso4217.Abstractions;
 
 public interface ICurrencyService
 {
     IReadOnlyCollection<CurrencyInfo> GetAll();
-    IEnumerable<CurrencyInfo> GetAllExcept(params string[] excludedCodes);
+    IReadOnlyCollection<CurrencyInfo> GetAllExcept(params string[] excludedCodes);
     IEnumerable<string> GetUniqueCodesWithNames();
-
-    bool IsValidCode(string code);
-    bool IsValidName(string name);
-    bool IsValidNumeric(string numericCode);
-
-    CurrencyInfo? GetByCode(string code);
-    CurrencyInfo? GetByName(string name);
-    CurrencyInfo? GetByNumeric(string numericCode);
+    bool IsValid(string value, Field[] fields);
+    CurrencyInfo? Get(string value, Field field);
 }

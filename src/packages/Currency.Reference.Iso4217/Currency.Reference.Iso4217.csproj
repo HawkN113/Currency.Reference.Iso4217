@@ -27,10 +27,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="list-one-original-names.json" />
-        <EmbeddedResource Include="list-one-original-names.json" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
     </ItemGroup>
-
+    
     <ItemGroup>
       <Folder Include="Package\Content\" />
     </ItemGroup>
@@ -39,6 +39,10 @@
       <None Update="Package\Content\Currency.Reference.Iso4217.ico.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Source\list-one-original-names.json" CopyToOutputDirectory="Always" />
     </ItemGroup>
 
 </Project>
