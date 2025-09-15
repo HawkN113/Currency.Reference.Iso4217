@@ -18,7 +18,14 @@ try
     var allCurrencies = currencyService.GetAll();
     var uniqueCurrencies = currencyService.GetUniqueCodesWithNames();
     
-    //var eur = CurrencyCode.EUR;
+    /*
+    foreach (var kv in CurrencyCodeExtensions.Dictionary)
+    {
+        Console.WriteLine($"{kv.Key} - {kv.Value.Name} ({kv.Value.Country})");
+    }
+    */
+    
+    //var eur = Currency.Reference.Iso4217.CurrencyCode.EUR;
     //var info = CurrencyCodeExtensions.Dictionary[eur];
     
     await host.RunAsync();

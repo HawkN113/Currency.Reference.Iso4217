@@ -2,6 +2,8 @@
 
 src/packages/Currency.Reference.Iso4217/obj/**
 src/packages/Currency.Reference.Iso4217/bin/**
+src/packages/Currency.Reference.Iso4217.Generators/obj/**
+src/packages/Currency.Reference.Iso4217.Generators/bin/**
 src/tests/Currency.Reference.Iso4217.Tests/obj/**
 src/tests/Currency.Reference.Iso4217.Tests/bin/**
 src/samples/Currency.Reference.Iso4217.Console/obj/**

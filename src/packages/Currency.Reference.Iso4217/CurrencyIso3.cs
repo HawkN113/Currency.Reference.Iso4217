@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace Currency.Reference.Iso4217;
 
-public static class CurrencyIso3
+internal static class CurrencyIso3
     {
         private static readonly Lazy<List<CurrencyInfo>> Currencies =
             new Lazy<List<CurrencyInfo>>(LoadCurrencies);
