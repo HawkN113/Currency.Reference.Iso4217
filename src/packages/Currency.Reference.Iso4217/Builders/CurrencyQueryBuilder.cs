@@ -22,12 +22,11 @@ internal sealed class CurrencyQueryBuilder :
     }
 
     public ICurrencyQueryTypeSelector Includes { get; }
-
-    public ICurrencyQueryFilter Types(params CurrencyType[] types)
+    
+    public ICurrencyQueryFilter Type(CurrencyType type)
     {
-        foreach (var t in types)
-            _includedTypes.Add(t);
-
+        if (!_includedTypes.Add(type))
+            throw new InvalidOperationException($"CurrencyType {type} is already included.");
         return this;
     }
 
@@ -46,13 +45,12 @@ internal sealed class CurrencyQueryBuilder :
     public IReadOnlyCollection<CurrencyInfo> Build()
     {
         var query = _allCurrencies.Where(c => _includedTypes.Contains(c.CurrencyType));
-
+        
         if (_withCodes.Count > 0)
             query = query.Where(c => _withCodes.Contains(c.Code));
-
         if (_withoutCodes.Count > 0)
             query = query.Where(c => !_withoutCodes.Contains(c.Code));
-
+        
         return query.ToList();
     }
     

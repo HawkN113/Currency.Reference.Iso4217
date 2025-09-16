@@ -156,7 +156,7 @@ internal sealed class CurrencyService : ICurrencyService
                     c.Name.Equals(trimmed, StringComparison.OrdinalIgnoreCase)),
                 CriteriaField.NumericCode => _currencies.Any(c => c.NumericCode == trimmed),
                 CriteriaField.CurrencyType => type.HasValue && _currencies.Any(c =>
-                    GetCurrencyType(c) == type.Value && c.Code.Equals(trimmed, StringComparison.OrdinalIgnoreCase)),
+                    GetCurrencyType(c.Code) == type.Value && c.Code.Equals(trimmed, StringComparison.OrdinalIgnoreCase)),
                 _ => result
             };
             if (result)
@@ -182,7 +182,7 @@ internal sealed class CurrencyService : ICurrencyService
             CriteriaField.NumericCode => _currencies.FirstOrDefault(c => c.NumericCode == trimmed),
             CriteriaField.CurrencyType => type.HasValue
                 ? _currencies.FirstOrDefault(c =>
-                    GetCurrencyType(c) == type.Value && c.Code.Equals(trimmed, StringComparison.OrdinalIgnoreCase))
+                    GetCurrencyType(c.Code) == type.Value && c.Code.Equals(trimmed, StringComparison.OrdinalIgnoreCase))
                 : null,
             _ => result
         };
@@ -190,15 +190,6 @@ internal sealed class CurrencyService : ICurrencyService
     public ICurrencyQueryStart Query()
     {
         return new CurrencyQueryBuilder(_currencies);
-    }
-
-    private static CurrencyType GetCurrencyType(CurrencyInfo currency)
-    {
-        if (PreciousMetalsCodes.Contains(currency.Code))
-            return CurrencyType.PreciousMetal;
-        if (SpecialReserveCodes.Contains(currency.Code))
-            return CurrencyType.SpecialReserve;
-        return SpecialUnits.Contains(currency.Code) ? CurrencyType.SpecialUnit : CurrencyType.Fiat;
     }
     
     private static CurrencyType GetCurrencyType(string code)

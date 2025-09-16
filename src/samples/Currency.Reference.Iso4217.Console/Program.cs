@@ -1,7 +1,6 @@
 ﻿using Currency.Reference.Iso4217.Abstractions;
 using Currency.Reference.Iso4217.Extensions;
 using Currency.Reference.Iso4217.Models;
-using Currency.Reference.Iso4217.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -32,11 +31,16 @@ try
         .IncludesSpecialUnits()
         .Build();
         */
-    
+
     var currencies = currencyService.Query()
-        .Includes.Types(CurrencyType.SpecialUnit)
-        .Without(w=>w.Codes("XUA","USD"))
+        .Includes
+        .Type(CurrencyType.Fiat)
+        .Type(CurrencyType.SpecialUnit)
+        .Without(w => w.Codes("XUA", "USD"))
+        .Without(w => w.Codes("GBP", "EUR"))
         .Build();
+
+    var result= currencies.Any(c => c.Code == "EUR");
     
     foreach (var currency in currencies)
         Console.WriteLine($"{currency.Code} - {currency.Name}");
