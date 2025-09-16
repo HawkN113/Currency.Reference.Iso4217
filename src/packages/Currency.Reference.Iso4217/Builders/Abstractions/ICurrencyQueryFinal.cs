@@ -2,7 +2,7 @@
 
 namespace Currency.Reference.Iso4217.Builders.Abstractions;
 
-public interface IBuildQuery
+public interface ICurrencyQueryFinal
 {
     IReadOnlyCollection<CurrencyInfo> Build();
 }

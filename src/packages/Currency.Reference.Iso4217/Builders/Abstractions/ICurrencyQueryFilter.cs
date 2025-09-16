@@ -1,10 +1,8 @@
-﻿using Currency.Reference.Iso4217.Models;
+﻿namespace Currency.Reference.Iso4217.Builders.Abstractions;
 
-namespace Currency.Reference.Iso4217.Builders.Abstractions;
-
-public interface ICurrencyQueryFilter : IBuildQuery
+public interface ICurrencyQueryFilter : ICurrencyQueryFinal
 {
-    ICurrencyQueryFilter Types(params CurrencyType[] types);
-    ICurrencyQueryFilter Without(Action<IExcludeFilterBuilder> configure);
     ICurrencyQueryFilter With(Action<IIncludeFilterBuilder> configure);
+    ICurrencyQueryFilter Without(Action<IExcludeFilterBuilder> configure);
+    
 }

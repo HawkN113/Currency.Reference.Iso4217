@@ -2,5 +2,5 @@
 
 public interface ICurrencyQueryStart
 {
-    ICurrencyQueryFilter Includes { get; }
+    ICurrencyQueryTypeSelector Includes { get; }
 }
