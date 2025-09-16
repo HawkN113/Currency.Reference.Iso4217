@@ -14,7 +14,9 @@ try
 {
     var container = host.Services;
     using var scope = container.CreateScope();
-    var currencyService = scope.ServiceProvider.GetRequiredService<ICurrencyService>();
+    var currencyService = scope.ServiceProvider.GetCurrencyService();
+    
+    //var currencyService = scope.ServiceProvider.GetRequiredService<ICurrencyServiceSafe>();
 
     //var allCurrencies = currencyService.GetAll();
     //var uniqueCurrencies = currencyService.GetUniqueCodesWithNames();
@@ -36,14 +38,22 @@ try
         .Includes
         .Type(CurrencyType.Fiat)
         .Type(CurrencyType.SpecialUnit)
-        .Without(w => w.Codes("XUA", "USD"))
-        .Without(w => w.Codes("GBP", "EUR"))
+        //.Without(w => w.Codes("XUA", "USD"))
+        //.Without(w => w.Codes("GBP", "EUR"))
         .Build();
 
     var result= currencies.Any(c => c.Code == "EUR");
     
     foreach (var currency in currencies)
         Console.WriteLine($"{currency.Code} - {currency.Name}");
+    
+    var currencies2 = currencyService.Query()
+        .Includes
+        .Type(CurrencyType.Fiat)
+        .Type(CurrencyType.SpecialUnit)
+        //.Without(w => w.Codes("XUA", "USD"))
+        //.Without(w => w.Codes("GBP", "EUR"))
+        .Build();
     
     /*
     foreach (var kv in CurrencyCodeExtensions.Dictionary)
