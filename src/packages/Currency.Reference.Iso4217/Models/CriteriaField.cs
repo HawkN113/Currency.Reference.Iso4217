@@ -1,8 +1,9 @@
 ﻿namespace Currency.Reference.Iso4217.Models;
 
-public enum Field
+public enum CriteriaField
 {
     Code,
     Name,
     NumericCode,
+    CurrencyType
 }

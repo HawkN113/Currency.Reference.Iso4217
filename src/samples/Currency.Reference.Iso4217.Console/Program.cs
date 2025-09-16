@@ -17,13 +17,22 @@ try
     using var scope = container.CreateScope();
     var currencyService = scope.ServiceProvider.GetRequiredService<ICurrencyService>();
 
-    var allCurrencies = currencyService.GetAll();
-    var uniqueCurrencies = currencyService.GetUniqueCodesWithNames();
-    var isValidEuro = currencyService.IsValid("EUR", [Field.Code]);
-    var getEuro = currencyService.Get("EUR", Field.Code);
+    //var allCurrencies = currencyService.GetAll();
+    //var uniqueCurrencies = currencyService.GetUniqueCodesWithNames();
+    //var isValidEuro = currencyService.IsValid("EUR", [Field.Code]);
+    //var getEuro = currencyService.Get("EUR", Field.Code);
     
-    foreach (var currency in uniqueCurrencies)
-        Console.WriteLine(currency);
+    //var fiatCurrencies = currencyService.GetFiatCurrencies();
+    //var preciousMetalsCurrencies = currencyService.GetPreciousMetals();
+    //var specialReservedCurrencies = currencyService.GetSpecialReserveCodes();
+    //var specialUnitsCurrencies = currencyService.GetSpecialUnits();
+    
+    var currencies = currencyService.Query()
+        .IncludesSpecialUnits()
+        .Build();
+    
+    foreach (var currency in currencies)
+        Console.WriteLine($"{currency.Code} - {currency.Name}");
     
     /*
     foreach (var kv in CurrencyCodeExtensions.Dictionary)
