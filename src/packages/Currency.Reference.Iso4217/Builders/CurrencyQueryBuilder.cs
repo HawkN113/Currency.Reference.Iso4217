@@ -1,74 +1,116 @@
-﻿using Currency.Reference.Iso4217.Models;
+﻿using Currency.Reference.Iso4217.Builders.Abstractions;
+using Currency.Reference.Iso4217.Models;
 
 namespace Currency.Reference.Iso4217.Builders;
 
-public sealed class CurrencyQueryBuilder
+internal sealed class CurrencyQueryBuilder : 
+    ICurrencyQueryStart,
+    ICurrencyQueryFilter,
+    IExcludeFilterBuilder,
+    IIncludeFilterBuilder
 {
-    private readonly List<CurrencyInfo> _source;
-    private bool _includeFiats;
-    private bool _includeMetals;
-    private bool _includeSpecialReserves;
-    private bool _includeSpecialUnits;
-    private HashSet<string>? _codes;
+    private readonly IReadOnlyCollection<CurrencyInfo> _allCurrencies;
+    private readonly HashSet<CurrencyType> _includedTypes = new();
+    private readonly HashSet<string> _withCodes = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _withoutCodes = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _withNames = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _withoutNames = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _withNumericCodes = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _withoutNumericCodes = new(StringComparer.OrdinalIgnoreCase);
 
-    internal CurrencyQueryBuilder(List<CurrencyInfo> source)
+    public CurrencyQueryBuilder(IReadOnlyCollection<CurrencyInfo> currencies)
     {
-        _source = source;
+        _allCurrencies = currencies;
+        Includes = this;
     }
 
-    public CurrencyQueryBuilder IncludesFiats()
+    public ICurrencyQueryFilter Includes { get; }
+
+    public ICurrencyQueryFilter Types(params CurrencyType[] types)
     {
-        _includeFiats = true;
+        foreach (var t in types)
+            _includedTypes.Add(t);
+
         return this;
     }
 
-    public CurrencyQueryBuilder IncludesMetals()
+    public ICurrencyQueryFilter Without(Action<IExcludeFilterBuilder> configure)
     {
-        _includeMetals = true;
+        configure(this);
         return this;
     }
 
-    public CurrencyQueryBuilder IncludesSpecialReserves()
+    public ICurrencyQueryFilter With(Action<IIncludeFilterBuilder> configure)
     {
-        _includeSpecialReserves = true;
-        return this;
-    }
-
-    public CurrencyQueryBuilder IncludesSpecialUnits()
-    {
-        _includeSpecialUnits = true;
-        return this;
-    }
-
-    public CurrencyQueryBuilder WithCodes(params string[] codes)
-    {
-        if (codes is { Length: > 0 })
-            _codes = new HashSet<string>(codes, StringComparer.OrdinalIgnoreCase);
-        return this;
-    }
-
-    public CurrencyQueryBuilder WithCodeContains(string substring)
-    {
-        if (!string.IsNullOrWhiteSpace(substring))
-            _codes = _source
-                .Where(c => c.Code.Contains(substring, StringComparison.OrdinalIgnoreCase))
-                .Select(c => c.Code)
-                .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        configure(this);
         return this;
     }
 
     public IReadOnlyCollection<CurrencyInfo> Build()
     {
-        var result = _source.Where(c =>
-            (_includeFiats && c.CurrencyType == CurrencyType.Fiat) ||
-            (_includeMetals && c.CurrencyType == CurrencyType.PreciousMetal) ||
-            (_includeSpecialReserves && c.CurrencyType == CurrencyType.SpecialReserve) ||
-            (_includeSpecialUnits && c.CurrencyType == CurrencyType.SpecialUnit)
-        );
+        var query = _allCurrencies
+            .Where(c => _includedTypes.Count == 0 || _includedTypes.Contains(c.CurrencyType));
 
-        if (_codes is { Count: > 0 })
-            result = result.Where(c => _codes.Contains(c.Code));
+        if (_withCodes.Count > 0)
+            query = query.Where(c => _withCodes.Contains(c.Code));
 
-        return result.OrderBy(c => c.Code).ToList().AsReadOnly();
+        if (_withNames.Count > 0)
+            query = query.Where(c => _withNames.Contains(c.Name));
+
+        if (_withNumericCodes.Count > 0)
+            query = query.Where(c => c.NumericCode != null && _withNumericCodes.Contains(c.NumericCode));
+
+        if (_withoutCodes.Count > 0)
+            query = query.Where(c => !_withoutCodes.Contains(c.Code));
+
+        if (_withoutNames.Count > 0)
+            query = query.Where(c => !_withoutNames.Contains(c.Name));
+
+        if (_withoutNumericCodes.Count > 0)
+            query = query.Where(c => c.NumericCode != null && !_withoutNumericCodes.Contains(c.NumericCode));
+
+        return query.ToList();
+    }
+    
+    IExcludeFilterBuilder IExcludeFilterBuilder.Codes(params string[] codes)
+    {
+        foreach (var code in codes)
+            _withoutCodes.Add(code);
+        return this;
+    }
+
+    IExcludeFilterBuilder IExcludeFilterBuilder.Names(params string[] names)
+    {
+        foreach (var name in names)
+            _withoutNames.Add(name);
+        return this;
+    }
+
+    IExcludeFilterBuilder IExcludeFilterBuilder.NumericCodes(params int[] numericCodes)
+    {
+        foreach (var nc in numericCodes)
+            _withoutNumericCodes.Add(nc.ToString());
+        return this;
+    }
+    
+    IIncludeFilterBuilder IIncludeFilterBuilder.Codes(params string[] codes)
+    {
+        foreach (var code in codes)
+            _withCodes.Add(code);
+        return this;
+    }
+
+    IIncludeFilterBuilder IIncludeFilterBuilder.Names(params string[] names)
+    {
+        foreach (var name in names)
+            _withNames.Add(name);
+        return this;
+    }
+
+    IIncludeFilterBuilder IIncludeFilterBuilder.NumericCodes(params int[] numericCodes)
+    {
+        foreach (var nc in numericCodes)
+            _withNumericCodes.Add(nc.ToString());
+        return this;
     }
 }

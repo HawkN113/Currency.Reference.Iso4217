@@ -27,8 +27,15 @@ try
     //var specialReservedCurrencies = currencyService.GetSpecialReserveCodes();
     //var specialUnitsCurrencies = currencyService.GetSpecialUnits();
     
+    /*
     var currencies = currencyService.Query()
         .IncludesSpecialUnits()
+        .Build();
+        */
+    
+    var currencies = currencyService.Query()
+        .Includes.Types(CurrencyType.SpecialUnit)
+        .Without(w=>w.Codes("XUA","USD"))
         .Build();
     
     foreach (var currency in currencies)

@@ -1,5 +1,6 @@
 ﻿using Currency.Reference.Iso4217.Abstractions;
 using Currency.Reference.Iso4217.Builders;
+using Currency.Reference.Iso4217.Builders.Abstractions;
 using Currency.Reference.Iso4217.Handlers;
 using Currency.Reference.Iso4217.Models;
 namespace Currency.Reference.Iso4217.Services;
@@ -135,61 +136,7 @@ internal sealed class CurrencyService : ICurrencyService
             );
         _currencies = _currencies.OrderBy(c => c.Code).ToList();
     }
-
-    public IReadOnlyCollection<CurrencyInfo> GetAll() => _currencies.OrderBy(c => c.Code).ToList().AsReadOnly();
-
-    public IReadOnlyCollection<CurrencyInfo> GetAllExcept(params string[] excludedCodes)
-    {
-        var excluded = new HashSet<string>(excludedCodes, StringComparer.OrdinalIgnoreCase);
-        return _currencies
-            .Where(c => !excluded.Contains(c.Code)).ToArray().AsReadOnly();
-    }
-
-    public IReadOnlyCollection<CurrencyInfo> GetFiatCurrencies()
-    {
-        return _currencies
-            .Where(c => !PreciousMetalsCodes.Contains(c.Code) &&
-                        !SpecialReserveCodes.Contains(c.Code) &&
-                        !SpecialUnits.Contains(c.Code))
-            .ToList()
-            .AsReadOnly();
-    }
-
-    public IReadOnlyCollection<CurrencyInfo> GetPreciousMetals()
-    {
-        return _currencies
-            .Where(c => PreciousMetalsCodes.Contains(c.Code))
-            .ToList()
-            .AsReadOnly();
-    }
-
-    public IReadOnlyCollection<CurrencyInfo> GetSpecialReserveCodes()
-    {
-        return _currencies
-            .Where(c => SpecialReserveCodes.Contains(c.Code))
-            .ToList()
-            .AsReadOnly();
-    }
-
-    public IReadOnlyCollection<CurrencyInfo> GetSpecialUnits()
-    {
-        return _currencies
-            .Where(c => SpecialUnits.Contains(c.Code))
-            .ToList()
-            .AsReadOnly();
-    }
-
-    public IEnumerable<string> GetUniqueCodesWithNames()
-    {
-        var result = new HashSet<string>();
-        foreach (var code in _currencies.OrderBy(c => c.Code))
-        {
-            result.Add($"{code.Code} - {code.Name}");
-        }
-
-        return result;
-    }
-
+    
     public bool IsValid(string value, CriteriaField[] fields, CurrencyType? type = null)
     {
         if (fields.Length == 0)
@@ -240,7 +187,7 @@ internal sealed class CurrencyService : ICurrencyService
             _ => result
         };
     }
-    public CurrencyQueryBuilder Query()
+    public ICurrencyQueryStart Query()
     {
         return new CurrencyQueryBuilder(_currencies);
     }
