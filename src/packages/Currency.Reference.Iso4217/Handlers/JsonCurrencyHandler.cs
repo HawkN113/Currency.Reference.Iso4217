@@ -9,7 +9,7 @@ internal static class JsonCurrencyHandler
     {
         var path = Path.Combine(AppContext.BaseDirectory, CurrenciesFilePath);
         if (!File.Exists(path))
-            throw new FileNotFoundException("Embedded ISO 4217 JSON resource not found.");
+            throw new InvalidOperationException("Embedded ISO 4217 JSON resource not found.");
         using var stream = File.OpenRead(path);
         using var reader = new StreamReader(stream);
         var jsonFromStream = reader.ReadToEnd();
