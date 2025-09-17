@@ -11,19 +11,55 @@ public class CurrencyEnumGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        context.RegisterPostInitializationOutput(spc =>
+        var jsonProvider = context.CompilationProvider.Select((_, _) =>
         {
             try
             {
                 var assembly = Assembly.GetExecutingAssembly();
-                var resourceName = "Currency.Reference.Iso4217.Generators.Source.list-one-original-names.json";
-
+                const string resourceName = "Currency.Reference.Iso4217.Generators.Sources.list-one-original-names.json";
                 using var stream = assembly.GetManifestResourceStream(resourceName)
                                    ?? throw new InvalidOperationException("Embedded resource not found.");
                 using var reader = new StreamReader(stream, Encoding.UTF8);
-                var json = reader.ReadToEnd();
+                return reader.ReadToEnd();
+            }
+            catch (Exception ex)
+            {
+                return $"__ERROR__:{ex.Message}";
+            }
+        });
+        context.RegisterSourceOutput(jsonProvider, (spc, jsonContent) =>
+        {
+            try
+            {
+                if (jsonContent is null)
+                {
+                    spc.ReportDiagnostic(Diagnostic.Create(
+                        new DiagnosticDescriptor(
+                            "CURRENCY001",
+                            "Generator error",
+                            "No JSON content loaded.",
+                            "CurrencyGenerator",
+                            DiagnosticSeverity.Error,
+                            true),
+                        Location.None));
+                    return;
+                }
 
-                var loader = new CurrencyLoader(json);
+                if (jsonContent.StartsWith("__ERROR__"))
+                {
+                    spc.ReportDiagnostic(Diagnostic.Create(
+                        new DiagnosticDescriptor(
+                            "CURRENCY002",
+                            "Generator error",
+                            $"Failed to load resource: {jsonContent.Substring(9)}",
+                            "CurrencyGenerator",
+                            DiagnosticSeverity.Error,
+                            true),
+                        Location.None));
+                    return;
+                }
+
+                var loader = new CurrencyLoader(jsonContent);
                 var currencies = loader.Currencies;
 
                 var sb = new StringBuilder();
@@ -39,24 +75,20 @@ public class CurrencyEnumGenerator : IIncrementalGenerator
                 {
                     sb.AppendLine($"    {c.Code}, // {c.Name}");
                 }
-
                 sb.AppendLine("}");
-
                 spc.AddSource("CurrencyCode.g.cs", SourceText.From(sb.ToString(), Encoding.UTF8));
             }
             catch (Exception ex)
             {
-                /*
                 spc.ReportDiagnostic(Diagnostic.Create(
                     new DiagnosticDescriptor(
-                        "CURRENCY001",
+                        "CURRENCY003",
                         "Generator error",
-                        $"Exception: {ex.Message}",
+                        $"Unexpected exception: {ex.Message}",
                         "CurrencyGenerator",
                         DiagnosticSeverity.Error,
                         true),
                     Location.None));
-                    */
             }
         });
     }
