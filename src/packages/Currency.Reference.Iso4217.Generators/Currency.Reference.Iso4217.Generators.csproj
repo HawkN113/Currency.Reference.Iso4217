@@ -7,7 +7,6 @@
         <Private>true</Private>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <!--<OutputItemType>Analyzer</OutputItemType>-->
         <OutputType>Library</OutputType>
         <IsRoslynAnalyzer>true</IsRoslynAnalyzer>
         <IncludeBuildOutput>false</IncludeBuildOutput>

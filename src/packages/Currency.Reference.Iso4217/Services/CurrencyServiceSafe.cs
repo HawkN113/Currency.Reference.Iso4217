@@ -1,6 +1,5 @@
 ﻿using Currency.Reference.Iso4217.Abstractions;
 using Currency.Reference.Iso4217.Builders.Abstractions;
-
 namespace Currency.Reference.Iso4217.Services;
 
 internal sealed class CurrencyServiceSafe(ICurrencyService? inner) : ICurrencyServiceSafe

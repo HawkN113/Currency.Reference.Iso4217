@@ -2,19 +2,12 @@
 using Currency.Reference.Iso4217.Builders;
 using Currency.Reference.Iso4217.Builders.Abstractions;
 using Currency.Reference.Iso4217.Common.Models;
-
 namespace Currency.Reference.Iso4217.Services;
 
 internal sealed class CurrencyService : ICurrencyService
 {
-    private readonly List<CurrencyInfo> _currencies;
-    private readonly ICurrencyLoader _currencyLoader;
-    public CurrencyService(ICurrencyLoader currencyLoader)
-    {
-        _currencyLoader = currencyLoader ?? throw new ArgumentNullException(nameof(currencyLoader));
-        _currencies = _currencyLoader.Currencies;
-    }
-    
+    private readonly IReadOnlyList<CurrencyInfo> _currencies = LocalDatabase.Currencies;
+
     public bool IsValid(string value, CriteriaField[] fields, CurrencyType? type = null)
     {
         if (fields.Length == 0)
@@ -24,6 +17,7 @@ internal sealed class CurrencyService : ICurrencyService
 
         var result = false;
         var trimmed = value.Trim();
+
         foreach (var field in fields)
         {
             result = field switch
@@ -34,13 +28,12 @@ internal sealed class CurrencyService : ICurrencyService
                     c.Name.Equals(trimmed, StringComparison.OrdinalIgnoreCase)),
                 CriteriaField.NumericCode => _currencies.Any(c => c.NumericCode == trimmed),
                 CriteriaField.CurrencyType => type.HasValue && _currencies.Any(c =>
-                    _currencyLoader.GetCurrencyType(c.Code) == type.Value && c.Code.Equals(trimmed, StringComparison.OrdinalIgnoreCase)),
+                    c.CurrencyType == type.Value && c.Code.Equals(trimmed, StringComparison.OrdinalIgnoreCase)),
                 _ => result
             };
             if (result)
                 return true;
         }
-
         return result;
     }
 
@@ -59,8 +52,7 @@ internal sealed class CurrencyService : ICurrencyService
                 c.Name.Equals(trimmed, StringComparison.OrdinalIgnoreCase)),
             CriteriaField.NumericCode => _currencies.FirstOrDefault(c => c.NumericCode == trimmed),
             CriteriaField.CurrencyType => type.HasValue
-                ? _currencies.FirstOrDefault(c =>
-                    _currencyLoader.GetCurrencyType(c.Code) == type.Value && c.Code.Equals(trimmed, StringComparison.OrdinalIgnoreCase))
+                ? _currencies.FirstOrDefault(c => c.CurrencyType == type.Value && c.Code.Equals(trimmed, StringComparison.OrdinalIgnoreCase))
                 : null,
             _ => result
         };

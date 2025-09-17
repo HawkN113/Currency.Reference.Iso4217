@@ -34,13 +34,12 @@ try
         .IncludesSpecialUnits()
         .Build();
         */
-    
-    var currencies = currencyService.Query()
+    var currencies = currencyService?.Query()
         .Includes
         .Type(CurrencyType.Fiat)
         .Type(CurrencyType.SpecialUnit)
-        //.Without(w => w.Codes("XUA", "USD"))
-        //.Without(w => w.Codes("GBP", "EUR"))
+        .Without(w => w.Codes("XUA", "USD"))
+        .Without(w => w.Codes("GBP", "EUR"))
         .Build();
 
     var result= currencies.Any(c => c.Code == "EUR");

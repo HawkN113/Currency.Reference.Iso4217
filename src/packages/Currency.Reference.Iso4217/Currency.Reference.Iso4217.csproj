@@ -4,6 +4,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <FileVersion>8.0.0.0</FileVersion>
+        <OutputType>Library</OutputType>
         <Copyright>Copyright © 2025 Nikolay Selyutin (HawkN113)</Copyright>
         <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
         <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
@@ -12,6 +13,8 @@
         <Optimize>true</Optimize>
         <PublicSign>false</PublicSign>
         <TargetFramework>net8.0</TargetFramework>
+        <!--<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+        <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\Generated\$(Configuration)</CompilerGeneratedFilesOutputPath>-->
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -47,6 +50,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Currency.Reference.Iso4217.Common\Currency.Reference.Iso4217.Common.csproj" />
+        <ProjectReference Include="..\..\packages\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
     </ItemGroup>
 
 </Project>

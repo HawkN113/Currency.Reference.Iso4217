@@ -1,36 +1,31 @@
 ﻿using Currency.Reference.Iso4217.Abstractions;
-using Currency.Reference.Iso4217.Handlers;
 using Currency.Reference.Iso4217.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+
 namespace Currency.Reference.Iso4217.Extensions;
 
 public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddCurrencyService(this IServiceCollection services)
     {
-        if (services.All(sd => sd.ServiceType != typeof(ICurrencyLoader)))
-            services.AddSingleton<ICurrencyLoader, CurrencyLoader>();
-        
-        if (services.All(sd => sd.ServiceType != typeof(ICurrencyService)))
-            services.AddSingleton<ICurrencyService, CurrencyService>();
-        
-        services.AddSingleton<ICurrencyServiceSafe>(sp =>
+        services.TryAddSingleton<ICurrencyService, CurrencyService>();
+        services.TryAddSingleton<ICurrencyServiceSafe>(sp =>
         {
-            var inner = sp.GetService<ICurrencyService>();
+            var inner = sp.GetRequiredService<ICurrencyService>();
             return new CurrencyServiceSafe(inner);
         });
         
         return services;
     }
-    
-    public static ICurrencyServiceSafe GetCurrencyService(this IServiceProvider sp)
+
+    public static ICurrencyServiceSafe? GetCurrencyService(this IServiceProvider sp, bool required = true)
     {
         var service = sp.GetService<ICurrencyServiceSafe>();
-        if (service is null)
+        if (service is null && required)
         {
             throw new InvalidOperationException(
-                "CurrencyService is not registered. Call 'services.AddCurrencyService()' in your DI configuration."
-            );
+                "CurrencyService is not registered. Call 'services.AddCurrencyServices()' in your DI configuration.");
         }
         return service;
     }
