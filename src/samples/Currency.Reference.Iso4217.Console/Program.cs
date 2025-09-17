@@ -47,14 +47,6 @@ try
     foreach (var currency in currencies)
         Console.WriteLine($"{currency.Code} - {currency.Name}");
     
-    var currencies2 = currencyService.Query()
-        .Includes
-        .Type(CurrencyType.Fiat)
-        .Type(CurrencyType.SpecialUnit)
-        //.Without(w => w.Codes("XUA", "USD"))
-        //.Without(w => w.Codes("GBP", "EUR"))
-        .Build();
-    
     /*
     foreach (var kv in CurrencyCodeExtensions.Dictionary)
     {
