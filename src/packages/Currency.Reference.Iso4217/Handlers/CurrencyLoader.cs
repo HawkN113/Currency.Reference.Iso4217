@@ -1,5 +1,5 @@
 ﻿using Currency.Reference.Iso4217.Abstractions;
-using Currency.Reference.Iso4217.Models;
+using Currency.Reference.Iso4217.Common.Models;
 namespace Currency.Reference.Iso4217.Handlers;
 
 internal class CurrencyLoader: ICurrencyLoader

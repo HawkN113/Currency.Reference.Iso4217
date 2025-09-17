@@ -1,4 +1,4 @@
-﻿namespace Currency.Reference.Iso4217.Models;
+﻿namespace Currency.Reference.Iso4217.Common.Models;
 
 public enum CriteriaField
 {

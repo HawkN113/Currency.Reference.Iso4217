@@ -45,4 +45,8 @@
       <EmbeddedResource Include="Source\list-one-original-names.json" CopyToOutputDirectory="Always" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Currency.Reference.Iso4217.Common\Currency.Reference.Iso4217.Common.csproj" />
+    </ItemGroup>
+
 </Project>

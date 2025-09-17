@@ -1,13 +1,14 @@
 ﻿using Currency.Reference.Iso4217.Abstractions;
 using Currency.Reference.Iso4217.Builders;
 using Currency.Reference.Iso4217.Builders.Abstractions;
-using Currency.Reference.Iso4217.Models;
+using Currency.Reference.Iso4217.Common.Models;
+
 namespace Currency.Reference.Iso4217.Services;
 
 internal sealed class CurrencyService : ICurrencyService
 {
     private readonly List<CurrencyInfo> _currencies;
-    private ICurrencyLoader _currencyLoader;
+    private readonly ICurrencyLoader _currencyLoader;
     public CurrencyService(ICurrencyLoader currencyLoader)
     {
         _currencyLoader = currencyLoader ?? throw new ArgumentNullException(nameof(currencyLoader));
