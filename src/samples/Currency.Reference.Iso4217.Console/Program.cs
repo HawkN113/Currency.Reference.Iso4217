@@ -1,4 +1,5 @@
-﻿using Currency.Reference.Iso4217.Abstractions;
+﻿using Currency.Reference.Iso4217;
+using Currency.Reference.Iso4217.Abstractions;
 using Currency.Reference.Iso4217.Extensions;
 using Currency.Reference.Iso4217.Models;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,16 +47,6 @@ try
     
     foreach (var currency in currencies)
         Console.WriteLine($"{currency.Code} - {currency.Name}");
-    
-    /*
-    foreach (var kv in CurrencyCodeExtensions.Dictionary)
-    {
-        Console.WriteLine($"{kv.Key} - {kv.Value.Name} ({kv.Value.Country})");
-    }
-    */
-    
-    //var eur = Currency.Reference.Iso4217.CurrencyCode.EUR;
-    //var info = CurrencyCodeExtensions.Dictionary[eur];
     
     await host.RunAsync();
 }

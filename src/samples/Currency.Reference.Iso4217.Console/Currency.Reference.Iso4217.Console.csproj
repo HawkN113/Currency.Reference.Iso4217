@@ -9,7 +9,6 @@
         <InvariantGlobalization>true</InvariantGlobalization>
         <StripSymbols>true</StripSymbols>
         <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-        <!--<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\Generated\$(Configuration)</CompilerGeneratedFilesOutputPath>-->
     </PropertyGroup>
 
     <ItemGroup>
