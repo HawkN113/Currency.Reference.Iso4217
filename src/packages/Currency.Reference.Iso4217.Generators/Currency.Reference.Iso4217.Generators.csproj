@@ -1,14 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <Private>true</Private>
         <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
         <OutputItemType>Analyzer</OutputItemType>
         <IsRoslynAnalyzer>true</IsRoslynAnalyzer>
-        <Nullable>enable</Nullable>
         <IncludeBuildOutput>false</IncludeBuildOutput>
+        <IsRoslinComponent>true</IsRoslinComponent>
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-        <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
         <PublishSingleFile>false</PublishSingleFile>
         <FileVersion>8.0.0.0</FileVersion>
         <Copyright>Copyright © 2025 Nikolay Selyutin (HawkN113)</Copyright>
@@ -20,12 +23,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="..\Currency.Reference.Iso4217\list-one-original-names.json" Link="list-one-original-names.json" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
-        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" PrivateAssets="all" />
     </ItemGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

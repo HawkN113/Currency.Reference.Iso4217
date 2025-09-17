@@ -33,7 +33,7 @@ try
         .IncludesSpecialUnits()
         .Build();
         */
-
+    
     var currencies = currencyService.Query()
         .Includes
         .Type(CurrencyType.Fiat)
