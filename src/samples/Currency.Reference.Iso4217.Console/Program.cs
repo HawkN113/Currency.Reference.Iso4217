@@ -39,9 +39,10 @@ try
     var currencies = currencyService?.Query()
         .Includes
         .Type(CurrencyType.Fiat)
-        .Type(CurrencyType.SpecialUnit)
-        .Without(w => w.Codes(CurrencyCode.XUA, CurrencyCode.USD))
-        .Without(w => w.Codes(CurrencyCode.GBP, CurrencyCode.EUR))
+        //.Type(CurrencyType.SpecialUnit)
+        //.Type(CurrencyType.SpecialReserve)
+        //.Without(w => w.Codes(CurrencyCode.XUA, CurrencyCode.USD))
+        //.Without(w => w.Codes(CurrencyCode.GBP, CurrencyCode.EUR))
         .Build();
 
     var result= currencies.Any(c => c.Code == "EUR");

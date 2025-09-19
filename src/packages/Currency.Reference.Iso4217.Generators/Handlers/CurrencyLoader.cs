@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Currency.Reference.Iso4217.Generators.Abstractions;
+﻿using Currency.Reference.Iso4217.Generators.Abstractions;
 using Currency.Reference.Iso4217.Generators.Models;
 namespace Currency.Reference.Iso4217.Generators.Handlers;
 
@@ -18,6 +15,9 @@ internal class CurrencyLoader : ICurrencyLoader
 
     private static readonly HashSet<string> SpecialUnits = new(StringComparer.OrdinalIgnoreCase)
         { "XBA", "XBB", "XBC", "XBD", "XSU", "XUA" };
+    
+    private static readonly HashSet<string> ExcludedCodes = new(StringComparer.OrdinalIgnoreCase)
+        { "VED", "XAD", "XCG", "ZWG" };
     
     public List<CurrencyInfo> Currencies => _currencies;
 
@@ -134,16 +134,17 @@ internal class CurrencyLoader : ICurrencyLoader
             ["CNY"] = "Chinese Yuan",
             ["CVE"] = "Cape Verde Escudo"
         };
-        foreach (var item in loadedCurrencies)
+        foreach (var item in loadedCurrencies.Where(c => !ExcludedCodes.Contains(c.Code)))
+        {
             _currencies.Add(new CurrencyInfo()
-                {
-                    Code = item.Code,
-                    Name = replacements.TryGetValue(item.Code, out var newName) ? newName : item.Name,
-                    Country = item.Country,
-                    NumericCode = item.NumericCode,
-                    CurrencyType = GetCurrencyType(item.Code)
-                }
-            );
+            {
+                Code = item.Code,
+                Name = replacements.TryGetValue(item.Code, out var newName) ? newName : item.Name,
+                Country = item.Country,
+                NumericCode = item.NumericCode,
+                CurrencyType = GetCurrencyType(item.Code)
+            });
+        }
         _currencies = _currencies.OrderBy(c => c.Code).ToList();
     }
 

@@ -17,7 +17,6 @@ internal class JsonCurrencyHandler(string jsonContent)
             var name   = Extract(obj, "CcyNm");
             var country= Extract(obj, "CtryNm");
             var num    = Extract(obj, "CcyNbr");
-            //var minor  = Extract(obj, "CcyMnrUnts");
 
             if (!string.IsNullOrEmpty(code))
             {
