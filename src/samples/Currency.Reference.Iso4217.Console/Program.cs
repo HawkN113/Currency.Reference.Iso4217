@@ -1,4 +1,6 @@
-﻿using Currency.Reference.Iso4217;
+﻿using System;
+using System.Linq;
+using Currency.Reference.Iso4217;
 using Currency.Reference.Iso4217.Abstractions;
 using Currency.Reference.Iso4217.Common.Models;
 using Currency.Reference.Iso4217.Extensions;
@@ -15,7 +17,7 @@ try
 {
     var container = host.Services;
     using var scope = container.CreateScope();
-    var currencyService = scope.ServiceProvider.GetCurrencyService();
+    var currencyService = scope.ServiceProvider.GetRequiredService<ICurrencyService>();
     
     //var currencyService = scope.ServiceProvider.GetRequiredService<ICurrencyServiceSafe>();
 
@@ -38,8 +40,8 @@ try
         .Includes
         .Type(CurrencyType.Fiat)
         .Type(CurrencyType.SpecialUnit)
-        .Without(w => w.Codes("XUA", "USD"))
-        .Without(w => w.Codes("GBP", "EUR"))
+        .Without(w => w.Codes(CurrencyCode.XUA, CurrencyCode.USD))
+        .Without(w => w.Codes(CurrencyCode.GBP, CurrencyCode.EUR))
         .Build();
 
     var result= currencies.Any(c => c.Code == "EUR");

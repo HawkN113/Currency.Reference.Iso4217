@@ -5,7 +5,22 @@
 /// </summary>
 public interface IExcludeFilterBuilder
 {
-    IExcludeFilterBuilder Codes(params string[] codes);
+    /// <summary>
+    /// Excluding with codes
+    /// </summary>
+    /// <param name="codes"></param>
+    /// <returns></returns>
+    IExcludeFilterBuilder Codes(params CurrencyCode[] codes);
+    /// <summary>
+    /// Excluding with names
+    /// </summary>
+    /// <param name="names"></param>
+    /// <returns></returns>
     IExcludeFilterBuilder Names(params string[] names);
+    /// <summary>
+    /// Excluding with numeric codes
+    /// </summary>
+    /// <param name="numericCodes"></param>
+    /// <returns></returns>
     IExcludeFilterBuilder NumericCodes(params int[] numericCodes);
 }

@@ -8,26 +8,26 @@ internal sealed class CurrencyService : ICurrencyService
 {
     private readonly IReadOnlyList<CurrencyInfo> _currencies = LocalDatabase.Currencies;
 
-    public bool IsValid(string value, CriteriaField[] fields, CurrencyType? type = null)
+    public bool IsValid(string value, Criteria[] criteria, CurrencyType? type = null)
     {
-        if (fields.Length == 0)
-            throw new ArgumentException($"{nameof(fields)} must not be empty.", nameof(fields));
+        if (criteria.Length == 0)
+            throw new ArgumentException($"{nameof(criteria)} must not be empty.", nameof(criteria));
         if (string.IsNullOrWhiteSpace(value))
             throw new ArgumentException($"{nameof(value)} must not be empty.", nameof(value));
 
         var result = false;
         var trimmed = value.Trim();
 
-        foreach (var field in fields)
+        foreach (var field in criteria)
         {
             result = field switch
             {
-                CriteriaField.Code => _currencies.Any(c =>
+                Criteria.Code => _currencies.Any(c =>
                     c.Code.Equals(trimmed, StringComparison.OrdinalIgnoreCase)),
-                CriteriaField.Name => _currencies.Any(c =>
+                Criteria.Name => _currencies.Any(c =>
                     c.Name.Equals(trimmed, StringComparison.OrdinalIgnoreCase)),
-                CriteriaField.NumericCode => _currencies.Any(c => c.NumericCode == trimmed),
-                CriteriaField.CurrencyType => type.HasValue && _currencies.Any(c =>
+                Criteria.NumericCode => _currencies.Any(c => c.NumericCode == trimmed),
+                Criteria.CurrencyType => type.HasValue && _currencies.Any(c =>
                     c.CurrencyType == type.Value && c.Code.Equals(trimmed, StringComparison.OrdinalIgnoreCase)),
                 _ => result
             };
@@ -37,21 +37,21 @@ internal sealed class CurrencyService : ICurrencyService
         return result;
     }
 
-    public CurrencyInfo? Get(string value, CriteriaField field, CurrencyType? type = null)
+    public CurrencyInfo? Get(string value, Criteria criteria, CurrencyType? type = null)
     {
         if (string.IsNullOrWhiteSpace(value))
             throw new ArgumentException($"{nameof(value)} must not be empty.", nameof(value));
 
         CurrencyInfo? result = null;
         var trimmed = value.Trim();
-        return field switch
+        return criteria switch
         {
-            CriteriaField.Code => _currencies.FirstOrDefault(c =>
+            Criteria.Code => _currencies.FirstOrDefault(c =>
                 c.Code.Equals(trimmed, StringComparison.OrdinalIgnoreCase)),
-            CriteriaField.Name => _currencies.FirstOrDefault(c =>
+            Criteria.Name => _currencies.FirstOrDefault(c =>
                 c.Name.Equals(trimmed, StringComparison.OrdinalIgnoreCase)),
-            CriteriaField.NumericCode => _currencies.FirstOrDefault(c => c.NumericCode == trimmed),
-            CriteriaField.CurrencyType => type.HasValue
+            Criteria.NumericCode => _currencies.FirstOrDefault(c => c.NumericCode == trimmed),
+            Criteria.CurrencyType => type.HasValue
                 ? _currencies.FirstOrDefault(c => c.CurrencyType == type.Value && c.Code.Equals(trimmed, StringComparison.OrdinalIgnoreCase))
                 : null,
             _ => result

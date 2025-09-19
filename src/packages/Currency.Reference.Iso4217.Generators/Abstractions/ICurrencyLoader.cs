@@ -1,4 +1,5 @@
-﻿using Currency.Reference.Iso4217.Generators.Models;
+﻿using System.Collections.Generic;
+using Currency.Reference.Iso4217.Generators.Models;
 namespace Currency.Reference.Iso4217.Generators.Abstractions;
 
 internal interface ICurrencyLoader

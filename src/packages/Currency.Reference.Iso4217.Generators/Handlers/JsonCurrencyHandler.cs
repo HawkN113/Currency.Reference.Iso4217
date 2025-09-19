@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 namespace Currency.Reference.Iso4217.Generators.Handlers;
 
 internal class JsonCurrencyHandler(string jsonContent)
