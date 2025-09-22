@@ -46,7 +46,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Source\list-one-original-names.json" CopyToOutputDirectory="Always" />
       <EmbeddedResource Remove="obj\**" />
     </ItemGroup>
 

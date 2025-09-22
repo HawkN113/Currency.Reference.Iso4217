@@ -1,9 +1,6 @@
 ﻿namespace Currency.Reference.Iso4217.Common.Models;
 
-public enum Criteria
+public abstract class Criteria
 {
-    Code,
-    Name,
-    NumericCode,
-    CurrencyType
+    public Func<CurrencyInfo, bool> Predicate { get; set; } = _ => true;
 }

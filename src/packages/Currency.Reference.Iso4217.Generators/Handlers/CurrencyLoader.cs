@@ -1,11 +1,9 @@
-﻿using Currency.Reference.Iso4217.Generators.Abstractions;
-using Currency.Reference.Iso4217.Generators.Models;
+﻿using Currency.Reference.Iso4217.Generators.Models;
 namespace Currency.Reference.Iso4217.Generators.Handlers;
 
-internal class CurrencyLoader : ICurrencyLoader
+internal class CurrencyLoader
 {
     private readonly List<CurrencyInfo> _currencies;
-    private readonly string _jsonContent;
 
     private static readonly HashSet<string> PreciousMetalsCodes = new(StringComparer.OrdinalIgnoreCase)
         { "XAG", "XAU", "XPD", "XPT" };
@@ -23,8 +21,7 @@ internal class CurrencyLoader : ICurrencyLoader
 
     public CurrencyLoader(string jsonContent)
     {
-        _jsonContent= jsonContent;
-        var loadedCurrencies = new JsonCurrencyHandler(_jsonContent).LoadCurrencies();
+        var loadedCurrencies = new JsonCurrencyHandler(jsonContent).LoadCurrencies();
         _currencies = new List<CurrencyInfo>(loadedCurrencies.Count);
 
         var replacements = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
@@ -142,7 +139,8 @@ internal class CurrencyLoader : ICurrencyLoader
                 Name = replacements.TryGetValue(item.Code, out var newName) ? newName : item.Name,
                 Country = item.Country,
                 NumericCode = item.NumericCode,
-                CurrencyType = GetCurrencyType(item.Code)
+                CurrencyType = GetCurrencyType(item.Code),
+                IsActive = true
             });
         }
         _currencies = _currencies.OrderBy(c => c.Code).ToList();

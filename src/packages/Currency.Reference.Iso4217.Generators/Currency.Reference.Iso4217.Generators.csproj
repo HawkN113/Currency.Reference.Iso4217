@@ -29,13 +29,21 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Sources\list-one-original-names.json">
+      <EmbeddedResource Include="Data\list-original-currency-names.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="Data\list-replacement-currency-names.json" />
+      <EmbeddedResource Include="Data\list-replacement-currency-names.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="obj\" />
+      <Compile Remove="obj\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="obj\**" />
     </ItemGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

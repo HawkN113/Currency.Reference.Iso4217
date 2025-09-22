@@ -15,7 +15,7 @@ public class CurrencyCodeGenerator : IIncrementalGenerator
             try
             {
                 var assembly = Assembly.GetExecutingAssembly();
-                const string resourceName = "Currency.Reference.Iso4217.Generators.Sources.list-one-original-names.json";
+                const string resourceName = "Currency.Reference.Iso4217.Generators.Data.list-original-currency-names.json";
                 using var stream = assembly.GetManifestResourceStream(resourceName)
                                    ?? throw new InvalidOperationException("Embedded resource not found.");
                 using var reader = new StreamReader(stream, Encoding.UTF8);

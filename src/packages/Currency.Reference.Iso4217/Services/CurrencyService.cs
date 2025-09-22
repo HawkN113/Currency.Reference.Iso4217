@@ -2,61 +2,45 @@
 using Currency.Reference.Iso4217.Builders;
 using Currency.Reference.Iso4217.Builders.Abstractions;
 using Currency.Reference.Iso4217.Common.Models;
+using Currency.Reference.Iso4217.Data;
 namespace Currency.Reference.Iso4217.Services;
 
 internal sealed class CurrencyService : ICurrencyService
 {
     private readonly IReadOnlyList<CurrencyInfo> _currencies = LocalDatabase.Currencies;
 
-    public bool IsValid(string value, Criteria[] criteria, CurrencyType? type = null)
+    public bool IsValid(string value, params Criteria[] criteria)
     {
-        if (criteria.Length == 0)
-            throw new ArgumentException($"{nameof(criteria)} must not be empty.", nameof(criteria));
-        if (string.IsNullOrWhiteSpace(value))
-            throw new ArgumentException($"{nameof(value)} must not be empty.", nameof(value));
+        var currency = _currencies.FirstOrDefault(c =>
+            string.Equals(c.Code.ToString(), value, StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(c.Name, value, StringComparison.OrdinalIgnoreCase));
 
-        var result = false;
-        var trimmed = value.Trim();
-
-        foreach (var field in criteria)
-        {
-            result = field switch
-            {
-                Criteria.Code => _currencies.Any(c =>
-                    c.Code.Equals(trimmed, StringComparison.OrdinalIgnoreCase)),
-                Criteria.Name => _currencies.Any(c =>
-                    c.Name.Equals(trimmed, StringComparison.OrdinalIgnoreCase)),
-                Criteria.NumericCode => _currencies.Any(c => c.NumericCode == trimmed),
-                Criteria.CurrencyType => type.HasValue && _currencies.Any(c =>
-                    c.CurrencyType == type.Value && c.Code.Equals(trimmed, StringComparison.OrdinalIgnoreCase)),
-                _ => result
-            };
-            if (result)
-                return true;
-        }
-        return result;
+        return currency != null && criteria.All(c => c.Predicate(currency));
     }
 
-    public CurrencyInfo? Get(string value, Criteria criteria, CurrencyType? type = null)
+    public bool IsValid(CurrencyCode code, params Criteria[] criteria)
     {
-        if (string.IsNullOrWhiteSpace(value))
-            throw new ArgumentException($"{nameof(value)} must not be empty.", nameof(value));
-
-        CurrencyInfo? result = null;
-        var trimmed = value.Trim();
-        return criteria switch
-        {
-            Criteria.Code => _currencies.FirstOrDefault(c =>
-                c.Code.Equals(trimmed, StringComparison.OrdinalIgnoreCase)),
-            Criteria.Name => _currencies.FirstOrDefault(c =>
-                c.Name.Equals(trimmed, StringComparison.OrdinalIgnoreCase)),
-            Criteria.NumericCode => _currencies.FirstOrDefault(c => c.NumericCode == trimmed),
-            Criteria.CurrencyType => type.HasValue
-                ? _currencies.FirstOrDefault(c => c.CurrencyType == type.Value && c.Code.Equals(trimmed, StringComparison.OrdinalIgnoreCase))
-                : null,
-            _ => result
-        };
+        var currency = _currencies.FirstOrDefault(c => c.Code == code.ToString());
+        return currency != null && criteria.All(c => c.Predicate(currency));
     }
+    
+    public CurrencyInfo? Get(string value, params Criteria[] criteria)
+    {
+        var currency = _currencies.FirstOrDefault(c =>
+            string.Equals(c.Code.ToString(), value, StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(c.Name, value, StringComparison.OrdinalIgnoreCase));
+
+        if (currency == null) return null;
+        return criteria.All(c => c.Predicate(currency)) ? currency : null;
+    }
+
+    public CurrencyInfo? Get(CurrencyCode code, params Criteria[] criteria)
+    {
+        var currency = _currencies.FirstOrDefault(c => c.Code == code.ToString());
+        if (currency == null) return null;
+        return criteria.All(c => c.Predicate(currency)) ? currency : null;
+    }
+    
     public ICurrencyQueryStart Query()
     {
         return new CurrencyQueryBuilder(_currencies);

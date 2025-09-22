@@ -56,11 +56,11 @@ internal sealed class CurrencyQueryBuilder:
         if (_withNames.Count > 0)
             query = query.Where(c => _withNames.Contains(c.Name));
         if (_withoutNames.Count > 0)
-            query = query.Where(c => _withoutNames.Contains(c.Name));
+            query = query.Where(c => !_withoutNames.Contains(c.Name));
         if (_withNumericCodes.Count > 0)
             query = query.Where(c => c.NumericCode is not null && _withNumericCodes.Contains(c.NumericCode!));
         if (_withoutNumericCodes.Count > 0)
-            query = query.Where(c => c.NumericCode is not null && _withoutNumericCodes.Contains(c.NumericCode!));
+            query = query.Where(c => c.NumericCode is not null && !_withoutNumericCodes.Contains(c.NumericCode!));
         
         return query.ToList();
     }

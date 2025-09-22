@@ -1,6 +1,6 @@
 ﻿namespace Currency.Reference.Iso4217.Generators.Models;
 
-public enum CurrencyType
+internal enum CurrencyType
 {
     Fiat,
     PreciousMetal,

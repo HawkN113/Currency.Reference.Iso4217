@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text;
 using Currency.Reference.Iso4217.Generators.Handlers;
 using Currency.Reference.Iso4217.Generators.Models;
@@ -18,7 +16,7 @@ public class LocalDatabaseGenerator : IIncrementalGenerator
             try
             {
                 var assembly = Assembly.GetExecutingAssembly();
-                const string resourceName = "Currency.Reference.Iso4217.Generators.Sources.list-one-original-names.json";
+                const string resourceName = "Currency.Reference.Iso4217.Generators.Data.list-original-currency-names.json";
                 using var stream = assembly.GetManifestResourceStream(resourceName)
                                    ?? throw new InvalidOperationException("Embedded resource not found.");
                 using var reader = new StreamReader(stream, Encoding.UTF8);
@@ -73,7 +71,7 @@ public class LocalDatabaseGenerator : IIncrementalGenerator
                 sb.AppendLine("#nullable enable");
                 sb.AppendLine("using System.Collections.Generic;");
                 sb.AppendLine("using Currency.Reference.Iso4217.Common.Models;");
-                sb.AppendLine("namespace Currency.Reference.Iso4217");
+                sb.AppendLine("namespace Currency.Reference.Iso4217.Data");
                 sb.AppendLine("{");
                 sb.AppendLine("    internal static class LocalDatabase");
                 sb.AppendLine("    {");
@@ -85,8 +83,9 @@ public class LocalDatabaseGenerator : IIncrementalGenerator
                     var currencyType = c.CurrencyType is not CurrencyType.Fiat
                         ? $", CurrencyType.{c.CurrencyType}"
                         : string.Empty;
+                    var isActive = c.IsActive ? "true" : "false";
                     sb.AppendLine(
-                        $"            new(\"{c.Code}\", \"{c.Name}\", \"{c.Country}\", \"{c.NumericCode}\"{currencyType}),");
+                        $"            new(\"{c.Code}\", \"{c.Name}\", \"{c.Country}\", \"{c.NumericCode}\", {isActive}{currencyType}),");
                 }
 
                 sb.AppendLine("        };");
