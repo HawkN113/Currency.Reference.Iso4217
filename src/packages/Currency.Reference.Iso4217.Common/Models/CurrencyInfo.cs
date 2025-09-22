@@ -13,4 +13,5 @@ public sealed record CurrencyInfo(
     string? Country, 
     string? NumericCode,
     bool IsActive,
+    bool IsHistoric,
     CurrencyType CurrencyType = CurrencyType.Fiat);

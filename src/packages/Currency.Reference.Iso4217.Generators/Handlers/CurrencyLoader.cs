@@ -34,7 +34,8 @@ internal class CurrencyLoader
                 Country = item.Country,
                 NumericCode = item.NumericCode,
                 CurrencyType = GetCurrencyType(item.Code),
-                IsActive = true
+                IsActive = true, 
+                IsHistoric = false
             });
         }
         _currencies = _currencies.OrderBy(c => c.Code).ToList();

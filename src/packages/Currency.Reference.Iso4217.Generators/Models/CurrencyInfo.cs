@@ -8,4 +8,5 @@ internal sealed class CurrencyInfo
     public string? NumericCode { get; set; }
     public CurrencyType CurrencyType { get; set; } = CurrencyType.Fiat;
     public bool IsActive { get; set; }
+    public bool IsHistoric { get; set; }
 }

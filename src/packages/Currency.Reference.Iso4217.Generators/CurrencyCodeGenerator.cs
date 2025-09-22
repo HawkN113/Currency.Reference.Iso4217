@@ -38,7 +38,7 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
             {
                 var assembly = Assembly.GetExecutingAssembly();
                 const string originalResource =
-                    "Currency.Reference.Iso4217.Generators.Data.list-original-currency-names.json";
+                    "Currency.Reference.Iso4217.Generators.Data.list-original-currencies.json";
                 using var originalStream = assembly.GetManifestResourceStream(originalResource)
                                            ?? throw new InvalidOperationException("Original JSON resource not found.");
                 using var originalReader = new StreamReader(originalStream, Encoding.UTF8);
