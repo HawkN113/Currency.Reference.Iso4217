@@ -16,28 +16,38 @@ public class LocalDatabaseGenerator : IIncrementalGenerator
             try
             {
                 var assembly = Assembly.GetExecutingAssembly();
-                const string resourceName = "Currency.Reference.Iso4217.Generators.Data.list-original-currency-names.json";
-                using var stream = assembly.GetManifestResourceStream(resourceName)
-                                   ?? throw new InvalidOperationException("Embedded resource not found.");
-                using var reader = new StreamReader(stream, Encoding.UTF8);
-                return reader.ReadToEnd();
+                const string originalResource =
+                    "Currency.Reference.Iso4217.Generators.Data.list-original-currency-names.json";
+                using var originalStream = assembly.GetManifestResourceStream(originalResource)
+                                           ?? throw new InvalidOperationException("Original JSON resource not found.");
+                using var originalReader = new StreamReader(originalStream, Encoding.UTF8);
+                var originalJson = originalReader.ReadToEnd();
+                const string replacementResource =
+                    "Currency.Reference.Iso4217.Generators.Data.list-replacement-currency-names.json";
+                using var replacementStream = assembly.GetManifestResourceStream(replacementResource)
+                                              ?? throw new InvalidOperationException(
+                                                  "Replacement JSON resource not found.");
+                using var replacementReader = new StreamReader(replacementStream, Encoding.UTF8);
+                var replacementJson = replacementReader.ReadToEnd();
+                return (OriginalJson: originalJson, ReplacementJson: replacementJson);
             }
             catch (Exception ex)
             {
-                return $"__ERROR__:{ex.Message}";
+                return (OriginalJson: $"__ERROR__:{ex.Message}", ReplacementJson: $"__ERROR__:{ex.Message}");
             }
         });
-        context.RegisterSourceOutput(jsonProvider, (spc, jsonContent) =>
+        context.RegisterSourceOutput(jsonProvider, (spc, jsonTuple) =>
         {
             try
             {
-                if (jsonContent is null)
+                var (originalJson, replacementJson) = jsonTuple;
+                if (originalJson.StartsWith("__ERROR__"))
                 {
                     spc.ReportDiagnostic(Diagnostic.Create(
                         new DiagnosticDescriptor(
-                            "CURRENCY001",
+                            "CURRENCY0021",
                             "Generator error",
-                            "No JSON content loaded.",
+                            $"Failed to load original resource: {originalJson.Substring(9)}",
                             "CurrencyGenerator",
                             DiagnosticSeverity.Error,
                             true),
@@ -45,13 +55,13 @@ public class LocalDatabaseGenerator : IIncrementalGenerator
                     return;
                 }
 
-                if (jsonContent.StartsWith("__ERROR__"))
+                if (replacementJson.StartsWith("__ERROR__"))
                 {
                     spc.ReportDiagnostic(Diagnostic.Create(
                         new DiagnosticDescriptor(
-                            "CURRENCY002",
+                            "CURRENCY0022",
                             "Generator error",
-                            $"Failed to load resource: {jsonContent.Substring(9)}",
+                            $"Failed to load replacement resource: {replacementJson.Substring(9)}",
                             "CurrencyGenerator",
                             DiagnosticSeverity.Error,
                             true),
@@ -59,7 +69,7 @@ public class LocalDatabaseGenerator : IIncrementalGenerator
                     return;
                 }
 
-                var loader = new CurrencyLoader(jsonContent);
+                var loader = new CurrencyLoader(originalJson, replacementJson);
                 var currencies = loader.Currencies;
 
                 var sb = new StringBuilder();
