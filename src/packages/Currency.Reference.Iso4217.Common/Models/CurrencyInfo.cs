@@ -8,10 +8,10 @@
 /// <param name="Country"></param>
 /// <param name="NumericCode"></param>
 public sealed record CurrencyInfo(
-    string Code, 
-    string Name, 
-    string? Country, 
+    string Code,
+    string Name,
+    string? Country,
     string? NumericCode,
-    bool IsActive,
     bool IsHistoric,
+    DateOnly? WithdrawalDate,
     CurrencyType CurrencyType = CurrencyType.Fiat);

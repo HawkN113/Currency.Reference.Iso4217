@@ -50,18 +50,27 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
                                                   "Replacement JSON resource not found.");
                 using var replacementReader = new StreamReader(replacementStream, Encoding.UTF8);
                 var replacementJson = replacementReader.ReadToEnd();
-                return (OriginalJson: originalJson, ReplacementJson: replacementJson);
+                
+                const string historicalResource =
+                    "Currency.Reference.Iso4217.Generators.Data.list-historical-currencies.json";
+                using var historicalStream = assembly.GetManifestResourceStream(historicalResource)
+                                             ?? throw new InvalidOperationException(
+                                                 "Historical JSON resource not found.");
+                using var historicalReader = new StreamReader(historicalStream, Encoding.UTF8);
+                var historicalJson = historicalReader.ReadToEnd();
+                
+                return (OriginalJson: originalJson, ReplacementJson: replacementJson, HistoricalJson: historicalJson);
             }
             catch (Exception ex)
             {
-                return (OriginalJson: $"__ERROR__:{ex.Message}", ReplacementJson: $"__ERROR__:{ex.Message}");
+                return (OriginalJson: $"__ERROR__:{ex.Message}", ReplacementJson: $"__ERROR__:{ex.Message}", HistoricalJson: $"__ERROR__:{ex.Message}");
             }
         });
         context.RegisterSourceOutput(jsonProvider, (spc, jsonTuple) =>
         {
             try
             {
-                var (originalJson, replacementJson) = jsonTuple;
+                var (originalJson, replacementJson, historicalJson) = jsonTuple;
                 if (originalJson.StartsWith("__ERROR__"))
                 {
                     ErrorFactory.Create(new ErrorDescription()
@@ -76,7 +85,6 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
                         GeneratorType = GeneratorType.Currency
                     });
                 }
-
                 if (replacementJson.StartsWith("__ERROR__"))
                 {
                     ErrorFactory.Create(new ErrorDescription()
@@ -91,6 +99,20 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
                         GeneratorType = GeneratorType.Currency
                     });
                 }
+                if (historicalJson.StartsWith("__ERROR__"))
+                {
+                    ErrorFactory.Create(new ErrorDescription()
+                    {
+                        DiagnosticDescriptor = new DiagnosticDescriptor(
+                            id: "CURRENCY002",
+                            title: "Generator error",
+                            messageFormat: $"Failed to load historical resource: {historicalJson.Substring(9)}",
+                            category: string.Empty,
+                            defaultSeverity: DiagnosticSeverity.Error,
+                            isEnabledByDefault: true),
+                        GeneratorType = GeneratorType.Database
+                    });
+                }
 
                 if (ErrorFactory.IsExists())
                 {
@@ -99,7 +121,7 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
                     return;
                 }
 
-                var loader = new CurrencyLoader(originalJson, replacementJson);
+                var loader = new CurrencyLoader(originalJson, replacementJson, historicalJson);
                 var currencies = loader.Currencies;
 
                 var sb = new StringBuilder();
@@ -122,10 +144,14 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
                 {
                     sb.AppendLine(
                         $"        ///<summary> {c.Name} </summary>");
+                    if (c.IsHistoric && !string.IsNullOrEmpty(c.WithdrawalDate))
+                    {
+                        sb.AppendLine(
+                            $"        [Obsolete(\"Currency withdrawn on {c.WithdrawalDate}\")]");
+                    }
                     sb.AppendLine(
                         $"        {c.Code},");
                 }
-
                 sb.AppendLine("    }");
                 sb.AppendLine("}");
                 spc.AddSource(HintName, SourceText.From(sb.ToString(), Encoding.UTF8));

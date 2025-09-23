@@ -1,9 +1,9 @@
 ﻿using System.Text.RegularExpressions;
 namespace Currency.Reference.Iso4217.Generators.Handlers;
 
-internal sealed class JsonCurrencyHandler(string jsonContent)
+internal sealed class JsonHistoricalCurrencyHandler(string jsonContent)
 {
-    public List<CurrencyRaw> LoadActualCurrencies()
+    public List<CurrencyRaw> LoadHistoricalCurrencies()
     {
         var matches = Regex.Matches(jsonContent, @"\{([^}]*)\}");
         var currencies = (from Match match in matches
@@ -13,13 +13,16 @@ internal sealed class JsonCurrencyHandler(string jsonContent)
         let name = Extract(obj, "CcyNm")
         let country = Extract(obj, "CtryNm")
         let num = Extract(obj, "CcyNbr")
+        let wthdrwlDt = Extract(obj, "WthdrwlDt")
+        
         where !string.IsNullOrEmpty(code)
         select new CurrencyRaw
         {
             Code = code, 
             Name = name, 
             Country = country, 
-            NumericCode = num,
+            NumericCode = num, 
+            WithdrawalDate = wthdrwlDt
         }).ToList();
 
         return currencies
@@ -31,6 +34,6 @@ internal sealed class JsonCurrencyHandler(string jsonContent)
     {
         var pattern = $"\"{Regex.Escape(key)}\"\\s*:\\s*\"([^\"]+)\"";
         var match = Regex.Match(json, pattern);
-        return match.Success ? match.Groups[1].Value : "";
+        return match.Success ? match.Groups[1].Value : string.Empty;
     }
 }

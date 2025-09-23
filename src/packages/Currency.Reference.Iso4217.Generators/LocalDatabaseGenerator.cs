@@ -43,6 +43,7 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
                                            ?? throw new InvalidOperationException("Original JSON resource not found.");
                 using var originalReader = new StreamReader(originalStream, Encoding.UTF8);
                 var originalJson = originalReader.ReadToEnd();
+                
                 const string replacementResource =
                     "Currency.Reference.Iso4217.Generators.Data.list-replacement-currency-names.json";
                 using var replacementStream = assembly.GetManifestResourceStream(replacementResource)
@@ -50,18 +51,27 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
                                                   "Replacement JSON resource not found.");
                 using var replacementReader = new StreamReader(replacementStream, Encoding.UTF8);
                 var replacementJson = replacementReader.ReadToEnd();
-                return (OriginalJson: originalJson, ReplacementJson: replacementJson);
+                
+                const string historicalResource =
+                    "Currency.Reference.Iso4217.Generators.Data.list-historical-currencies.json";
+                using var historicalStream = assembly.GetManifestResourceStream(historicalResource)
+                                             ?? throw new InvalidOperationException(
+                                                 "Historical JSON resource not found.");
+                using var historicalReader = new StreamReader(historicalStream, Encoding.UTF8);
+                var historicalJson = historicalReader.ReadToEnd();
+                
+                return (OriginalJson: originalJson, ReplacementJson: replacementJson, HistoricalJson: historicalJson);
             }
             catch (Exception ex)
             {
-                return (OriginalJson: $"__ERROR__:{ex.Message}", ReplacementJson: $"__ERROR__:{ex.Message}");
+                return (OriginalJson: $"__ERROR__:{ex.Message}", ReplacementJson: $"__ERROR__:{ex.Message}", HistoricalJson: $"__ERROR__:{ex.Message}");
             }
         });
         context.RegisterSourceOutput(jsonProvider, (spc, jsonTuple) =>
         {
             try
             {
-                var (originalJson, replacementJson) = jsonTuple;
+                var (originalJson, replacementJson, historicalJson) = jsonTuple;
                 if (originalJson.StartsWith("__ERROR__"))
                 {
                     ErrorFactory.Create(new ErrorDescription()
@@ -76,7 +86,6 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
                         GeneratorType = GeneratorType.Database
                     });
                 }
-
                 if (replacementJson.StartsWith("__ERROR__"))
                 {
                     ErrorFactory.Create(new ErrorDescription()
@@ -91,6 +100,20 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
                         GeneratorType = GeneratorType.Database
                     });
                 }
+                if (historicalJson.StartsWith("__ERROR__"))
+                {
+                    ErrorFactory.Create(new ErrorDescription()
+                    {
+                        DiagnosticDescriptor = new DiagnosticDescriptor(
+                            id: "CURRENCY002",
+                            title: "Generator error",
+                            messageFormat: $"Failed to load historical resource: {historicalJson.Substring(9)}",
+                            category: string.Empty,
+                            defaultSeverity: DiagnosticSeverity.Error,
+                            isEnabledByDefault: true),
+                        GeneratorType = GeneratorType.Database
+                    });
+                }
 
                 if (ErrorFactory.IsExists())
                 {
@@ -99,7 +122,7 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
                     return;
                 }
 
-                var loader = new CurrencyLoader(originalJson, replacementJson);
+                var loader = new CurrencyLoader(originalJson, replacementJson, historicalJson);
                 var currencies = loader.Currencies;
 
                 var sb = new StringBuilder();
@@ -124,10 +147,9 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
                     var currencyType = c.CurrencyType is not CurrencyType.Fiat
                         ? $", CurrencyType.{c.CurrencyType}"
                         : string.Empty;
-                    var isActive = c.IsActive ? "true" : "false";
                     var isHistorical = c.IsHistoric ? "true" : "false";
                     sb.AppendLine(
-                        $"            new(\"{c.Code}\", \"{c.Name}\", \"{c.Country}\", \"{c.NumericCode}\", {isActive}, {isHistorical}{currencyType}),");
+                        $"            new(\"{c.Code}\", \"{c.Name}\", \"{c.Country}\", \"{c.NumericCode}\", {isHistorical}, {ParseWithdrawalDate(c.WithdrawalDate)}{currencyType}),");
                 }
 
                 sb.AppendLine("        };");
@@ -155,5 +177,12 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
                 }
             }
         });
+    }
+    
+    private static string? ParseWithdrawalDate(string? raw)
+    {
+        if (string.IsNullOrWhiteSpace(raw))
+            return " null";
+        return DateTime.TryParseExact(raw, "yyyy-MM", null, System.Globalization.DateTimeStyles.None, out var dt) ? $" new DateOnly({dt.Year}, {dt.Month}, 1)" : " null";
     }
 }

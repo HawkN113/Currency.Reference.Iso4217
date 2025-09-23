@@ -19,13 +19,14 @@ internal class CurrencyLoader
     
     public List<CurrencyInfo> Currencies => _currencies;
 
-    public CurrencyLoader(string originalJson, string replacementJson)
+    public CurrencyLoader(string originalJson, string replacementJson, string historicalJson)
     {
-        var loadedCurrencies = new JsonCurrencyHandler(originalJson).LoadCurrencies();
+        var actualCurrencies = new JsonCurrencyHandler(originalJson).LoadActualCurrencies();
         var replacements = new JsonReplacementCurrencyHandler(replacementJson).LoadNameReplacements();
-        _currencies = new List<CurrencyInfo>(loadedCurrencies.Count);
+        //var historicalCurrencies = new JsonHistoricalCurrencyHandler(historicalJson).LoadHistoricalCurrencies();
+        _currencies = new List<CurrencyInfo>(actualCurrencies.Count);
         
-        foreach (var item in loadedCurrencies.Where(c => !ExcludedCodes.Contains(c.Code)))
+        foreach (var item in actualCurrencies.Where(c => !ExcludedCodes.Contains(c.Code)))
         {
             _currencies.Add(new CurrencyInfo()
             {
@@ -34,10 +35,28 @@ internal class CurrencyLoader
                 Country = item.Country,
                 NumericCode = item.NumericCode,
                 CurrencyType = GetCurrencyType(item.Code),
-                IsActive = true, 
-                IsHistoric = false
+                IsHistoric = !string.IsNullOrEmpty(item.WithdrawalDate), 
+                WithdrawalDate = item.WithdrawalDate 
             });
         }
+        /*
+        foreach (var item in historicalCurrencies.Where(c => !ExcludedCodes.Contains(c.Code)))
+        {
+            if (_currencies.Any(x => x.Code == item.Code))
+                continue;
+            _currencies.Add(new CurrencyInfo()
+            {
+                Code = item.Code,
+                Name = replacements.TryGetValue(item.Code, out var newName) ? newName : item.Name,
+                Country = item.Country,
+                NumericCode = item.NumericCode,
+                CurrencyType = GetCurrencyType(item.Code),
+                IsHistoric = !string.IsNullOrEmpty(item.WithdrawalDate),
+                WithdrawalDate = item.WithdrawalDate
+            });
+        }
+        */
+        
         _currencies = _currencies.OrderBy(c => c.Code).ToList();
     }
 
