@@ -2,7 +2,7 @@
 using System.Linq;
 using Currency.Reference.Iso4217;
 using Currency.Reference.Iso4217.Abstractions;
-using Currency.Reference.Iso4217.Common.Models;
+using Currency.Reference.Iso4217.Domain.Entities;
 using Currency.Reference.Iso4217.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

@@ -1,5 +1,5 @@
 ﻿using Currency.Reference.Iso4217.Builders.Abstractions;
-using Currency.Reference.Iso4217.Common.Models;
+using Currency.Reference.Iso4217.Domain.Entities;
 namespace Currency.Reference.Iso4217.Abstractions;
 
 /// <summary>
@@ -29,7 +29,7 @@ public interface ICurrencyService
     /// <param name="value">Currency code or name.</param>
     /// <param name="criteria">Optional criteria to filter the result.</param>
     /// <returns>CurrencyInfo object or null if not found.</returns>
-    CurrencyInfo? Get(string value, params Criteria[] criteria);
+    Domain.Entities.Currency? Get(string value, params Criteria[] criteria);
 
     /// <summary>
     /// Gets currency information by enum code with optional criteria.
@@ -37,7 +37,7 @@ public interface ICurrencyService
     /// <param name="code">Currency code enum.</param>
     /// <param name="criteria">Optional criteria to filter the result.</param>
     /// <returns>CurrencyInfo object or null if not found.</returns>
-    CurrencyInfo? Get(CurrencyCode code, params Criteria[] criteria);
+    Domain.Entities.Currency? Get(CurrencyCode code, params Criteria[] criteria);
 
     /// <summary>
     /// Starts building a query for currencies with fluent filtering and sorting.

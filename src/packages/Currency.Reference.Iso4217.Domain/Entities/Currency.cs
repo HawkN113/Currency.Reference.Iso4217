@@ -1,4 +1,4 @@
-﻿namespace Currency.Reference.Iso4217.Common.Models;
+﻿namespace Currency.Reference.Iso4217.Domain.Entities;
 
 /// <summary>
 /// 
@@ -7,10 +7,10 @@
 /// <param name="Name"></param>
 /// <param name="Country"></param>
 /// <param name="NumericCode"></param>
-public sealed record CurrencyInfo(
+public sealed record Currency(
     string Code,
     string Name,
-    string? Country,
+    string? CountryName,
     string? NumericCode,
     bool IsHistoric,
     DateOnly? WithdrawalDate,

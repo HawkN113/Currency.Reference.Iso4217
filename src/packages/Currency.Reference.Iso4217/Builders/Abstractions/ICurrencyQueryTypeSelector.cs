@@ -1,4 +1,5 @@
-﻿using Currency.Reference.Iso4217.Common.Models;
+﻿using Currency.Reference.Iso4217.Domain.Entities;
+
 namespace Currency.Reference.Iso4217.Builders.Abstractions;
 
 /// <summary>

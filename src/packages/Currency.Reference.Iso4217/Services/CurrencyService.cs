@@ -1,13 +1,14 @@
 ﻿using Currency.Reference.Iso4217.Abstractions;
 using Currency.Reference.Iso4217.Builders;
 using Currency.Reference.Iso4217.Builders.Abstractions;
-using Currency.Reference.Iso4217.Common.Models;
+using Currency.Reference.Iso4217.Domain.Entities;
 using Currency.Reference.Iso4217.Data;
 namespace Currency.Reference.Iso4217.Services;
 
 internal sealed class CurrencyService : ICurrencyService
 {
-    private readonly IReadOnlyList<CurrencyInfo> _currencies = LocalDatabase.Currencies;
+    private readonly IReadOnlyList<Domain.Entities.Currency> _currencies = LocalDatabase.ActualCurrencies;
+    private readonly IReadOnlyList<Domain.Entities.Currency> _historicalCurrencies = LocalDatabase.HistoricalCurrencies;
 
     public bool IsValid(string value, params Criteria[] criteria)
     {
@@ -24,7 +25,7 @@ internal sealed class CurrencyService : ICurrencyService
         return currency != null && criteria.All(c => c.Predicate(currency));
     }
     
-    public CurrencyInfo? Get(string value, params Criteria[] criteria)
+    public Domain.Entities.Currency? Get(string value, params Criteria[] criteria)
     {
         var currency = _currencies.FirstOrDefault(c =>
             string.Equals(c.Code.ToString(), value, StringComparison.OrdinalIgnoreCase) ||
@@ -34,7 +35,7 @@ internal sealed class CurrencyService : ICurrencyService
         return criteria.All(c => c.Predicate(currency)) ? currency : null;
     }
 
-    public CurrencyInfo? Get(CurrencyCode code, params Criteria[] criteria)
+    public Domain.Entities.Currency? Get(CurrencyCode code, params Criteria[] criteria)
     {
         var currency = _currencies.FirstOrDefault(c => c.Code == code.ToString());
         if (currency == null) return null;
@@ -43,6 +44,6 @@ internal sealed class CurrencyService : ICurrencyService
     
     public ICurrencyQueryStart Query()
     {
-        return new CurrencyQueryBuilder(_currencies);
+        return new CurrencyQueryBuilder(_currencies, _historicalCurrencies);
     }
 }
