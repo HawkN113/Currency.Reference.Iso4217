@@ -3,8 +3,8 @@ namespace Currency.Reference.Iso4217.Generators.Handlers;
 
 internal class CurrencyLoader
 {
-    private readonly List<CurrencyInfo> _currencies;
-    private readonly List<CurrencyInfo> _historicalCurrencies;
+    private readonly List<Models.Currency> _currencies;
+    private readonly List<Models.Currency> _historicalCurrencies;
 
     private static readonly HashSet<string> PreciousMetalsCodes = new(StringComparer.OrdinalIgnoreCase)
         { "XAG", "XAU", "XPD", "XPT" };
@@ -18,20 +18,20 @@ internal class CurrencyLoader
     private static readonly HashSet<string> ExcludedCodes = new(StringComparer.OrdinalIgnoreCase)
         { "VED", "XAD", "XCG", "ZWG" };
     
-    public List<CurrencyInfo> Currencies => _currencies;
-    public List<CurrencyInfo> HistoricalCurrencies => _historicalCurrencies;
+    public List<Models.Currency> Currencies => _currencies;
+    public List<Models.Currency> HistoricalCurrencies => _historicalCurrencies;
 
     public CurrencyLoader(string originalJson, string replacementJson, string historicalJson)
     {
         var actualCurrencies = new JsonCurrencyHandler(originalJson).LoadActualCurrencies();
         var replacements = new JsonReplacementCurrencyHandler(replacementJson).LoadNameReplacements();
         var historicalCurrencies = new JsonHistoricalCurrencyHandler(historicalJson).LoadHistoricalCurrencies();
-        _currencies = new List<CurrencyInfo>(actualCurrencies.Count);
-        _historicalCurrencies = new List<CurrencyInfo>(historicalCurrencies.Count);
+        _currencies = new List<Models.Currency>(actualCurrencies.Count);
+        _historicalCurrencies = new List<Models.Currency>(historicalCurrencies.Count);
 
         foreach (var item in actualCurrencies.Where(c => !ExcludedCodes.Contains(c.Code)))
         {
-            _currencies.Add(new CurrencyInfo()
+            _currencies.Add(new Models.Currency()
             {
                 Code = item.Code,
                 Name = replacements.TryGetValue(item.Code, out var newName) ? newName : item.Name,
@@ -45,7 +45,7 @@ internal class CurrencyLoader
 
         foreach (var item in historicalCurrencies.Where(c => !ExcludedCodes.Contains(c.Code)))
         {
-            _historicalCurrencies.Add(new CurrencyInfo()
+            _historicalCurrencies.Add(new Models.Currency()
             {
                 Code = item.Code,
                 Name = replacements.TryGetValue(item.Code, out var newName) ? newName : item.Name,
@@ -60,7 +60,7 @@ internal class CurrencyLoader
         _currencies = _currencies.OrderBy(c => c.Code).ToList();
     }
 
-    public CurrencyType GetCurrencyType(string code)
+    private static CurrencyType GetCurrencyType(string code)
     {
         if (PreciousMetalsCodes.Contains(code))
             return CurrencyType.PreciousMetal;

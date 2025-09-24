@@ -1,5 +1,6 @@
 ﻿using Currency.Reference.Iso4217.Builders.Abstractions;
-using Currency.Reference.Iso4217.Domain.Entities;
+using Currency.Reference.Iso4217.Domain.Models;
+
 namespace Currency.Reference.Iso4217.Builders;
 
 internal sealed class CurrencyQueryBuilder:
@@ -9,8 +10,7 @@ internal sealed class CurrencyQueryBuilder:
     IIncludeFilterBuilder,
     IExcludeFilterBuilder
 {
-    private readonly IReadOnlyCollection<Domain.Entities.Currency> _allCurrencies;
-    private readonly IReadOnlyCollection<Domain.Entities.Currency> _historicalCurrencies;
+    private readonly IReadOnlyList<Domain.Models.Currency> _actualCurrencies;
     private readonly HashSet<CurrencyType> _includedTypes = [];
     private readonly HashSet<CurrencyCode> _withCodes = [];
     private readonly HashSet<CurrencyCode> _withoutCodes = [];
@@ -19,10 +19,9 @@ internal sealed class CurrencyQueryBuilder:
     private readonly HashSet<string> _withNumericCodes = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _withoutNumericCodes = new(StringComparer.OrdinalIgnoreCase);
 
-    public CurrencyQueryBuilder(IReadOnlyCollection<Domain.Entities.Currency> currencies, IReadOnlyCollection<Domain.Entities.Currency> historicalCurrencies)
+    public CurrencyQueryBuilder(IReadOnlyList<Domain.Models.Currency> currencies)
     {
-        _allCurrencies = currencies;
-        _historicalCurrencies = historicalCurrencies;
+        _actualCurrencies = currencies;
         Includes = this;
     }
 
@@ -31,7 +30,7 @@ internal sealed class CurrencyQueryBuilder:
     public ICurrencyQueryFilter Type(CurrencyType type)
     {
         if (!_includedTypes.Add(type))
-            throw new InvalidOperationException($"CurrencyType {type} is already included.");
+            throw new InvalidOperationException($"CurrencyType '{type}' is already included.");
         return this;
     }
 
@@ -47,9 +46,9 @@ internal sealed class CurrencyQueryBuilder:
         return this;
     }
 
-    public IReadOnlyCollection<Domain.Entities.Currency> Build()
+    public IReadOnlyList<Domain.Models.Currency> Build()
     {
-        var query = _allCurrencies.Where(c => _includedTypes.Contains(c.CurrencyType));
+        var query = _actualCurrencies.Where(c => _includedTypes.Contains(c.CurrencyType!.Value));
         
         if (_withCodes.Count > 0)
             query = query.Where(c => _withCodes.Contains(Enum.Parse<CurrencyCode>(c.Code)));

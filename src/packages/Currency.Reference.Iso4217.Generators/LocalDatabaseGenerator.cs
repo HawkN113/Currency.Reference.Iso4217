@@ -23,7 +23,8 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
                                       {
                                           internal static class LocalDatabase
                                           {
-                                              public static readonly IReadOnlyList<CurrencyInfo> Currencies = new List<CurrencyInfo>();
+                                              public static IReadOnlyList<Domain.Models.Currency> ActualCurrencies = new List<Domain.Models.Currency>();
+                                              public static IReadOnlyList<Domain.Models.Currency> HistoricalCurrencies = new List<Domain.Models.Currency>();
                                           }
                                       }
                                       """;
@@ -134,20 +135,23 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
                 sb.AppendLine("// </auto-generated>");
                 sb.AppendLine("#nullable enable");
                 sb.AppendLine("using System.Collections.Generic;");
-                sb.AppendLine("using Currency.Reference.Iso4217.Domain.Entities;");
+                sb.AppendLine("using Currency.Reference.Iso4217.Domain.Models;");
                 sb.AppendLine("namespace Currency.Reference.Iso4217.Data");
                 sb.AppendLine("{");
                 sb.AppendLine("    ///<summary>Currency information for codes ISO4217</summary>");
                 sb.AppendLine("    internal static class LocalDatabase");
                 sb.AppendLine("    {");
                 sb.AppendLine(
-                    "        public static readonly IReadOnlyList<Domain.Entities.Currency> ActualCurrencies = new List<Domain.Entities.Currency>()");
+                    "        public static IReadOnlyList<Domain.Models.Currency> ActualCurrencies = new List<Domain.Models.Currency>()");
                 sb.AppendLine("        {");
                 foreach (var c in currencies)
                 {
+                    /*
                     var currencyType = c.CurrencyType is not CurrencyType.Fiat
                         ? $", CurrencyType.{c.CurrencyType}"
                         : string.Empty;
+                        */
+                    var currencyType = $", CurrencyType.{c.CurrencyType}";
                     var isHistorical = c.IsHistoric ? "true" : "false";
                     sb.AppendLine(
                         $"            new(\"{c.Code}\", \"{c.Name}\", \"{c.Country}\", \"{c.NumericCode}\", {isHistorical}, {ParseWithdrawalDate(c.WithdrawalDate)}{currencyType}),");
@@ -157,16 +161,18 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
                 sb.AppendLine(
                     "        ///<summary>Currency historical information for codes ISO4217</summary>");              
                 sb.AppendLine(
-                    "        public static readonly IReadOnlyList<Domain.Entities.Currency> HistoricalCurrencies = new List<Domain.Entities.Currency>()");
+                    "        public static IReadOnlyList<Domain.Models.Currency> HistoricalCurrencies = new List<Domain.Models.Currency>()");
                 sb.AppendLine("        {");
                 foreach (var c in historicalCurrencies)
                 {
+                    /*
                     var currencyType = c.CurrencyType is not CurrencyType.Fiat
                         ? $", CurrencyType.{c.CurrencyType}"
                         : string.Empty;
+                    */
                     var isHistorical = c.IsHistoric ? "true" : "false";
                     sb.AppendLine(
-                        $"            new(\"{c.Code}\", \"{c.Name}\", \"{c.Country}\", \"{c.NumericCode}\", {isHistorical}, {ParseWithdrawalDate(c.WithdrawalDate)}{currencyType}),");
+                        $"            new(\"{c.Code}\", \"{c.Name}\", \"{c.Country}\", \"{c.NumericCode}\", {isHistorical}, {ParseWithdrawalDate(c.WithdrawalDate)}, null),");
                 }
 
                 sb.AppendLine("        };");
@@ -197,7 +203,7 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
         });
     }
     
-    private static string? ParseWithdrawalDate(string? raw)
+    private static string ParseWithdrawalDate(string? raw)
     {
         if (string.IsNullOrWhiteSpace(raw))
             return " null";

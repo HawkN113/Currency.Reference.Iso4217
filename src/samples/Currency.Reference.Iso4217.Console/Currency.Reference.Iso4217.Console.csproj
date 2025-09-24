@@ -26,6 +26,18 @@
       <Folder Include="obj\Debug\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="obj\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="obj\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="obj\**" />
+    </ItemGroup>
+
     <PropertyGroup>
         <DefineConstants>DEBUG;TRACE</DefineConstants>
     </PropertyGroup>

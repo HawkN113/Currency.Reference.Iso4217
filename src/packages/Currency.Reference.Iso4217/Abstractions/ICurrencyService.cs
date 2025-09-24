@@ -1,47 +1,59 @@
 ﻿using Currency.Reference.Iso4217.Builders.Abstractions;
-using Currency.Reference.Iso4217.Domain.Entities;
+using Currency.Reference.Iso4217.Domain.Models;
+
 namespace Currency.Reference.Iso4217.Abstractions;
 
 /// <summary>
 /// Service for working with currencies: validation, retrieval, and querying.
+/// Includes support for historical (withdrawn) currencies.
 /// </summary>
 public interface ICurrencyService
 {
     /// <summary>
-    /// Checks if the specified value meets all given criteria.
+    /// Tries to validate the specified currency by string value.
+    /// </summary>
+    bool TryValidate(string value, out ValidationResult result);
+
+    /// <summary>
+    /// Tries to validate the specified currency by enum code.
+    /// </summary>
+    bool TryValidate(CurrencyCode code, out ValidationResult result);
+
+    /// <summary>
+    /// Checks if a currency exists by string value.
+    /// </summary>
+    bool Exists(string value);
+
+    /// <summary>
+    /// Checks if a currency exists by enum code.
+    /// </summary>
+    bool Exists(CurrencyCode code);
+
+    /// <summary>
+    /// Gets current (active) currency information by code or name.
+    /// </summary>
+    Domain.Models.Currency? Get(string value);
+
+    /// <summary>
+    /// Gets current (active) currency information by enum code.
+    /// </summary>
+    Domain.Models.Currency? Get(CurrencyCode code);
+
+    /// <summary>
+    /// Gets historical (withdrawn) currency information by string value.
     /// </summary>
     /// <param name="value">Currency code or name.</param>
-    /// <param name="criteria">One or more criteria to validate against.</param>
-    /// <returns>True if the value satisfies all criteria.</returns>
-    bool IsValid(string value, params Criteria[] criteria);
+    /// <returns>Currency object or null if not found.</returns>
+    Domain.Models.Currency? GetHistorical(string value);
+    
+    /// <summary>
+    /// Retrieves all historical (withdrawn) currencies defined by ISO 4217.
+    /// </summary>
+    /// <returns>An array of <see cref="Domain.Models.Currency"/> objects representing withdrawn currencies.</returns>
+    Domain.Models.Currency[] GetAllHistorical();
 
     /// <summary>
-    /// Checks if the specified currency code meets all given criteria.
+    /// Starts building a query for actual currencies with fluent filtering and sorting.
     /// </summary>
-    /// <param name="code">Currency code enum.</param>
-    /// <param name="criteria">One or more criteria to validate against.</param>
-    /// <returns>True if the code satisfies all criteria.</returns>
-    bool IsValid(CurrencyCode code, params Criteria[] criteria);
-
-    /// <summary>
-    /// Gets currency information by code or name with optional criteria.
-    /// </summary>
-    /// <param name="value">Currency code or name.</param>
-    /// <param name="criteria">Optional criteria to filter the result.</param>
-    /// <returns>CurrencyInfo object or null if not found.</returns>
-    Domain.Entities.Currency? Get(string value, params Criteria[] criteria);
-
-    /// <summary>
-    /// Gets currency information by enum code with optional criteria.
-    /// </summary>
-    /// <param name="code">Currency code enum.</param>
-    /// <param name="criteria">Optional criteria to filter the result.</param>
-    /// <returns>CurrencyInfo object or null if not found.</returns>
-    Domain.Entities.Currency? Get(CurrencyCode code, params Criteria[] criteria);
-
-    /// <summary>
-    /// Starts building a query for currencies with fluent filtering and sorting.
-    /// </summary>
-    /// <returns>Start object for currency query.</returns>
     ICurrencyQueryStart Query();
 }
