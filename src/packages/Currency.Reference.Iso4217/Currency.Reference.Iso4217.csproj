@@ -13,8 +13,10 @@
         <Optimize>true</Optimize>
         <PublicSign>false</PublicSign>
         <TargetFramework>net8.0</TargetFramework>
-        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-        <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\Generated\$(Configuration)</CompilerGeneratedFilesOutputPath>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <IncludeSymbols>false</IncludeSymbols>
+        <!--<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+        <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\Generated\$(Configuration)</CompilerGeneratedFilesOutputPath>-->
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -33,29 +35,16 @@
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
     </ItemGroup>
-    
-    <ItemGroup>
-      <Folder Include="Package\Content\" />
-    </ItemGroup>
 
     <ItemGroup>
       <None Update="Package\Content\Currency.Reference.Iso4217.ico.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Remove="obj\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Remove="obj\**" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\packages\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
       <ProjectReference Include="..\Currency.Reference.Iso4217.Domain\Currency.Reference.Iso4217.Domain.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Remove="obj\**" />
     </ItemGroup>
 
 </Project>

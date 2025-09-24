@@ -38,13 +38,13 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
             {
                 var assembly = Assembly.GetExecutingAssembly();
                 const string originalResource =
-                    "Currency.Reference.Iso4217.Generators.Data.list-original-currencies.json";
+                    "Currency.Reference.Iso4217.Generators.Content.list-original-currencies.json";
                 using var originalStream = assembly.GetManifestResourceStream(originalResource)
                                            ?? throw new InvalidOperationException("Original JSON resource not found.");
                 using var originalReader = new StreamReader(originalStream, Encoding.UTF8);
                 var originalJson = originalReader.ReadToEnd();
                 const string replacementResource =
-                    "Currency.Reference.Iso4217.Generators.Data.list-replacement-currency-names.json";
+                    "Currency.Reference.Iso4217.Generators.Content.list-replacement-currency-names.json";
                 using var replacementStream = assembly.GetManifestResourceStream(replacementResource)
                                               ?? throw new InvalidOperationException(
                                                   "Replacement JSON resource not found.");
@@ -52,7 +52,7 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
                 var replacementJson = replacementReader.ReadToEnd();
                 
                 const string historicalResource =
-                    "Currency.Reference.Iso4217.Generators.Data.list-historical-currencies.json";
+                    "Currency.Reference.Iso4217.Generators.Content.list-historical-currencies.json";
                 using var historicalStream = assembly.GetManifestResourceStream(historicalResource)
                                              ?? throw new InvalidOperationException(
                                                  "Historical JSON resource not found.");

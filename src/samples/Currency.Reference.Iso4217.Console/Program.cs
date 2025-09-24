@@ -25,6 +25,7 @@ try
     var result1 = currencyService.Get(CurrencyCode.None);
     var result2 = currencyService.Get(CurrencyCode.AFN);
     var result3 = currencyService.GetHistorical("ESP");
+    var validResult = currencyService.TryValidate("ESP", out var validateResult);
     var getAllhistorical = currencyService.GetAllHistorical();
 
     var currencies = currencyService?.Query()
@@ -32,7 +33,8 @@ try
         .Type(CurrencyType.Fiat)
         .Type(CurrencyType.SpecialUnit)
         .Type(CurrencyType.SpecialReserve)
-        .Without(w => w.Codes(CurrencyCode.GBP, CurrencyCode.EUR, CurrencyCode.XUA, CurrencyCode.USD))
+        .Type(CurrencyType.PreciousMetal)
+        //.Without(w => w.Codes(CurrencyCode.GBP, CurrencyCode.EUR, CurrencyCode.XUA, CurrencyCode.USD))
         .Build();
     var result = currencies!.Any(c => c.Code == "EUR");
     

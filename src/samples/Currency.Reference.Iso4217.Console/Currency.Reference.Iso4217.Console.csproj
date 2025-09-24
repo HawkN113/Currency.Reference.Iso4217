@@ -12,30 +12,18 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Currency.Reference.Iso4217" Version="8.0.0">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <!--<ProjectReference Include="..\..\packages\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>-->
-        <ProjectReference Include="..\..\packages\Currency.Reference.Iso4217\Currency.Reference.Iso4217.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="obj\Debug\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Remove="obj\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Remove="obj\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="obj\**" />
+        <!--<ProjectReference Include="..\..\packages\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
+      <ProjectReference Include="..\..\packages\Currency.Reference.Iso4217\Currency.Reference.Iso4217.csproj" />-->
     </ItemGroup>
 
     <PropertyGroup>
