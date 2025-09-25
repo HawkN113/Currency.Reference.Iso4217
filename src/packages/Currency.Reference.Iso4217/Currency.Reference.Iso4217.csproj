@@ -48,11 +48,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\packages\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
+        <ProjectReference Include="..\..\packages\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false" />
     </ItemGroup>
     
     <Target Name="CleanGeneratedFilesBeforeBuild" BeforeTargets="CoreCompile">
-        <RemoveDir Directories="$(BaseIntermediateOutputPath)\Generated" />
+        <Message Text="Deleted old generated files CurrencyCode.cs and LocalDatabase.cs" Importance="Low" />
+        <RemoveDir Directories="$(CompilerGeneratedFilesOutputPath)" />
+        <Message Text="Removed generated files from $(CompilerGeneratedFilesOutputPath)" Importance="Low" />
     </Target>
 
     <Target Name="CopyGeneratedFiles" AfterTargets="CoreCompile">
@@ -62,8 +66,10 @@
         <Copy SourceFiles="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.LocalDatabaseGenerator\LocalDatabase.g.cs"
               DestinationFiles="LocalDatabase.cs"
               SkipUnchangedFiles="false" />
-        <RemoveDir Directories="$(BaseIntermediateOutputPath)\Generated" />
+        <Message Text="Copied generated files into project (ready to commit to repo)" Importance="Low" />
+        <RemoveDir Directories="$(CompilerGeneratedFilesOutputPath)" />
+        <Message Text="Removed generated files from $(CompilerGeneratedFilesOutputPath)" Importance="Low" />
     </Target>
     -->
-  
+    
   </Project>
