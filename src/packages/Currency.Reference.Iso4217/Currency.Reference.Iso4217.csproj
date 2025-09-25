@@ -46,19 +46,19 @@
         <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
         <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\Generated</CompilerGeneratedFilesOutputPath>
     </PropertyGroup>
-
     <ItemGroup>
         <ProjectReference Include="..\..\packages\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.csproj"
                           OutputItemType="Analyzer"
                           ReferenceOutputAssembly="false" />
     </ItemGroup>
-    
     <Target Name="CleanGeneratedFilesBeforeBuild" BeforeTargets="CoreCompile">
-        <Message Text="Deleted old generated files CurrencyCode.cs and LocalDatabase.cs" Importance="Low" />
         <RemoveDir Directories="$(CompilerGeneratedFilesOutputPath)" />
         <Message Text="Removed generated files from $(CompilerGeneratedFilesOutputPath)" Importance="Low" />
     </Target>
-
+    <ItemGroup>
+        <Compile Remove="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\**\*.g.cs" />
+        <None Include="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\**\*.g.cs" />
+    </ItemGroup>
     <Target Name="CopyGeneratedFiles" AfterTargets="CoreCompile">
         <Copy SourceFiles="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.CurrencyCodeGenerator\CurrencyCode.g.cs"
               DestinationFiles="CurrencyCode.cs"
@@ -66,10 +66,8 @@
         <Copy SourceFiles="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.LocalDatabaseGenerator\LocalDatabase.g.cs"
               DestinationFiles="LocalDatabase.cs"
               SkipUnchangedFiles="false" />
-        <Message Text="Copied generated files into project (ready to commit to repo)" Importance="Low" />
-        <RemoveDir Directories="$(CompilerGeneratedFilesOutputPath)" />
-        <Message Text="Removed generated files from $(CompilerGeneratedFilesOutputPath)" Importance="Low" />
+        <Message Text="Copied generated files into repository." Importance="Low" />
     </Target>
     -->
-    
-  </Project>
+
+</Project>

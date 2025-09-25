@@ -2,43 +2,40 @@
 
 - In the project __Currency.Reference.Iso4217__ add the following commands (uncomment) in the project:
 ```json lines
-    <PropertyGroup>
-      <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-      <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\Generated</CompilerGeneratedFilesOutputPath>
-    </PropertyGroup>
-        
-    <ItemGroup>
-      <ProjectReference Include="..\..\packages\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
-    </ItemGroup>
+  <PropertyGroup>
+  <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+  <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\Generated</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
 
-    <Target Name="CopyGeneratedCurrencyCode" AfterTargets="Build">
-        <Copy SourceFiles="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.CurrencyCodeGenerator\CurrencyCode.g.cs" DestinationFiles="CurrencyCode.cs" SkipUnchangedFiles="true" />
+    <ItemGroup>
+        <ProjectReference Include="..\..\packages\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false" />
+    </ItemGroup>
+    <Target Name="CleanGeneratedFilesBeforeBuild" BeforeTargets="CoreCompile">
+        <RemoveDir Directories="$(CompilerGeneratedFilesOutputPath)" />
+        <Message Text="Removed generated files from $(CompilerGeneratedFilesOutputPath)" Importance="Low" />
     </Target>
-    <Target Name="CopyGeneratedLocalDatabase" AfterTargets="Build">
-        <Copy SourceFiles="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.LocalDatabaseGenerator\LocalDatabase.g.cs" DestinationFiles="LocalDatabase.cs" SkipUnchangedFiles="true" />
-    </Target>
-    <Target Name="DeleteGeneratedCurrencyCode" AfterTargets="CopyGeneratedCurrencyCode">
-        <ItemGroup>
-            <GeneratedFiles Include="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.CurrencyCodeGenerator\CurrencyCode.g.cs" />
-        </ItemGroup>
-        <Message Text="Deleting generator files: %(GeneratedFiles.Identity)" Importance="Low" Condition="'@(GeneratedFiles)' != ''" />
-        <Delete Files="@(GeneratedFiles)" />
-    </Target>
-    <Target Name="DeleteGeneratedLocalDatabase" AfterTargets="CopyGeneratedLocalDatabase">
-        <ItemGroup>
-            <GeneratedFiles Include="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.LocalDatabaseGenerator\LocalDatabase.g.cs" />
-        </ItemGroup>
-        <Message Text="Deleting generator files: %(GeneratedFiles.Identity)" Importance="Low" Condition="'@(GeneratedFiles)' != ''" />
-        <Delete Files="@(GeneratedFiles)" />
+    <ItemGroup>
+        <Compile Remove="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\**\*.g.cs" />
+        <None Include="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\**\*.g.cs" />
+    </ItemGroup>
+    <Target Name="CopyGeneratedFiles" AfterTargets="CoreCompile">
+        <Copy SourceFiles="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.CurrencyCodeGenerator\CurrencyCode.g.cs"
+              DestinationFiles="CurrencyCode.cs"
+              SkipUnchangedFiles="false" />
+        <Copy SourceFiles="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.LocalDatabaseGenerator\LocalDatabase.g.cs"
+              DestinationFiles="LocalDatabase.cs"
+              SkipUnchangedFiles="false" />
+        <Message Text="Copied generated files into repository." Importance="Low" />
     </Target>
 ```
 - Save changes
-- Remove data from ``CurrencyCode`` and ``LocalDatabase``files
 - Rebuild the solution
 - Review changes in ``CurrencyCode`` and ``LocalDatabase``files 
 - Remove added commands from the project
-- Remove folder `$(BaseIntermediateOutputPath)\Generated`
 - Save changes again
+- Rebuild the solution again
 
 ### How to update currencies
 - Download an XML file https://www.six-group.com/dam/download/financial-information/data-center/iso-currrency/lists/list-one.xml and convert to JSON
