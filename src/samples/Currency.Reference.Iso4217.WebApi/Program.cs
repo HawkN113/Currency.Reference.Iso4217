@@ -37,8 +37,26 @@ app.MapGet("/fiatCurrencies", ([FromServices] ICurrencyService currencyService) 
     .WithName("GetFiatCurrencies")
     .WithOpenApi(operation =>
     {
-        operation.Summary = "Get fiat currencies (EUR, USD and others)";
+        operation.Summary = "Get actual fiat currencies (EUR, USD and others)";
         operation.Description = "Returns a short code and names.";
+        return operation;
+    });
+
+app.MapGet("/fiatCurrency", ([FromServices] ICurrencyService currencyService, [FromQuery] string currencyCode) =>
+    {
+        currencyService.TryValidate(currencyCode, out var validatedResult);
+        if (!validatedResult.IsValid)
+        {
+            return Results.BadRequest(validatedResult.Reason);
+        }
+        var result = currencyService.Get(currencyCode);
+        return Results.Json(result, statusCode: 200);
+    })
+    .WithName("GetFiatCurrency")
+    .WithOpenApi(operation =>
+    {
+        operation.Summary = "Get actual fiat currency by code (EUR, USD and others)";
+        operation.Description = "Returns a currency info.";
         return operation;
     });
 
@@ -96,6 +114,6 @@ app.MapGet("/historicalCurrencies", ([FromServices] ICurrencyService currencySer
         return operation;
     });
 
-app.Run();
+await app.RunAsync();
 
 record CurrencyInfo(string Code, string Name, DateOnly? WithdrawalDate);
