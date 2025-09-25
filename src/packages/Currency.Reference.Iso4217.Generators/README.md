@@ -11,8 +11,6 @@
       <ProjectReference Include="..\..\packages\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
     </ItemGroup>
 
-    <!--Used when need to update 'CurrencyCode' and 'LocalDatabase'-->
-    <!--
     <Target Name="CopyGeneratedCurrencyCode" AfterTargets="Build">
         <Copy SourceFiles="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.CurrencyCodeGenerator\CurrencyCode.g.cs" DestinationFiles="CurrencyCode.cs" SkipUnchangedFiles="true" />
     </Target>
@@ -35,9 +33,11 @@
     </Target>
 ```
 - Save changes
+- Remove data from ``CurrencyCode`` and ``LocalDatabase``files
 - Rebuild the solution
 - Review changes in ``CurrencyCode`` and ``LocalDatabase``files 
-- Remove added commands
+- Remove added commands from the project
+- Remove folder `$(BaseIntermediateOutputPath)\Generated`
 - Save changes again
 
 ### How to update currencies
