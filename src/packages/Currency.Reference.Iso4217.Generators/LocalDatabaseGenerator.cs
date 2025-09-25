@@ -18,13 +18,13 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
                                       // </auto-generated>
                                       #nullable enable
                                       using System.Collections.Generic;
-                                      using Currency.Reference.Iso4217.Domain.Entities;
-                                      namespace Currency.Reference.Iso4217.Data
+                                      using Currency.Reference.Iso4217.Models;
+                                      namespace Currency.Reference.Iso4217
                                       {
                                           internal static class LocalDatabase
                                           {
-                                              public static IReadOnlyList<Domain.Models.Currency> ActualCurrencies = new List<Domain.Models.Currency>();
-                                              public static IReadOnlyList<Domain.Models.Currency> HistoricalCurrencies = new List<Domain.Models.Currency>();
+                                              public static IReadOnlyList<Models.Currency> ActualCurrencies = new List<Models.Currency>();
+                                              public static IReadOnlyList<Models.Currency> HistoricalCurrencies = new List<Models.Currency>();
                                           }
                                       }
                                       """;
@@ -79,7 +79,7 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
                     {
                         DiagnosticDescriptor = new DiagnosticDescriptor(
                             id: "CURRENCY001",
-                            title: "Generator error",
+                            title: DiagnosticsTitle,
                             messageFormat: $"Failed to load original resource: {originalJson.Substring(9)}",
                             category: string.Empty,
                             defaultSeverity: DiagnosticSeverity.Error,
@@ -93,7 +93,7 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
                     {
                         DiagnosticDescriptor = new DiagnosticDescriptor(
                             id: "CURRENCY002",
-                            title: "Generator error",
+                            title: DiagnosticsTitle,
                             messageFormat: $"Failed to load original resource: {replacementJson.Substring(9)}",
                             category: string.Empty,
                             defaultSeverity: DiagnosticSeverity.Error,
@@ -107,7 +107,7 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
                     {
                         DiagnosticDescriptor = new DiagnosticDescriptor(
                             id: "CURRENCY002",
-                            title: "Generator error",
+                            title: DiagnosticsTitle,
                             messageFormat: $"Failed to load historical resource: {historicalJson.Substring(9)}",
                             category: string.Empty,
                             defaultSeverity: DiagnosticSeverity.Error,
@@ -135,14 +135,14 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
                 sb.AppendLine("// </auto-generated>");
                 sb.AppendLine("#nullable enable");
                 sb.AppendLine("using System.Collections.Generic;");
-                sb.AppendLine("using Currency.Reference.Iso4217.Domain.Models;");
-                sb.AppendLine("namespace Currency.Reference.Iso4217.Data");
+                sb.AppendLine("using Currency.Reference.Iso4217.Models;");
+                sb.AppendLine("namespace Currency.Reference.Iso4217");
                 sb.AppendLine("{");
                 sb.AppendLine("    ///<summary>Currency information for codes ISO4217</summary>");
                 sb.AppendLine("    internal static class LocalDatabase");
                 sb.AppendLine("    {");
                 sb.AppendLine(
-                    "        public static IReadOnlyList<Domain.Models.Currency> ActualCurrencies = new List<Domain.Models.Currency>()");
+                    "        public static IReadOnlyList<Models.Currency> ActualCurrencies = new List<Models.Currency>()");
                 sb.AppendLine("        {");
                 foreach (var c in currencies)
                 {
@@ -156,7 +156,7 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
                 sb.AppendLine(
                     "        ///<summary>Currency historical information for codes ISO4217</summary>");              
                 sb.AppendLine(
-                    "        public static IReadOnlyList<Domain.Models.Currency> HistoricalCurrencies = new List<Domain.Models.Currency>()");
+                    "        public static IReadOnlyList<Models.Currency> HistoricalCurrencies = new List<Models.Currency>()");
                 sb.AppendLine("        {");
                 foreach (var c in historicalCurrencies)
                 {
@@ -177,7 +177,7 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
                 {
                     DiagnosticDescriptor = new DiagnosticDescriptor(
                         id: "CURRENCY004",
-                        title: "Generator error",
+                        title: DiagnosticsTitle,
                         messageFormat: $"Unexpected exception: {ex.Message}",
                         category: string.Empty,
                         defaultSeverity: DiagnosticSeverity.Error,

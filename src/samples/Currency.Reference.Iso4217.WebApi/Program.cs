@@ -1,15 +1,14 @@
-using Currency.Reference.Iso4217;
 using Currency.Reference.Iso4217.Abstractions;
-using Currency.Reference.Iso4217.Domain.Models;
+using Currency.Reference.Iso4217.Models;
 using Currency.Reference.Iso4217.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// ---- Register Currency service ----
 builder.Services.AddCurrencyService();
 
 var app = builder.Build();
@@ -21,48 +20,82 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-var service = app.Services.GetService<ICurrencyService>();
-var currencies = service!
-    .Query()
-    .Includes
-    .Type(CurrencyType.Fiat)
-    .Build();
-    
-
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
 
-app.MapGet("/weatherforecast", ([FromServices] ICurrencyService currencyService) =>
+app.MapGet("/fiatCurrencies", ([FromServices] ICurrencyService currencyService) =>
     {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        
         var currencies = currencyService!
             .Query()
             .Includes
             .Type(CurrencyType.Fiat)
-            .Build();
-
-        var currency = currencyService.Get(CurrencyCode.AWG);
-        
-        return forecast;
+            .Build()
+            .Select(c => $"{c.Code} - {c.Name}")
+            .ToArray();
+        return currencies;
     })
-    .WithName("GetWeatherForecast")
-    .WithOpenApi();
+    .WithName("GetFiatCurrencies")
+    .WithOpenApi(operation =>
+    {
+        operation.Summary = "Get fiat currencies (EUR, USD and others)";
+        operation.Description = "Returns a short code and names.";
+        return operation;
+    });
+
+app.MapGet("/preciousMetal", ([FromServices] ICurrencyService currencyService) =>
+    {
+        var currencies = currencyService!
+            .Query()
+            .Includes
+            .Type(CurrencyType.PreciousMetal)
+            .Build()
+            .Select(c => $"{c.Code} - {c.Name}")
+            .ToArray();
+        return currencies;
+    })
+    .WithName("GetPreciousMetal")
+    .WithOpenApi(operation =>
+    {
+        operation.Summary = "Get precious metals currencies (\"XAG\", \"XAU\", \"XPD\", \"XPT\")";
+        operation.Description = "Returns a short code and names.";
+        return operation;
+    });
+
+app.MapGet("/specialCurrencies", ([FromServices] ICurrencyService currencyService) =>
+    {
+        var currencies = currencyService!
+            .Query()
+            .Includes
+            .Type(CurrencyType.SpecialReserve)
+            .Type(CurrencyType.SpecialUnit)
+            .Build()
+            .Select(c => $"{c.Code} - {c.Name} ({c.CurrencyType.ToString()})")
+            .ToArray();
+        return currencies;
+    })
+    .WithName("GetSpecialCurrencies")
+    .WithOpenApi(operation =>
+    {
+        operation.Summary = "Get special currencies (\"XBA\", \"XBB\", \"XBC\", \"XBD\", \"XSU\", \"XUA\", \"XXX\", \"XTS\")";
+        operation.Description = "Returns a short code,names and type.";
+        return operation;
+    });
+
+app.MapGet("/historicalCurrencies", ([FromServices] ICurrencyService currencyService) =>
+    {
+        var currencies = currencyService!.GetAllHistorical()
+            .Select(c => new CurrencyInfo(c.Code, c.Name, c.WithdrawalDate))
+            .ToArray();
+        return currencies;
+    })
+    .WithName("GetHistoricalCurrencies")
+    .WithOpenApi(operation =>
+    {
+        operation.Summary = "Get historical currencies";
+        operation.Description = "Returns a short code, names and withdrawal date.";
+        return operation;
+    });
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+record CurrencyInfo(string Code, string Name, DateOnly? WithdrawalDate);

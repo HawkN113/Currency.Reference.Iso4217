@@ -16,8 +16,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Currency.Reference.Iso4217.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Currency.Reference.Iso4217.Generators", "packages\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.csproj", "{D7653ADF-5271-4D70-A0EF-66B7C197767D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Currency.Reference.Iso4217.Domain", "packages\Currency.Reference.Iso4217.Domain\Currency.Reference.Iso4217.Domain.csproj", "{94DB51AF-94D6-4044-95D4-7A9DE82A09B7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,10 +42,6 @@ Global
 		{D7653ADF-5271-4D70-A0EF-66B7C197767D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7653ADF-5271-4D70-A0EF-66B7C197767D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7653ADF-5271-4D70-A0EF-66B7C197767D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{94DB51AF-94D6-4044-95D4-7A9DE82A09B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{94DB51AF-94D6-4044-95D4-7A9DE82A09B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{94DB51AF-94D6-4044-95D4-7A9DE82A09B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{94DB51AF-94D6-4044-95D4-7A9DE82A09B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EC5B72D5-E6FE-426A-99D6-743D1FB30A62} = {B6BF62BA-6B50-4FD9-9CC2-7F0EC923E02F}
@@ -55,6 +49,5 @@ Global
 		{FFC52690-1D39-4943-B1BB-99285F27DD76} = {95D62D95-7877-468A-A4B6-990F8CCAE311}
 		{3F7B4653-75E7-4A12-B4BF-2C35F2A6C807} = {FBD7AC81-1E33-47DE-8C01-14A01DAE782E}
 		{D7653ADF-5271-4D70-A0EF-66B7C197767D} = {B6BF62BA-6B50-4FD9-9CC2-7F0EC923E02F}
-		{94DB51AF-94D6-4044-95D4-7A9DE82A09B7} = {B6BF62BA-6B50-4FD9-9CC2-7F0EC923E02F}
 	EndGlobalSection
 EndGlobal

@@ -15,7 +15,6 @@
         <icon>content\Currency.Reference.Iso4217.ico.png</icon>
         <readme>content\README.md</readme>
         <language>en-GB</language>
-        <developmentDependency>true</developmentDependency>
         <releaseNotes>
             - Added support for .NET 8.0
             - Strongly typed CurrencyCode enum generated at compile time
@@ -28,27 +27,9 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="bin\Release\net8.0\Currency.Reference.Iso4217.dll" target="lib\net8.0\Currency.Reference.Iso4217.dll" />
-        <file src="bin\Release\net8.0\Currency.Reference.Iso4217.Domain.dll" target="lib\net8.0\Currency.Reference.Iso4217.Domain.dll" />
-        <file src="..\..\packages\Currency.Reference.Iso4217.Generators\bin\Release\netstandard2.0\Currency.Reference.Iso4217.Generators.dll" target="analyzers\dotnet\cs" />
-        <file src="..\..\packages\Currency.Reference.Iso4217.Generators\bin\Release\netstandard2.0\Content\list-historical-currencies.json" target="analyzers\dotnet\cs\content\list-historical-currencies.json" />
-        <file src="..\..\packages\Currency.Reference.Iso4217.Generators\bin\Release\netstandard2.0\Content\list-original-currencies.json" target="analyzers\dotnet\cs\content\list-original-currencies.json" />
-        <file src="..\..\packages\Currency.Reference.Iso4217.Generators\bin\Release\netstandard2.0\Content\list-replacement-currency-names.json" target="analyzers\dotnet\cs\content\list-replacement-currency-names.json" />
-        <file src="..\..\packages\Currency.Reference.Iso4217.Generators\bin\Release\netstandard2.0\cs\*" target="analyzers\dotnet\cs\cs" />
-        <file src="..\..\packages\Currency.Reference.Iso4217.Generators\bin\Release\netstandard2.0\de\*" target="analyzers\dotnet\cs\de" />
-        <file src="..\..\packages\Currency.Reference.Iso4217.Generators\bin\Release\netstandard2.0\es\*" target="analyzers\dotnet\cs\es" />
-        <file src="..\..\packages\Currency.Reference.Iso4217.Generators\bin\Release\netstandard2.0\fr\*" target="analyzers\dotnet\cs\fr" />
-        <file src="..\..\packages\Currency.Reference.Iso4217.Generators\bin\Release\netstandard2.0\it\*" target="analyzers\dotnet\cs\it" />
-        <file src="..\..\packages\Currency.Reference.Iso4217.Generators\bin\Release\netstandard2.0\ja\*" target="analyzers\dotnet\cs\ja" />
-        <file src="..\..\packages\Currency.Reference.Iso4217.Generators\bin\Release\netstandard2.0\ko\*" target="analyzers\dotnet\cs\ko" />
-        <file src="..\..\packages\Currency.Reference.Iso4217.Generators\bin\Release\netstandard2.0\pl\*" target="analyzers\dotnet\cs\pl" />
-        <file src="..\..\packages\Currency.Reference.Iso4217.Generators\bin\Release\netstandard2.0\pt-BR\*" target="analyzers\dotnet\cs\pt-BR" />
-        <file src="..\..\packages\Currency.Reference.Iso4217.Generators\bin\Release\netstandard2.0\ru\*" target="analyzers\dotnet\cs\ru" />
-        <file src="..\..\packages\Currency.Reference.Iso4217.Generators\bin\Release\netstandard2.0\zh-Hans\*" target="analyzers\dotnet\cs\zh-Hans" />
-        <file src="..\..\packages\Currency.Reference.Iso4217.Generators\bin\Release\netstandard2.0\zh-Hant\*" target="analyzers\dotnet\cs\zh-Hant" />
-        <file src="..\..\packages\Currency.Reference.Iso4217.Generators\bin\Release\netstandard2.0\tr\*" target="analyzers\dotnet\cs\tr" />
-        <file src="bin\Release\net8.0\Currency.Reference.Iso4217.xml" target="lib\net8.0\Currency.Reference.Iso4217.xml" />
         <file src="bin\Release\net8.0\Package\Content\Currency.Reference.Iso4217.ico.png" target="content\Currency.Reference.Iso4217.ico.png" />
         <file src="Package\Content\README.md" target="content\README.md" />
+        <file src="bin\Release\net8.0\Currency.Reference.Iso4217.dll" target="lib\net8.0\Currency.Reference.Iso4217.dll" />
+        <file src="bin\Release\net8.0\Currency.Reference.Iso4217.xml" target="lib\net8.0\Currency.Reference.Iso4217.xml" />
     </files>
 </package>

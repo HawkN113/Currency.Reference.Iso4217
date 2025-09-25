@@ -1,4 +1,4 @@
-﻿using Currency.Reference.Iso4217.Domain.Models;
+﻿using Currency.Reference.Iso4217.Models;
 namespace Currency.Reference.Iso4217.Builders.Abstractions;
 
 /// <summary>
@@ -11,5 +11,5 @@ public interface ICurrencyQueryFinal
     /// Builds and returns a collection of currencies matching the configured filters.
     /// </summary>
     /// <returns>A read-only collection of <see cref="Currency"/> objects.</returns>
-    IReadOnlyList<Domain.Models.Currency> Build();
+    IReadOnlyList<Models.Currency> Build();
 }

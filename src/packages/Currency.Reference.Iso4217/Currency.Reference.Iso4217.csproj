@@ -15,8 +15,11 @@
         <TargetFramework>net8.0</TargetFramework>
         <IncludeBuildOutput>false</IncludeBuildOutput>
         <IncludeSymbols>false</IncludeSymbols>
-        <!--<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-        <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\Generated\$(Configuration)</CompilerGeneratedFilesOutputPath>-->
+        <!--Used when need to update 'CurrencyCode' and 'LocalDatabase'-->
+        <!--
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+        <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\Generated</CompilerGeneratedFilesOutputPath>
+        -->
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -42,9 +45,37 @@
       </None>
     </ItemGroup>
 
+    <!--Used when need to update 'CurrencyCode' and 'LocalDatabase'-->
+    <!--
     <ItemGroup>
       <ProjectReference Include="..\..\packages\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
-      <ProjectReference Include="..\Currency.Reference.Iso4217.Domain\Currency.Reference.Iso4217.Domain.csproj" />
     </ItemGroup>
+    -->
 
-</Project>
+    <!--Used when need to update 'CurrencyCode' and 'LocalDatabase'-->
+    <!--
+    <Target Name="CopyGeneratedCurrencyCode" AfterTargets="Build">
+        <Copy SourceFiles="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.CurrencyCodeGenerator\CurrencyCode.g.cs" DestinationFiles="CurrencyCode.cs" SkipUnchangedFiles="true" />
+    </Target>
+  
+    <Target Name="DeleteGeneratedCurrencyCode" AfterTargets="CopyGeneratedCurrencyCode">
+        <ItemGroup>
+            <GeneratedFiles Include="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.CurrencyCodeGenerator\CurrencyCode.g.cs" />
+        </ItemGroup>
+        <Message Text="Deleting generator files: %(GeneratedFiles.Identity)" Importance="Low" Condition="'@(GeneratedFiles)' != ''" />
+        <Delete Files="@(GeneratedFiles)" />
+    </Target>
+    <Target Name="CopyGeneratedLocalDatabase" AfterTargets="Build">
+        <Copy SourceFiles="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.LocalDatabaseGenerator\LocalDatabase.g.cs" DestinationFiles="LocalDatabase.cs" SkipUnchangedFiles="true" />
+    </Target>
+  
+    <Target Name="DeleteGeneratedLocalDatabase" AfterTargets="CopyGeneratedLocalDatabase">
+        <ItemGroup>
+            <GeneratedFiles Include="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.LocalDatabaseGenerator\LocalDatabase.g.cs" />
+        </ItemGroup>
+        <Message Text="Deleting generator files: %(GeneratedFiles.Identity)" Importance="Low" Condition="'@(GeneratedFiles)' != ''" />
+        <Delete Files="@(GeneratedFiles)" />
+    </Target>
+    -->
+  
+  </Project>

@@ -1,17 +1,15 @@
 ﻿using Currency.Reference.Iso4217.Abstractions;
 using Currency.Reference.Iso4217.Builders;
 using Currency.Reference.Iso4217.Builders.Abstractions;
-using Currency.Reference.Iso4217.Data;
-using Currency.Reference.Iso4217.Domain.Models;
-
+using Currency.Reference.Iso4217.Models;
 namespace Currency.Reference.Iso4217.Services;
 
 internal sealed class CurrencyService : ICurrencyService
 {
-    private readonly IReadOnlyDictionary<string, Domain.Models.Currency> _actualCurrencies =
+    private readonly IReadOnlyDictionary<string, Models.Currency> _actualCurrencies =
         LocalDatabase.ActualCurrencies.ToDictionary(c => c.Code, StringComparer.OrdinalIgnoreCase);
 
-    private readonly IReadOnlyDictionary<string, Domain.Models.Currency> _historicalCurrencies =
+    private readonly IReadOnlyDictionary<string, Models.Currency> _historicalCurrencies =
         LocalDatabase.HistoricalCurrencies.ToDictionary(c => c.Code, StringComparer.OrdinalIgnoreCase);
 
     public bool TryValidate(string value, out ValidationResult result)
@@ -50,21 +48,21 @@ internal sealed class CurrencyService : ICurrencyService
     public bool Exists(CurrencyCode code) =>
         code != CurrencyCode.None && _actualCurrencies.ContainsKey(code.ToString());
 
-    public Domain.Models.Currency? Get(string value)
+    public Models.Currency? Get(string value)
     {
         if (!Exists(value)) return null;
         _actualCurrencies.TryGetValue(value, out var currency);
         return currency;
     }
 
-    public Domain.Models.Currency? Get(CurrencyCode code)
+    public Models.Currency? Get(CurrencyCode code)
     {
         if (!Exists(code)) return null;
         _actualCurrencies.TryGetValue(code.ToString(), out var currency);
         return currency;
     }
 
-    public Domain.Models.Currency? GetHistorical(string value)
+    public Models.Currency? GetHistorical(string value)
     {
         var isExist = !string.IsNullOrWhiteSpace(value) && _historicalCurrencies.ContainsKey(value.Trim());
         if (!isExist) return null;
@@ -72,7 +70,7 @@ internal sealed class CurrencyService : ICurrencyService
         return currency;
     }
 
-    public Domain.Models.Currency[] GetAllHistorical()
+    public Models.Currency[] GetAllHistorical()
     {
         return _historicalCurrencies.Values.ToArray();
     }

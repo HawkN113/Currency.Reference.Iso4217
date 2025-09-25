@@ -1,5 +1,5 @@
 ﻿using Currency.Reference.Iso4217.Builders.Abstractions;
-using Currency.Reference.Iso4217.Domain.Models;
+using Currency.Reference.Iso4217.Models;
 namespace Currency.Reference.Iso4217.Builders;
 
 internal sealed class CurrencyQueryBuilder:
@@ -9,7 +9,7 @@ internal sealed class CurrencyQueryBuilder:
     IIncludeFilterBuilder,
     IExcludeFilterBuilder
 {
-    private readonly IReadOnlyList<Domain.Models.Currency> _actualCurrencies;
+    private readonly IReadOnlyList<Models.Currency> _actualCurrencies;
     private readonly HashSet<CurrencyType> _includedTypes = [];
     private readonly HashSet<CurrencyCode> _withCodes = [];
     private readonly HashSet<CurrencyCode> _withoutCodes = [];
@@ -18,7 +18,7 @@ internal sealed class CurrencyQueryBuilder:
     private readonly HashSet<string> _withNumericCodes = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _withoutNumericCodes = new(StringComparer.OrdinalIgnoreCase);
 
-    public CurrencyQueryBuilder(IReadOnlyList<Domain.Models.Currency> currencies)
+    public CurrencyQueryBuilder(IReadOnlyList<Models.Currency> currencies)
     {
         _actualCurrencies = currencies;
         Includes = this;
@@ -45,7 +45,7 @@ internal sealed class CurrencyQueryBuilder:
         return this;
     }
 
-    public IReadOnlyList<Domain.Models.Currency> Build()
+    public IReadOnlyList<Models.Currency> Build()
     {
         var query = _actualCurrencies.Where(c => _includedTypes.Contains(c.CurrencyType!.Value));
         

@@ -1,6 +1,5 @@
 ﻿using Currency.Reference.Iso4217.Builders.Abstractions;
-using Currency.Reference.Iso4217.Domain.Models;
-
+using Currency.Reference.Iso4217.Models;
 namespace Currency.Reference.Iso4217.Abstractions;
 
 /// <summary>
@@ -32,25 +31,25 @@ public interface ICurrencyService
     /// <summary>
     /// Gets current (active) currency information by code or name.
     /// </summary>
-    Domain.Models.Currency? Get(string value);
+    Models.Currency? Get(string value);
 
     /// <summary>
     /// Gets current (active) currency information by enum code.
     /// </summary>
-    Domain.Models.Currency? Get(CurrencyCode code);
+    Models.Currency? Get(CurrencyCode code);
 
     /// <summary>
     /// Gets historical (withdrawn) currency information by string value.
     /// </summary>
     /// <param name="value">Currency code or name.</param>
     /// <returns>Currency object or null if not found.</returns>
-    Domain.Models.Currency? GetHistorical(string value);
+    Models.Currency? GetHistorical(string value);
     
     /// <summary>
     /// Retrieves all historical (withdrawn) currencies defined by ISO 4217.
     /// </summary>
-    /// <returns>An array of <see cref="Domain.Models.Currency"/> objects representing withdrawn currencies.</returns>
-    Domain.Models.Currency[] GetAllHistorical();
+    /// <returns>An array of <see cref="Currency"/> objects representing withdrawn currencies.</returns>
+    Models.Currency[] GetAllHistorical();
 
     /// <summary>
     /// Starts building a query for actual currencies with fluent filtering and sorting.

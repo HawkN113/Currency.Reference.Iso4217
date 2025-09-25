@@ -1,6 +1,5 @@
 ﻿using Currency.Reference.Iso4217.Generators.Models;
 using Microsoft.CodeAnalysis;
-
 namespace Currency.Reference.Iso4217.Generators.Factories;
 
 public sealed class ErrorFactory

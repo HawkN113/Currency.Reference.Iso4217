@@ -1,4 +1,4 @@
-﻿namespace Currency.Reference.Iso4217.Domain.Models;
+﻿namespace Currency.Reference.Iso4217.Models;
 
 /// <summary>
 /// Represents an ISO 4217 currency, including code, name, and metadata.

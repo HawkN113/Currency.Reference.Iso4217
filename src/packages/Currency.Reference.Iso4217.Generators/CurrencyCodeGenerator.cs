@@ -77,7 +77,7 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
                     {
                         DiagnosticDescriptor = new DiagnosticDescriptor(
                             id: "CURRENCY001",
-                            title: "Generator error",
+                            title: DiagnosticsTitle,
                             messageFormat: $"Failed to load original resource: {originalJson.Substring(9)}",
                             category: string.Empty,
                             defaultSeverity: DiagnosticSeverity.Error,
@@ -91,7 +91,7 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
                     {
                         DiagnosticDescriptor = new DiagnosticDescriptor(
                             id: "CURRENCY002",
-                            title: "Generator error",
+                            title: DiagnosticsTitle,
                             messageFormat: $"Failed to load original resource: {replacementJson.Substring(9)}",
                             category: string.Empty,
                             defaultSeverity: DiagnosticSeverity.Error,
@@ -105,7 +105,7 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
                     {
                         DiagnosticDescriptor = new DiagnosticDescriptor(
                             id: "CURRENCY002",
-                            title: "Generator error",
+                            title: DiagnosticsTitle,
                             messageFormat: $"Failed to load historical resource: {historicalJson.Substring(9)}",
                             category: string.Empty,
                             defaultSeverity: DiagnosticSeverity.Error,
@@ -162,7 +162,7 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
                 {
                     DiagnosticDescriptor = new DiagnosticDescriptor(
                         id: "CURRENCY003",
-                        title: "Generator error",
+                        title: DiagnosticsTitle,
                         messageFormat: $"Unexpected exception: {ex.Message}",
                         category: string.Empty,
                         defaultSeverity: DiagnosticSeverity.Error,

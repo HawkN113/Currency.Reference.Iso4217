@@ -1,4 +1,4 @@
-﻿namespace Currency.Reference.Iso4217.Domain.Models;
+﻿namespace Currency.Reference.Iso4217.Models;
 
 /// <summary>
 /// Represents the result of a currency validation operation.
