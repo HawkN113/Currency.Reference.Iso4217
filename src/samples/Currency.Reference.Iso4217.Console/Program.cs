@@ -54,7 +54,7 @@ try
     foreach (var currency in currencyService!.Query()
                  .Includes
                  .Type(CurrencyType.Fiat)
-                 .With(w => w.Codes(CurrencyCode.EUR, CurrencyCode.USD))
+                 .With(w => w.Codes(nameof(CurrencyCode.EUR), nameof(CurrencyCode.USD)))
                  .Build())
     {
         Console.WriteLine(

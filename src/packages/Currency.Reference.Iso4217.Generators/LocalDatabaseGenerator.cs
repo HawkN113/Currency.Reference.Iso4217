@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Text;
+using Currency.Reference.Iso4217.Generators.Base;
 using Currency.Reference.Iso4217.Generators.Handlers;
 using Currency.Reference.Iso4217.Generators.Models;
 using Microsoft.CodeAnalysis;
@@ -44,117 +45,119 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
             }
             catch (Exception ex)
             {
-                return ($"{ErrorMark}:{ex.Message}", $"{ErrorMark}:{ex.Message}", $"{ErrorMark}:{ex.Message}");
+                return ($"{Constants.ErrorMark}:{ex.Message}", $"{Constants.ErrorMark}:{ex.Message}", $"{Constants.ErrorMark}:{ex.Message}");
             }
         });
-        context.RegisterSourceOutput(jsonProvider, (spc, tuple) =>
-        {
-            try
-            {
-                var (originalJson, replacementJson, historicalJson) = tuple;
+        context.RegisterSourceOutput(jsonProvider, (spc, tuple) => { GenerateSourceOutput(tuple, spc); });
+    }
 
-                if (originalJson.StartsWith(ErrorMark) || replacementJson.StartsWith(ErrorMark) ||
-                    historicalJson.StartsWith(ErrorMark))
-                {
-                    if (originalJson.StartsWith(ErrorMark))
-                        ErrorFactory.Create(new ErrorDescription
+    private void GenerateSourceOutput((string, string, string) tuple, SourceProductionContext spc)
+    {
+        try
+        {
+            var (originalJson, replacementJson, historicalJson) = tuple;
+            if (originalJson.StartsWith(Constants.ErrorMark) || replacementJson.StartsWith(Constants.ErrorMark) ||
+                historicalJson.StartsWith(Constants.ErrorMark))
+            {
+                if (originalJson.StartsWith(Constants.ErrorMark))
+                    ErrorFactory.Create(new ErrorDescription
+                    {
+                        DiagnosticDescriptor = new DiagnosticDescriptor(
+                            id: DiagnosticDescriptors.ResourceLoadErrorId,
+                            title: Constants.DiagnosticsTitle,
+                            messageFormat: $"Failed to load original resource: {originalJson.Substring(9)}",
+                            category: string.Empty,
+                            defaultSeverity: DiagnosticSeverity.Error,
+                            isEnabledByDefault: true),
+                        GeneratorType = GeneratorType.Database
+                    });
+                if (replacementJson.StartsWith(Constants.ErrorMark))
+                    ErrorFactory.Create(
+                        new ErrorDescription
                         {
                             DiagnosticDescriptor = new DiagnosticDescriptor(
                                 id: DiagnosticDescriptors.ResourceLoadErrorId,
-                                title: DiagnosticsTitle,
-                                messageFormat: $"Failed to load original resource: {originalJson.Substring(9)}",
+                                title: Constants.DiagnosticsTitle,
+                                messageFormat: $"Failed to load historical resource: {historicalJson.Substring(9)}",
                                 category: string.Empty,
                                 defaultSeverity: DiagnosticSeverity.Error,
                                 isEnabledByDefault: true),
                             GeneratorType = GeneratorType.Database
                         });
-                    if (replacementJson.StartsWith(ErrorMark))
-                        ErrorFactory.Create(
-                            new ErrorDescription
-                            {
-                                DiagnosticDescriptor = new DiagnosticDescriptor(
-                                    id: DiagnosticDescriptors.ResourceLoadErrorId,
-                                    title: DiagnosticsTitle,
-                                    messageFormat: $"Failed to load historical resource: {historicalJson.Substring(9)}",
-                                    category: string.Empty,
-                                    defaultSeverity: DiagnosticSeverity.Error,
-                                    isEnabledByDefault: true),
-                                GeneratorType = GeneratorType.Database
-                            });
-                    if (historicalJson.StartsWith(ErrorMark))
-                        ErrorFactory.Create(
-                            new ErrorDescription
-                            {
-                                DiagnosticDescriptor = new DiagnosticDescriptor(
-                                    id: DiagnosticDescriptors.ResourceLoadErrorId,
-                                    title: DiagnosticsTitle,
-                                    messageFormat:
-                                    $"Failed to load replacement's resource: {historicalJson.Substring(9)}",
-                                    category: string.Empty,
-                                    defaultSeverity: DiagnosticSeverity.Error,
-                                    isEnabledByDefault: true),
-                                GeneratorType = GeneratorType.Database
-                            });
-                    AddStubIfErrors(spc, HintName, StubSource, GeneratorType.Database);
-                    return;
-                }
-
-                var loader = new CurrencyLoader(originalJson, replacementJson, historicalJson);
-                var sb = CreateSourceBuilder(GeneratorName, DefaultNamespace, [
-                    "System.Collections.Generic",
-                    "Currency.Reference.Iso4217.Models"
-                ]);
-                sb.AppendLine("    /// <summary> Currency information for codes ISO4217 </summary>")
-                    .AppendLine("    internal static class LocalDatabase")
-                    .AppendLine("    {")
-                    .AppendLine(
-                        "        /// <summary> Actual currency information for codes ISO4217 </summary>")
-                    .AppendLine(
-                        "        public static IReadOnlyList<Models.Currency> ActualCurrencies = new List<Models.Currency>()")
-                    .AppendLine(
-                        "        {");
-                foreach (var c in loader.Currencies)
-                {
-                    var currencyType = $", CurrencyType.{c.CurrencyType}";
-                    var isHistorical = c.IsHistoric ? "true" : "false";
-                    sb.AppendLine(
-                        $"            new(\"{c.Code}\", \"{c.Name}\", \"{c.Country}\", \"{c.NumericCode}\", {isHistorical}, {ParseWithdrawalDate(c.WithdrawalDate)}{currencyType}),");
-                }
-
-                sb.AppendLine("        };")
-                    .AppendLine("        /// <summary> Currency historical information for codes ISO4217 </summary>")
-                    .AppendLine(
-                        "        public static IReadOnlyList<Models.Currency> HistoricalCurrencies = new List<Models.Currency>()")
-                    .AppendLine(
-                        "        {");
-                foreach (var c in loader.HistoricalCurrencies)
-                {
-                    var isHistorical = c.IsHistoric ? "true" : "false";
-                    sb.AppendLine(
-                        $"            new(\"{c.Code}\", \"{c.Name}\", \"{c.Country}\", \"{c.NumericCode}\", {isHistorical}, {ParseWithdrawalDate(c.WithdrawalDate)}, null),");
-                }
-
-                sb.AppendLine("        };")
-                    .AppendLine("    }")
-                    .AppendLine("}");
-                spc.AddSource(HintName, SourceText.From(sb.ToString(), Encoding.UTF8));
-            }
-            catch (Exception ex)
-            {
-                ErrorFactory.Create(new ErrorDescription()
-                {
-                    DiagnosticDescriptor = new DiagnosticDescriptor(
-                        id: DiagnosticDescriptors.UnexpectedErrorId,
-                        title: DiagnosticsTitle,
-                        messageFormat: $"Unexpected exception: {ex.Message}",
-                        category: string.Empty,
-                        defaultSeverity: DiagnosticSeverity.Error,
-                        isEnabledByDefault: true),
-                    GeneratorType = GeneratorType.Database
-                });
+                if (historicalJson.StartsWith(Constants.ErrorMark))
+                    ErrorFactory.Create(
+                        new ErrorDescription
+                        {
+                            DiagnosticDescriptor = new DiagnosticDescriptor(
+                                id: DiagnosticDescriptors.ResourceLoadErrorId,
+                                title: Constants.DiagnosticsTitle,
+                                messageFormat:
+                                $"Failed to load replacement's resource: {historicalJson.Substring(9)}",
+                                category: string.Empty,
+                                defaultSeverity: DiagnosticSeverity.Error,
+                                isEnabledByDefault: true),
+                            GeneratorType = GeneratorType.Database
+                        });
                 AddStubIfErrors(spc, HintName, StubSource, GeneratorType.Database);
+                return;
             }
-        });
+
+            var loader = new CurrencyLoader(originalJson, replacementJson, historicalJson);
+            var sb = CreateSourceBuilder(
+                Constants.GeneratorName,
+                Constants.DefaultNamespace,
+                ["System.Collections.Generic", "Currency.Reference.Iso4217.Models"]
+            );
+            sb.AppendLine("    /// <summary> Currency information for codes ISO4217 </summary>")
+                .AppendLine("    internal static class LocalDatabase")
+                .AppendLine("    {")
+                .AppendLine(
+                    "        /// <summary> Actual currency information for codes ISO4217 </summary>")
+                .AppendLine(
+                    "        public static IReadOnlyList<Models.Currency> ActualCurrencies = new List<Models.Currency>()")
+                .AppendLine(
+                    "        {");
+            foreach (var c in loader.Currencies)
+            {
+                var currencyType = $", CurrencyType.{c.CurrencyType}";
+                var isHistorical = c.IsHistoric ? "true" : "false";
+                sb.AppendLine(
+                    $"            new(\"{c.Code}\", \"{c.Name}\", \"{c.Country}\", \"{c.NumericCode}\", {isHistorical}, {ParseWithdrawalDate(c.WithdrawalDate)}{currencyType}),");
+            }
+
+            sb.AppendLine("        };")
+                .AppendLine("        /// <summary> Currency historical information for codes ISO4217 </summary>")
+                .AppendLine(
+                    "        public static IReadOnlyList<Models.Currency> HistoricalCurrencies = new List<Models.Currency>()")
+                .AppendLine(
+                    "        {");
+            foreach (var c in loader.HistoricalCurrencies)
+            {
+                var isHistorical = c.IsHistoric ? "true" : "false";
+                sb.AppendLine(
+                    $"            new(\"{c.Code}\", \"{c.Name}\", \"{c.Country}\", \"{c.NumericCode}\", {isHistorical}, {ParseWithdrawalDate(c.WithdrawalDate)}, null),");
+            }
+
+            sb.AppendLine("        };")
+                .AppendLine("    }")
+                .AppendLine("}");
+            spc.AddSource(HintName, SourceText.From(sb.ToString(), Encoding.UTF8));
+        }
+        catch (Exception ex)
+        {
+            ErrorFactory.Create(new ErrorDescription()
+            {
+                DiagnosticDescriptor = new DiagnosticDescriptor(
+                    id: DiagnosticDescriptors.UnexpectedErrorId,
+                    title: Constants.DiagnosticsTitle,
+                    messageFormat: $"Unexpected exception: {ex.Message}",
+                    category: string.Empty,
+                    defaultSeverity: DiagnosticSeverity.Error,
+                    isEnabledByDefault: true),
+                GeneratorType = GeneratorType.Database
+            });
+            AddStubIfErrors(spc, HintName, StubSource, GeneratorType.Database);
+        }
     }
 
     private static string ParseWithdrawalDate(string? raw)

@@ -90,7 +90,7 @@ Excludes `EUR` and `USD` from the list:
 var currencies = currencyService?.Query()
    .Includes
         .Type(CurrencyType.Fiat)
-   .Without(w => w.Codes(CurrencyCode.EUR, CurrencyCode.USD))
+   .Without(w => w.Codes(nameof(CurrencyCode.EUR), nameof(CurrencyCode.USD)))
    .Build();
 ```
 
@@ -99,7 +99,7 @@ Includes only `EUR` and `USD` in the list:
 var currencies = currencyService?.Query()
    .Includes
         .Type(CurrencyType.Fiat)
-   .With(w => w.Codes(CurrencyCode.EUR, CurrencyCode.USD))
+   .With(w => w.Codes("EUR", "usd"))
    .Build();
 ```
 

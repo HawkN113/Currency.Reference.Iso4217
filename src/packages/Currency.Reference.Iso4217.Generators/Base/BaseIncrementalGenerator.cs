@@ -5,15 +5,11 @@ using Currency.Reference.Iso4217.Generators.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 
-namespace Currency.Reference.Iso4217.Generators;
+namespace Currency.Reference.Iso4217.Generators.Base;
 
 public abstract class BaseIncrementalGenerator : IIncrementalGenerator
 {
     public virtual string HintName { get; } = string.Empty;
-    protected const string DefaultNamespace = "Currency.Reference.Iso4217";
-    protected const string DiagnosticsTitle = "Generator error";
-    protected const string ErrorMark = "__ERROR__";
-    protected const string GeneratorName = "Currency.Reference.Iso4217.Generators source generator";
     protected readonly ErrorFactory ErrorFactory = new();
     public abstract void Initialize(IncrementalGeneratorInitializationContext context);
 
