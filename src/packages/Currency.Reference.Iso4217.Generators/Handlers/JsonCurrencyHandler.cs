@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Currency.Reference.Iso4217.Generators.Extensions;
 namespace Currency.Reference.Iso4217.Generators.Handlers;
 
 internal sealed class JsonCurrencyHandler(string jsonContent)
@@ -7,30 +8,24 @@ internal sealed class JsonCurrencyHandler(string jsonContent)
     {
         var matches = Regex.Matches(jsonContent, @"\{([^}]*)\}");
         var currencies = (from Match match in matches
-        select match.Groups[1].Value
-        into obj
-        let code = Extract(obj, "Ccy")
-        let name = Extract(obj, "CcyNm")
-        let country = Extract(obj, "CtryNm")
-        let num = Extract(obj, "CcyNbr")
-        where !string.IsNullOrEmpty(code)
-        select new CurrencyRaw
-        {
-            Code = code, 
-            Name = name, 
-            Country = country, 
-            NumericCode = num,
-        }).ToList();
+            select match.Groups[1].Value
+            into obj
+            let code = JsonExtensions.Extract(obj, "Ccy")
+            let name = JsonExtensions.Extract(obj, "CcyNm")
+            let country = JsonExtensions.Extract(obj, "CtryNm")
+            let num = JsonExtensions.Extract(obj, "CcyNbr")
+            where !string.IsNullOrEmpty(code)
+            select new CurrencyRaw
+            {
+                Code = !string.IsNullOrEmpty(code) ? code : string.Empty,
+                Name = !string.IsNullOrEmpty(name) ? name : string.Empty,
+                Country = !string.IsNullOrEmpty(country) ? country : string.Empty,
+                NumericCode = !string.IsNullOrEmpty(num) ? num : null
+            }).ToList();
 
         return currencies
             .GroupBy(c => c.Code)
             .Select(g => g.First())
             .ToList();
-    }
-    private static string Extract(string json, string key)
-    {
-        var pattern = $"\"{Regex.Escape(key)}\"\\s*:\\s*\"([^\"]+)\"";
-        var match = Regex.Match(json, pattern);
-        return match.Success ? match.Groups[1].Value : "";
     }
 }

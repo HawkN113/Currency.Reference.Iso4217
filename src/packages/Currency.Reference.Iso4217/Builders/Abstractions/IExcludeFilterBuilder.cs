@@ -10,7 +10,7 @@ public interface IExcludeFilterBuilder
     /// </summary>
     /// <param name="codes"></param>
     /// <returns></returns>
-    IExcludeFilterBuilder Codes(params CurrencyCode[] codes);
+    IExcludeFilterBuilder Codes(params string[] codes);
     /// <summary>
     /// Excluding with names
     /// </summary>

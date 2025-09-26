@@ -15,6 +15,12 @@
         <TargetFramework>net8.0</TargetFramework>
         <IncludeBuildOutput>false</IncludeBuildOutput>
         <IncludeSymbols>false</IncludeSymbols>
+        <!-- Use when need to update 'CurrencyCode' and 'LocalDatabase' -->
+        <GenerateCurrencyFiles>false</GenerateCurrencyFiles>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+        <CurrencyCodeFile>$(MSBuildProjectDirectory)\CurrencyCode.cs</CurrencyCodeFile>
+        <LocalDatabaseFile>$(MSBuildProjectDirectory)\LocalDatabase.cs</LocalDatabaseFile>
+        <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\Generated</CompilerGeneratedFilesOutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -39,35 +45,34 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>
-
-    <!--Use when need to update 'CurrencyCode' and 'LocalDatabase'-->
-    <!--
-    <PropertyGroup>
-        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-        <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\Generated</CompilerGeneratedFilesOutputPath>
-    </PropertyGroup>
-    <ItemGroup>
+    
+    <!-- Warning! [Start] Do not modify the settings manually. -->
+    <!-- Need to update 'CurrencyCode' and 'LocalDatabase' -->
+    <ItemGroup Condition="'$(GenerateCurrencyFiles)' == 'true'">
         <ProjectReference Include="..\..\packages\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.csproj"
                           OutputItemType="Analyzer"
                           ReferenceOutputAssembly="false" />
     </ItemGroup>
-    <Target Name="CleanGeneratedFilesBeforeBuild" BeforeTargets="CoreCompile">
-        <RemoveDir Directories="$(CompilerGeneratedFilesOutputPath)" />
-        <Message Text="Removed generated files from $(CompilerGeneratedFilesOutputPath)" Importance="Low" />
+    <Target Name="CleanGeneratedFilesBeforeBuild" BeforeTargets="CoreCompile" Condition="'$(GenerateCurrencyFiles)' == 'true'">
+        <Delete Files="$(CurrencyCodeFile)" Condition="Exists('$(CurrencyCodeFile)')" />
+        <Delete Files="$(LocalDatabaseFile)" Condition="Exists('$(LocalDatabaseFile)')" />
+        <Message Text="Temporary removed file '$(CurrencyCodeFile)'" Importance="High" Condition="!Exists('$(CurrencyCodeFile)')" />
+        <Message Text="Temporary removed file '$(LocalDatabaseFile)'" Importance="High" Condition="!Exists('$(LocalDatabaseFile)')"  />
     </Target>
-    <ItemGroup>
-        <Compile Remove="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\**\*.g.cs" />
-        <None Include="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\**\*.g.cs" />
+    <ItemGroup Condition="'$(GenerateCurrencyFiles)' == 'true'">
+        <Compile Remove="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\**\*.g.cs" ContinueOnError="true" />
+        <None Include="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\**\*.g.cs" ContinueOnError="true" />
     </ItemGroup>
-    <Target Name="CopyGeneratedFiles" AfterTargets="CoreCompile">
+    <Target Name="CopyGeneratedFiles" AfterTargets="CoreCompile" Condition="'$(GenerateCurrencyFiles)' == 'true'">
         <Copy SourceFiles="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.CurrencyCodeGenerator\CurrencyCode.g.cs"
               DestinationFiles="CurrencyCode.cs"
               SkipUnchangedFiles="false" />
+        <Message Text="Copied generated file '$(CurrencyCodeFile)' into repository " Importance="High" Condition="Exists('$(CurrencyCodeFile)')"  />
         <Copy SourceFiles="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.LocalDatabaseGenerator\LocalDatabase.g.cs"
               DestinationFiles="LocalDatabase.cs"
               SkipUnchangedFiles="false" />
-        <Message Text="Copied generated files into repository." Importance="Low" />
+        <Message Text="Copied generated file '$(LocalDatabaseFile)' into repository " Importance="High" Condition="Exists('$(LocalDatabaseFile)')"  />
     </Target>
-    -->
-
+    <!-- Warning! [Finish] Do not modify the settings manually. -->
+    
 </Project>

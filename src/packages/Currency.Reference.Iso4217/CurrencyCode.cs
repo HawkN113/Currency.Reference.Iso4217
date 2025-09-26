@@ -5,360 +5,360 @@
 #nullable enable
 namespace Currency.Reference.Iso4217
 {
-    ///<summary>Currency codes ISO4217</summary>
+    /// <summary> Currency codes ISO4217 </summary>
     public enum CurrencyCode
     {
-        ///<summary> Unknown currency code </summary>
+        /// <summary> Unknown currency code </summary>
         None,
-        ///<summary> UAE Dirham </summary>
+        /// <summary> UAE Dirham </summary>
         AED,
-        ///<summary> Afghan Afghani </summary>
+        /// <summary> Afghan Afghani </summary>
         AFN,
-        ///<summary> Albanian Lek </summary>
+        /// <summary> Albanian Lek </summary>
         ALL,
-        ///<summary> Armenian Dram </summary>
+        /// <summary> Armenian Dram </summary>
         AMD,
-        ///<summary> Angolan Kwanza </summary>
+        /// <summary> Angolan Kwanza </summary>
         AOA,
-        ///<summary> Argentine Peso </summary>
+        /// <summary> Argentine Peso </summary>
         ARS,
-        ///<summary> Australian Dollar </summary>
+        /// <summary> Australian Dollar </summary>
         AUD,
-        ///<summary> Aruban Florin </summary>
+        /// <summary> Aruban Florin </summary>
         AWG,
-        ///<summary> Azerbaijan Manat </summary>
+        /// <summary> Azerbaijan Manat </summary>
         AZN,
-        ///<summary> Convertible Mark </summary>
+        /// <summary> Convertible Mark </summary>
         BAM,
-        ///<summary> Barbados Dollar </summary>
+        /// <summary> Barbados Dollar </summary>
         BBD,
-        ///<summary> Bangladeshi Taka </summary>
+        /// <summary> Bangladeshi Taka </summary>
         BDT,
-        ///<summary> Bulgarian Lev </summary>
+        /// <summary> Bulgarian Lev </summary>
         BGN,
-        ///<summary> Bahraini Dinar </summary>
+        /// <summary> Bahraini Dinar </summary>
         BHD,
-        ///<summary> Burundi Franc </summary>
+        /// <summary> Burundi Franc </summary>
         BIF,
-        ///<summary> Bermudian Dollar </summary>
+        /// <summary> Bermudian Dollar </summary>
         BMD,
-        ///<summary> Brunei Dollar </summary>
+        /// <summary> Brunei Dollar </summary>
         BND,
-        ///<summary> Bolivian Boliviano </summary>
+        /// <summary> Bolivian Boliviano </summary>
         BOB,
-        ///<summary> Bolivian Mvdol </summary>
+        /// <summary> Bolivian Mvdol </summary>
         BOV,
-        ///<summary> Brazilian Real </summary>
+        /// <summary> Brazilian Real </summary>
         BRL,
-        ///<summary> Bahamian Dollar </summary>
+        /// <summary> Bahamian Dollar </summary>
         BSD,
-        ///<summary> Bhutanese Ngultrum </summary>
+        /// <summary> Bhutanese Ngultrum </summary>
         BTN,
-        ///<summary> Botswana Pula </summary>
+        /// <summary> Botswana Pula </summary>
         BWP,
-        ///<summary> Belarusian Ruble </summary>
+        /// <summary> Belarusian Ruble </summary>
         BYN,
-        ///<summary> Belize Dollar </summary>
+        /// <summary> Belize Dollar </summary>
         BZD,
-        ///<summary> Canadian Dollar </summary>
+        /// <summary> Canadian Dollar </summary>
         CAD,
-        ///<summary> Congolese Franc </summary>
+        /// <summary> Congolese Franc </summary>
         CDF,
-        ///<summary> WIR Euro </summary>
+        /// <summary> WIR Euro </summary>
         CHE,
-        ///<summary> Swiss Franc </summary>
+        /// <summary> Swiss Franc </summary>
         CHF,
-        ///<summary> WIR Franc </summary>
+        /// <summary> WIR Franc </summary>
         CHW,
-        ///<summary> Unidad de Fomento </summary>
+        /// <summary> Unidad de Fomento </summary>
         CLF,
-        ///<summary> Chilean Peso </summary>
+        /// <summary> Chilean Peso </summary>
         CLP,
-        ///<summary> Chinese Yuan </summary>
+        /// <summary> Chinese Yuan </summary>
         CNY,
-        ///<summary> Colombian Peso </summary>
+        /// <summary> Colombian Peso </summary>
         COP,
-        ///<summary> Unidad de Valor Real </summary>
+        /// <summary> Unidad de Valor Real </summary>
         COU,
-        ///<summary> Costa Rican Colon </summary>
+        /// <summary> Costa Rican Colon </summary>
         CRC,
-        ///<summary> Cuban Peso </summary>
+        /// <summary> Cuban Peso </summary>
         CUP,
-        ///<summary> Cape Verde Escudo </summary>
+        /// <summary> Cape Verde Escudo </summary>
         CVE,
-        ///<summary> Czech Koruna </summary>
+        /// <summary> Czech Koruna </summary>
         CZK,
-        ///<summary> Djibouti Franc </summary>
+        /// <summary> Djibouti Franc </summary>
         DJF,
-        ///<summary> Danish Krone </summary>
+        /// <summary> Danish Krone </summary>
         DKK,
-        ///<summary> Dominican Peso </summary>
+        /// <summary> Dominican Peso </summary>
         DOP,
-        ///<summary> Algerian Dinar </summary>
+        /// <summary> Algerian Dinar </summary>
         DZD,
-        ///<summary> Egyptian Pound </summary>
+        /// <summary> Egyptian Pound </summary>
         EGP,
-        ///<summary> Eritrean Nakfa </summary>
+        /// <summary> Eritrean Nakfa </summary>
         ERN,
-        ///<summary> Ethiopian Birr </summary>
+        /// <summary> Ethiopian Birr </summary>
         ETB,
-        ///<summary> Euro </summary>
+        /// <summary> Euro </summary>
         EUR,
-        ///<summary> Fiji Dollar </summary>
+        /// <summary> Fiji Dollar </summary>
         FJD,
-        ///<summary> Falkland Islands Pound </summary>
+        /// <summary> Falkland Islands Pound </summary>
         FKP,
-        ///<summary> Pound Sterling </summary>
+        /// <summary> Pound Sterling </summary>
         GBP,
-        ///<summary> Georgian Lari </summary>
+        /// <summary> Georgian Lari </summary>
         GEL,
-        ///<summary> Ghana Cedi </summary>
+        /// <summary> Ghana Cedi </summary>
         GHS,
-        ///<summary> Gibraltar Pound </summary>
+        /// <summary> Gibraltar Pound </summary>
         GIP,
-        ///<summary> Gambian Dalasi </summary>
+        /// <summary> Gambian Dalasi </summary>
         GMD,
-        ///<summary> Guinean Franc </summary>
+        /// <summary> Guinean Franc </summary>
         GNF,
-        ///<summary> Guatemalan Quetzal </summary>
+        /// <summary> Guatemalan Quetzal </summary>
         GTQ,
-        ///<summary> Guyanese Dollar </summary>
+        /// <summary> Guyanese Dollar </summary>
         GYD,
-        ///<summary> Hong Kong Dollar </summary>
+        /// <summary> Hong Kong Dollar </summary>
         HKD,
-        ///<summary> Honduran Lempira </summary>
+        /// <summary> Honduran Lempira </summary>
         HNL,
-        ///<summary> Haitian Gourde </summary>
+        /// <summary> Haitian Gourde </summary>
         HTG,
-        ///<summary> Hungarian Forint </summary>
+        /// <summary> Hungarian Forint </summary>
         HUF,
-        ///<summary> Indonesian Rupiah </summary>
+        /// <summary> Indonesian Rupiah </summary>
         IDR,
-        ///<summary> New Israeli Sheqel </summary>
+        /// <summary> New Israeli Sheqel </summary>
         ILS,
-        ///<summary> Indian Rupee </summary>
+        /// <summary> Indian Rupee </summary>
         INR,
-        ///<summary> Iraqi Dinar </summary>
+        /// <summary> Iraqi Dinar </summary>
         IQD,
-        ///<summary> Iranian Rial </summary>
+        /// <summary> Iranian Rial </summary>
         IRR,
-        ///<summary> Icelandic Krona </summary>
+        /// <summary> Icelandic Krona </summary>
         ISK,
-        ///<summary> Jamaican Dollar </summary>
+        /// <summary> Jamaican Dollar </summary>
         JMD,
-        ///<summary> Jordanian Dinar </summary>
+        /// <summary> Jordanian Dinar </summary>
         JOD,
-        ///<summary> Japanese Yen </summary>
+        /// <summary> Japanese Yen </summary>
         JPY,
-        ///<summary> Kenyan Shilling </summary>
+        /// <summary> Kenyan Shilling </summary>
         KES,
-        ///<summary> Kyrgyzstani Som </summary>
+        /// <summary> Kyrgyzstani Som </summary>
         KGS,
-        ///<summary> Cambodian Riel </summary>
+        /// <summary> Cambodian Riel </summary>
         KHR,
-        ///<summary> Comorian Franc  </summary>
+        /// <summary> Comorian Franc  </summary>
         KMF,
-        ///<summary> North Korean Won </summary>
+        /// <summary> North Korean Won </summary>
         KPW,
-        ///<summary> South Korean Won </summary>
+        /// <summary> South Korean Won </summary>
         KRW,
-        ///<summary> Kuwaiti Dinar </summary>
+        /// <summary> Kuwaiti Dinar </summary>
         KWD,
-        ///<summary> Cayman Islands Dollar </summary>
+        /// <summary> Cayman Islands Dollar </summary>
         KYD,
-        ///<summary> Kazakhstani Tenge </summary>
+        /// <summary> Kazakhstani Tenge </summary>
         KZT,
-        ///<summary> Lao Kip </summary>
+        /// <summary> Lao Kip </summary>
         LAK,
-        ///<summary> Lebanese Pound </summary>
+        /// <summary> Lebanese Pound </summary>
         LBP,
-        ///<summary> Sri Lankan Rupee </summary>
+        /// <summary> Sri Lankan Rupee </summary>
         LKR,
-        ///<summary> Liberian Dollar </summary>
+        /// <summary> Liberian Dollar </summary>
         LRD,
-        ///<summary> Lesotho Loti </summary>
+        /// <summary> Lesotho Loti </summary>
         LSL,
-        ///<summary> Libyan Dinar </summary>
+        /// <summary> Libyan Dinar </summary>
         LYD,
-        ///<summary> Moroccan Dirham </summary>
+        /// <summary> Moroccan Dirham </summary>
         MAD,
-        ///<summary> Moldovan Leu </summary>
+        /// <summary> Moldovan Leu </summary>
         MDL,
-        ///<summary> Malagasy Ariary </summary>
+        /// <summary> Malagasy Ariary </summary>
         MGA,
-        ///<summary> Macedonian Denar </summary>
+        /// <summary> Macedonian Denar </summary>
         MKD,
-        ///<summary> Myanmar Kyat </summary>
+        /// <summary> Myanmar Kyat </summary>
         MMK,
-        ///<summary> Mongolian Tugrik </summary>
+        /// <summary> Mongolian Tugrik </summary>
         MNT,
-        ///<summary> Macanese Pataca </summary>
+        /// <summary> Macanese Pataca </summary>
         MOP,
-        ///<summary> Mauritanian Ouguiya </summary>
+        /// <summary> Mauritanian Ouguiya </summary>
         MRU,
-        ///<summary> Mauritian Rupee </summary>
+        /// <summary> Mauritian Rupee </summary>
         MUR,
-        ///<summary> Maldivian Rufiyaa </summary>
+        /// <summary> Maldivian Rufiyaa </summary>
         MVR,
-        ///<summary> Malawi Kwacha </summary>
+        /// <summary> Malawi Kwacha </summary>
         MWK,
-        ///<summary> Mexican Peso </summary>
+        /// <summary> Mexican Peso </summary>
         MXN,
-        ///<summary> Mexican Unidad de Inversion (UDI) </summary>
+        /// <summary> Mexican Unidad de Inversion (UDI) </summary>
         MXV,
-        ///<summary> Malaysian Ringgit </summary>
+        /// <summary> Malaysian Ringgit </summary>
         MYR,
-        ///<summary> Mozambique Metical </summary>
+        /// <summary> Mozambique Metical </summary>
         MZN,
-        ///<summary> Namibian Dollar </summary>
+        /// <summary> Namibian Dollar </summary>
         NAD,
-        ///<summary> Nigerian Naira </summary>
+        /// <summary> Nigerian Naira </summary>
         NGN,
-        ///<summary> Cordoba Oro </summary>
+        /// <summary> Cordoba Oro </summary>
         NIO,
-        ///<summary> Norwegian Krone </summary>
+        /// <summary> Norwegian Krone </summary>
         NOK,
-        ///<summary> Nepalese Rupee </summary>
+        /// <summary> Nepalese Rupee </summary>
         NPR,
-        ///<summary> New Zealand Dollar </summary>
+        /// <summary> New Zealand Dollar </summary>
         NZD,
-        ///<summary> Omani Rial </summary>
+        /// <summary> Omani Rial </summary>
         OMR,
-        ///<summary> Panamanian Balboa </summary>
+        /// <summary> Panamanian Balboa </summary>
         PAB,
-        ///<summary> Peruvian Sol </summary>
+        /// <summary> Peruvian Sol </summary>
         PEN,
-        ///<summary> Papua New Guinean Kina </summary>
+        /// <summary> Papua New Guinean Kina </summary>
         PGK,
-        ///<summary> Philippine Peso </summary>
+        /// <summary> Philippine Peso </summary>
         PHP,
-        ///<summary> Pakistani Rupee </summary>
+        /// <summary> Pakistani Rupee </summary>
         PKR,
-        ///<summary> Polish Zloty </summary>
+        /// <summary> Polish Zloty </summary>
         PLN,
-        ///<summary> Paraguayan Guarani </summary>
+        /// <summary> Paraguayan Guarani </summary>
         PYG,
-        ///<summary> Qatari Riyal </summary>
+        /// <summary> Qatari Riyal </summary>
         QAR,
-        ///<summary> Romanian Leu </summary>
+        /// <summary> Romanian Leu </summary>
         RON,
-        ///<summary> Serbian Dinar </summary>
+        /// <summary> Serbian Dinar </summary>
         RSD,
-        ///<summary> Russian Ruble </summary>
+        /// <summary> Russian Ruble </summary>
         RUB,
-        ///<summary> Rwanda Franc </summary>
+        /// <summary> Rwanda Franc </summary>
         RWF,
-        ///<summary> Saudi Riyal </summary>
+        /// <summary> Saudi Riyal </summary>
         SAR,
-        ///<summary> Solomon Islands Dollar </summary>
+        /// <summary> Solomon Islands Dollar </summary>
         SBD,
-        ///<summary> Seychelles Rupee </summary>
+        /// <summary> Seychelles Rupee </summary>
         SCR,
-        ///<summary> Sudanese Pound </summary>
+        /// <summary> Sudanese Pound </summary>
         SDG,
-        ///<summary> Swedish Krona </summary>
+        /// <summary> Swedish Krona </summary>
         SEK,
-        ///<summary> Singapore Dollar </summary>
+        /// <summary> Singapore Dollar </summary>
         SGD,
-        ///<summary> Saint Helena Pound </summary>
+        /// <summary> Saint Helena Pound </summary>
         SHP,
-        ///<summary> Sierra Leonean Leone </summary>
+        /// <summary> Sierra Leonean Leone </summary>
         SLE,
-        ///<summary> Somali Shilling </summary>
+        /// <summary> Somali Shilling </summary>
         SOS,
-        ///<summary> Surinamese Dollar </summary>
+        /// <summary> Surinamese Dollar </summary>
         SRD,
-        ///<summary> South Sudanese Pound </summary>
+        /// <summary> South Sudanese Pound </summary>
         SSP,
-        ///<summary> São Tomé and Príncipe Dobra </summary>
+        /// <summary> São Tomé and Príncipe Dobra </summary>
         STN,
-        ///<summary> El Salvador Colon </summary>
+        /// <summary> El Salvador Colon </summary>
         SVC,
-        ///<summary> Syrian Pound </summary>
+        /// <summary> Syrian Pound </summary>
         SYP,
-        ///<summary> Swazi Lilangeni </summary>
+        /// <summary> Swazi Lilangeni </summary>
         SZL,
-        ///<summary> Thai Baht </summary>
+        /// <summary> Thai Baht </summary>
         THB,
-        ///<summary> Tajikistani Somoni </summary>
+        /// <summary> Tajikistani Somoni </summary>
         TJS,
-        ///<summary> Turkmenistan New Manat </summary>
+        /// <summary> Turkmenistan New Manat </summary>
         TMT,
-        ///<summary> Tunisian Dinar </summary>
+        /// <summary> Tunisian Dinar </summary>
         TND,
-        ///<summary> Tongan Paʻanga </summary>
+        /// <summary> Tongan Paʻanga </summary>
         TOP,
-        ///<summary> Turkish Lira </summary>
+        /// <summary> Turkish Lira </summary>
         TRY,
-        ///<summary> Trinidad and Tobago Dollar </summary>
+        /// <summary> Trinidad and Tobago Dollar </summary>
         TTD,
-        ///<summary> New Taiwan Dollar </summary>
+        /// <summary> New Taiwan Dollar </summary>
         TWD,
-        ///<summary> Tanzanian Shilling </summary>
+        /// <summary> Tanzanian Shilling </summary>
         TZS,
-        ///<summary> Ukrainian Hryvnia </summary>
+        /// <summary> Ukrainian Hryvnia </summary>
         UAH,
-        ///<summary> Uganda Shilling </summary>
+        /// <summary> Uganda Shilling </summary>
         UGX,
-        ///<summary> US Dollar </summary>
+        /// <summary> US Dollar </summary>
         USD,
-        ///<summary> US Dollar (Next day) </summary>
+        /// <summary> US Dollar (Next day) </summary>
         USN,
-        ///<summary> Uruguay Peso en Unidades Indexadas (UI) </summary>
+        /// <summary> Uruguay Peso en Unidades Indexadas (UI) </summary>
         UYI,
-        ///<summary> Peso Uruguayo </summary>
+        /// <summary> Peso Uruguayo </summary>
         UYU,
-        ///<summary> Unidad Previsional </summary>
+        /// <summary> Unidad Previsional </summary>
         UYW,
-        ///<summary> Uzbekistan Sum </summary>
+        /// <summary> Uzbekistan Sum </summary>
         UZS,
-        ///<summary> Bolívar Soberano </summary>
+        /// <summary> Bolívar Soberano </summary>
         VES,
-        ///<summary> Vietnamese Dong </summary>
+        /// <summary> Vietnamese Dong </summary>
         VND,
-        ///<summary> Vanuatu Vatu </summary>
+        /// <summary> Vanuatu Vatu </summary>
         VUV,
-        ///<summary> Samoan Tala </summary>
+        /// <summary> Samoan Tala </summary>
         WST,
-        ///<summary> CFA Franc BEAC </summary>
+        /// <summary> CFA Franc BEAC </summary>
         XAF,
-        ///<summary> Silver (one troy ounce) </summary>
+        /// <summary> Silver (one troy ounce) </summary>
         XAG,
-        ///<summary> Gold (one troy ounce) </summary>
+        /// <summary> Gold (one troy ounce) </summary>
         XAU,
-        ///<summary> Bond Markets Unit European Composite Unit (EURCO) </summary>
+        /// <summary> Bond Markets Unit European Composite Unit (EURCO) </summary>
         XBA,
-        ///<summary> Bond Markets Unit European Monetary Unit (E.M.U.-6) </summary>
+        /// <summary> Bond Markets Unit European Monetary Unit (E.M.U.-6) </summary>
         XBB,
-        ///<summary> Bond Markets Unit European Unit of Account 9 (E.U.A.-9) </summary>
+        /// <summary> Bond Markets Unit European Unit of Account 9 (E.U.A.-9) </summary>
         XBC,
-        ///<summary> Bond Markets Unit European Unit of Account 17 (E.U.A.-17) </summary>
+        /// <summary> Bond Markets Unit European Unit of Account 17 (E.U.A.-17) </summary>
         XBD,
-        ///<summary> East Caribbean Dollar </summary>
+        /// <summary> East Caribbean Dollar </summary>
         XCD,
-        ///<summary> SDR (Special Drawing Right) </summary>
+        /// <summary> SDR (Special Drawing Right) </summary>
         XDR,
-        ///<summary> CFA Franc BCEAO </summary>
+        /// <summary> CFA Franc BCEAO </summary>
         XOF,
-        ///<summary> Palladium (one troy ounce) </summary>
+        /// <summary> Palladium (one troy ounce) </summary>
         XPD,
-        ///<summary> CFP Franc </summary>
+        /// <summary> CFP Franc </summary>
         XPF,
-        ///<summary> Platinum (one troy ounce) </summary>
+        /// <summary> Platinum (one troy ounce) </summary>
         XPT,
-        ///<summary> Sucre (Unidad de Cuenta del ALBA) </summary>
+        /// <summary> Sucre (Unidad de Cuenta del ALBA) </summary>
         XSU,
-        ///<summary> Codes specifically reserved for testing purposes </summary>
+        /// <summary> Codes specifically reserved for testing purposes </summary>
         XTS,
-        ///<summary> ADB Unit of Account </summary>
+        /// <summary> ADB Unit of Account </summary>
         XUA,
-        ///<summary> The codes assigned for transactions where no currency is involved </summary>
+        /// <summary> The codes assigned for transactions where no currency is involved </summary>
         XXX,
-        ///<summary> Yemeni Rial </summary>
+        /// <summary> Yemeni Rial </summary>
         YER,
-        ///<summary> South African Rand </summary>
+        /// <summary> South African Rand </summary>
         ZAR,
-        ///<summary> Zambian Kwacha </summary>
+        /// <summary> Zambian Kwacha </summary>
         ZMW,
     }
 }

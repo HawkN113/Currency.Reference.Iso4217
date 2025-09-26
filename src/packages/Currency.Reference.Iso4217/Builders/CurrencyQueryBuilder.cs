@@ -11,8 +11,8 @@ internal sealed class CurrencyQueryBuilder:
 {
     private readonly IReadOnlyList<Models.Currency> _actualCurrencies;
     private readonly HashSet<CurrencyType> _includedTypes = [];
-    private readonly HashSet<CurrencyCode> _withCodes = [];
-    private readonly HashSet<CurrencyCode> _withoutCodes = [];
+    private readonly HashSet<string> _withCodes = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _withoutCodes = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _withNames = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _withoutNames = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _withNumericCodes = new(StringComparer.OrdinalIgnoreCase);
@@ -50,9 +50,9 @@ internal sealed class CurrencyQueryBuilder:
         var query = _actualCurrencies.Where(c => _includedTypes.Contains(c.CurrencyType!.Value));
         
         if (_withCodes.Count > 0)
-            query = query.Where(c => _withCodes.Contains(Enum.Parse<CurrencyCode>(c.Code)));
+            query = query.Where(c => _withCodes.Contains(c.Code));
         if (_withoutCodes.Count > 0)
-            query = query.Where(c => !_withoutCodes.Contains(Enum.Parse<CurrencyCode>(c.Code)));
+            query = query.Where(c => !_withoutCodes.Contains(c.Code));
         if (_withNames.Count > 0)
             query = query.Where(c => _withNames.Contains(c.Name));
         if (_withoutNames.Count > 0)
@@ -65,7 +65,7 @@ internal sealed class CurrencyQueryBuilder:
         return query.ToList();
     }
     
-    IIncludeFilterBuilder IIncludeFilterBuilder.Codes(params CurrencyCode[] codes)
+    IIncludeFilterBuilder IIncludeFilterBuilder.Codes(params string[] codes)
     {
         foreach (var code in codes) _withCodes.Add(code);
         return this;
@@ -83,7 +83,7 @@ internal sealed class CurrencyQueryBuilder:
         return this;
     }
     
-    IExcludeFilterBuilder IExcludeFilterBuilder.Codes(params CurrencyCode[] codes)
+    IExcludeFilterBuilder IExcludeFilterBuilder.Codes(params string[] codes)
     {
         foreach (var code in codes) _withoutCodes.Add(code);
         return this;

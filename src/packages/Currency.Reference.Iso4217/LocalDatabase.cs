@@ -7,9 +7,10 @@ using System.Collections.Generic;
 using Currency.Reference.Iso4217.Models;
 namespace Currency.Reference.Iso4217
 {
-    ///<summary>Currency information for codes ISO4217</summary>
+    /// <summary> Currency information for codes ISO4217 </summary>
     internal static class LocalDatabase
     {
+        /// <summary> Actual currency information for codes ISO4217 </summary>
         public static IReadOnlyList<Models.Currency> ActualCurrencies = new List<Models.Currency>()
         {
             new("AED", "UAE Dirham", "UNITED ARAB EMIRATES (THE)", "784", false,  null, CurrencyType.Fiat),
@@ -188,7 +189,7 @@ namespace Currency.Reference.Iso4217
             new("ZAR", "South African Rand", "LESOTHO", "710", false,  null, CurrencyType.Fiat),
             new("ZMW", "Zambian Kwacha", "ZAMBIA", "967", false,  null, CurrencyType.Fiat),
         };
-        ///<summary>Currency historical information for codes ISO4217</summary>
+        /// <summary> Currency historical information for codes ISO4217 </summary>
         public static IReadOnlyList<Models.Currency> HistoricalCurrencies = new List<Models.Currency>()
         {
             new("AFA", "Afghani", "AFGHANISTAN", "004", true,  new DateOnly(2003, 1, 1), null),

@@ -10,7 +10,7 @@ public interface IIncludeFilterBuilder
     /// </summary>
     /// <param name="codes"></param>
     /// <returns></returns>
-    IIncludeFilterBuilder Codes(params CurrencyCode[] codes);
+    IIncludeFilterBuilder Codes(params string[] codes);
     /// <summary>
     /// Including with names
     /// </summary>
