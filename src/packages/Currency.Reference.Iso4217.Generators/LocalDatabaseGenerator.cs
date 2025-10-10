@@ -110,14 +110,22 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
             );
             sb.AppendLine("    /// <summary> Currency information for codes ISO4217 </summary>")
                 .AppendLine("    internal static class LocalDatabase")
-                .AppendLine("    {")
-                .AppendLine(
-                    "        /// <summary> Actual currency information for codes ISO4217 </summary>")
-                .AppendLine(
+                .AppendLine("    {");
+
+            if (string.IsNullOrEmpty(loader.ActualCurrencyData.PublishedDate))
+                sb.AppendLine(
+                    "        /// <summary> Actual currency information for codes ISO4217 </summary>");
+            else
+                sb.AppendLine("        /// <summary>")
+                    .AppendLine("        /// Actual currency information for codes ISO4217")
+                    .AppendLine($"        /// Last published at {loader.ActualCurrencyData.PublishedDate}.")
+                    .AppendLine("        /// </summary>");
+
+            sb.AppendLine(
                     "        public static IReadOnlyList<Models.Currency> ActualCurrencies = new List<Models.Currency>()")
                 .AppendLine(
                     "        {");
-            foreach (var c in loader.Currencies)
+            foreach (var c in loader.ActualCurrencyData.Currencies)
             {
                 var currencyType = $", CurrencyType.{c.CurrencyType}";
                 var isHistorical = c.IsHistoric ? "true" : "false";
@@ -125,13 +133,22 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
                     $"            new(\"{c.Code}\", \"{c.Name}\", \"{c.Country}\", \"{c.NumericCode}\", {isHistorical}, {ParseWithdrawalDate(c.WithdrawalDate)}{currencyType}),");
             }
 
-            sb.AppendLine("        };")
-                .AppendLine("        /// <summary> Currency historical information for codes ISO4217 </summary>")
-                .AppendLine(
+            sb.AppendLine("        };");
+
+            if (string.IsNullOrEmpty(loader.HistoricalCurrencyData.PublishedDate))
+                sb.AppendLine(
+                    "        /// <summary> Currency historical information for codes ISO4217 </summary>");
+            else
+                sb.AppendLine("        /// <summary>")
+                    .AppendLine("        /// Currency historical information for codes ISO4217")
+                    .AppendLine($"        /// Last published at {loader.HistoricalCurrencyData.PublishedDate}.")
+                    .AppendLine("        /// </summary>");
+            
+            sb.AppendLine(
                     "        public static IReadOnlyList<Models.Currency> HistoricalCurrencies = new List<Models.Currency>()")
                 .AppendLine(
                     "        {");
-            foreach (var c in loader.HistoricalCurrencies)
+            foreach (var c in loader.HistoricalCurrencyData.Currencies)
             {
                 var isHistorical = c.IsHistoric ? "true" : "false";
                 sb.AppendLine(

@@ -26,7 +26,7 @@ public abstract class BaseIncrementalGenerator : IIncrementalGenerator
         {
             using var stream = assembly.GetManifestResourceStream(name)
                                ?? throw new InvalidOperationException($"{name} not found.");
-            using var reader = new StreamReader(stream, Encoding.UTF8);
+            using var reader = new StreamReader(stream, new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
             return reader.ReadToEnd();
         }
 

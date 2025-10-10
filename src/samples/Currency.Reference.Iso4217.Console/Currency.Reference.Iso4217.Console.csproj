@@ -12,10 +12,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Currency.Reference.Iso4217" Version="8.0.0" />
+        <!--<PackageReference Include="Currency.Reference.Iso4217" Version="8.0.0" />-->
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\packages\Currency.Reference.Iso4217\Currency.Reference.Iso4217.csproj" />
     </ItemGroup>
 
     <PropertyGroup>

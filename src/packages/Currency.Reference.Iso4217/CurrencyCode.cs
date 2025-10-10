@@ -5,14 +5,17 @@
 #nullable enable
 namespace Currency.Reference.Iso4217
 {
-    /// <summary> Currency codes ISO4217 </summary>
+    /// <summary>
+    /// Currency codes ISO4217
+    /// Last published at 2025-05-12
+    /// </summary>
     public enum CurrencyCode
     {
         /// <summary> Unknown currency code </summary>
         None,
         /// <summary> UAE Dirham </summary>
         AED,
-        /// <summary> Afghan Afghani </summary>
+        /// <summary> Afghani </summary>
         AFN,
         /// <summary> Albanian Lek </summary>
         ALL,
@@ -156,7 +159,7 @@ namespace Currency.Reference.Iso4217
         KGS,
         /// <summary> Cambodian Riel </summary>
         KHR,
-        /// <summary> Comorian Franc  </summary>
+        /// <summary> Comorian Franc </summary>
         KMF,
         /// <summary> North Korean Won </summary>
         KPW,

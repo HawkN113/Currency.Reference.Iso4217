@@ -36,7 +36,7 @@ try
                  .Build())
     {
         Console.WriteLine(
-            $" --> {currency.Code} - {currency.Name})");
+            $" --> {currency.Code} - {currency.Name}");
     }
 
     // ---- Get fiat currencies ---- 

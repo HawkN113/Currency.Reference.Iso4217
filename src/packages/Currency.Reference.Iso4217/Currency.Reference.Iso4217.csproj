@@ -45,6 +45,11 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Currency.Reference.Iso4217.Tests" />
+        <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+    </ItemGroup>
     
     <!-- Warning! [Start] Do not modify the settings manually. -->
     <!-- Need to update 'CurrencyCode' and 'LocalDatabase' -->

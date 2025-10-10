@@ -3,8 +3,8 @@ namespace Currency.Reference.Iso4217.Generators.Handlers;
 
 internal class CurrencyLoader
 {
-    private readonly List<Models.Currency> _currencies;
-    private readonly List<Models.Currency> _historicalCurrencies;
+    private readonly CurrencyData _actualCurrencyData = new();
+    private readonly CurrencyData _historicalCurrencyData = new();
 
     private static readonly HashSet<string> PreciousMetalsCodes = new(StringComparer.OrdinalIgnoreCase)
         { "XAG", "XAU", "XPD", "XPT" };
@@ -18,20 +18,21 @@ internal class CurrencyLoader
     private static readonly HashSet<string> ExcludedCodes = new(StringComparer.OrdinalIgnoreCase)
         { "VED", "XAD", "XCG", "ZWG" };
     
-    public List<Models.Currency> Currencies => _currencies;
-    public List<Models.Currency> HistoricalCurrencies => _historicalCurrencies;
+    public CurrencyData ActualCurrencyData => _actualCurrencyData;
+    public CurrencyData HistoricalCurrencyData => _historicalCurrencyData;
 
     public CurrencyLoader(string originalJson, string replacementJson, string historicalJson)
     {
-        var actualCurrencies = new JsonCurrencyHandler(originalJson).LoadActualCurrencies();
+        var actualCurrencyData = new JsonCurrencyHandler(originalJson).LoadActualCurrencies();
         var replacements = new JsonReplacementCurrencyHandler(replacementJson).LoadNameReplacements();
-        var historicalCurrencies = new JsonHistoricalCurrencyHandler(historicalJson).LoadHistoricalCurrencies();
-        _currencies = new List<Models.Currency>(actualCurrencies.Count);
-        _historicalCurrencies = new List<Models.Currency>(historicalCurrencies.Count);
+        var historicalCurrencyData = new JsonHistoricalCurrencyHandler(historicalJson).LoadHistoricalCurrencies();
+        _actualCurrencyData!.Currencies = new List<Models.Currency>(actualCurrencyData.Currencies.Count);
+        _historicalCurrencyData!.Currencies = new List<Models.Currency>(historicalCurrencyData.Currencies.Count);
 
-        foreach (var item in actualCurrencies.Where(c => !ExcludedCodes.Contains(c.Code)))
+        _actualCurrencyData.PublishedDate = actualCurrencyData.PublishedDate;
+        foreach (var item in actualCurrencyData.Currencies.Where(c => !ExcludedCodes.Contains(c.Code)))
         {
-            _currencies.Add(new Models.Currency()
+            _actualCurrencyData.Currencies.Add(new Models.Currency()
             {
                 Code = item.Code,
                 Name = replacements.TryGetValue(item.Code, out var newName) ? newName : item.Name,
@@ -43,9 +44,10 @@ internal class CurrencyLoader
             });
         }
 
-        foreach (var item in historicalCurrencies.Where(c => !ExcludedCodes.Contains(c.Code)))
+        _historicalCurrencyData.PublishedDate = historicalCurrencyData.PublishedDate;
+        foreach (var item in historicalCurrencyData.Currencies.Where(c => !ExcludedCodes.Contains(c.Code)))
         {
-            _historicalCurrencies.Add(new Models.Currency()
+            _historicalCurrencyData.Currencies.Add(new Models.Currency()
             {
                 Code = item.Code,
                 Name = replacements.TryGetValue(item.Code, out var newName) ? newName : item.Name,
@@ -57,7 +59,8 @@ internal class CurrencyLoader
             });
         }
 
-        _currencies = _currencies.OrderBy(c => c.Code).ToList();
+        _actualCurrencyData.Currencies = _actualCurrencyData.Currencies.OrderBy(c => c.Code).ToList();
+        _historicalCurrencyData.Currencies = _historicalCurrencyData.Currencies.OrderBy(c => c.Code).ToList();
     }
 
     private static CurrencyType GetCurrencyType(string code)

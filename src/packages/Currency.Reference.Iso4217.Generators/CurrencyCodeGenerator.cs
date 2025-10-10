@@ -102,12 +102,18 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
                 Constants.GeneratorName,
                 Constants.DefaultNamespace
             );
-            sb.AppendLine("    /// <summary> Currency codes ISO4217 </summary>")
-                .AppendLine("    public enum CurrencyCode")
+            if (string.IsNullOrEmpty(loader.ActualCurrencyData.PublishedDate))
+                sb.AppendLine("    /// <summary> Currency codes ISO4217 </summary>");
+            else
+                sb.AppendLine("    /// <summary>")
+                    .AppendLine("    /// Currency codes ISO4217")
+                    .AppendLine($"    /// Last published at {loader.ActualCurrencyData.PublishedDate}")
+                    .AppendLine("    /// </summary>");
+            sb.AppendLine("    public enum CurrencyCode")
                 .AppendLine("    {")
                 .AppendLine("        /// <summary> Unknown currency code </summary>")
                 .AppendLine("        None,");
-            foreach (var c in loader.Currencies)
+            foreach (var c in loader.ActualCurrencyData.Currencies)
             {
                 sb.AppendLine($"        /// <summary> {c.Name} </summary>");
                 if (c.IsHistoric && !string.IsNullOrEmpty(c.WithdrawalDate))

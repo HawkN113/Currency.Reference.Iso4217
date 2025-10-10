@@ -1,1255 +1,1984 @@
-[
-  {
-    "Ccy": "AFN",
-    "CcyNm": "Afghani",
-    "CtryNm": "AFGHANISTAN",
-    "CcyNbr": "971",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "EUR",
-    "CcyNm": "Euro",
-    "CtryNm": "ÅLAND ISLANDS",
-    "CcyNbr": "978",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "ALL",
-    "CcyNm": "Lek",
-    "CtryNm": "ALBANIA",
-    "CcyNbr": "008",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "DZD",
-    "CcyNm": "Algerian Dinar",
-    "CtryNm": "ALGERIA",
-    "CcyNbr": "012",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "USD",
-    "CcyNm": "US Dollar",
-    "CtryNm": "AMERICAN SAMOA",
-    "CcyNbr": "840",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "AOA",
-    "CcyNm": "Kwanza",
-    "CtryNm": "ANGOLA",
-    "CcyNbr": "973",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "XCD",
-    "CcyNm": "East Caribbean Dollar",
-    "CtryNm": "ANGUILLA",
-    "CcyNbr": "951",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "XAD",
-    "CcyNm": "Arab Accounting Dinar",
-    "CtryNm": "ARAB MONETARY FUND",
-    "CcyNbr": "396",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "ARS",
-    "CcyNm": "Argentine Peso",
-    "CtryNm": "ARGENTINA",
-    "CcyNbr": "032",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "AMD",
-    "CcyNm": "Armenian Dram",
-    "CtryNm": "ARMENIA",
-    "CcyNbr": "051",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "AWG",
-    "CcyNm": "Aruban Florin",
-    "CtryNm": "ARUBA",
-    "CcyNbr": "533",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "AUD",
-    "CcyNm": "Australian Dollar",
-    "CtryNm": "AUSTRALIA",
-    "CcyNbr": "036",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "AZN",
-    "CcyNm": "Azerbaijan Manat",
-    "CtryNm": "AZERBAIJAN",
-    "CcyNbr": "944",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "BSD",
-    "CcyNm": "Bahamian Dollar",
-    "CtryNm": "BAHAMAS (THE)",
-    "CcyNbr": "044",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "BHD",
-    "CcyNm": "Bahraini Dinar",
-    "CtryNm": "BAHRAIN",
-    "CcyNbr": "048",
-    "CcyMnrUnts": "3"
-  },
-  {
-    "Ccy": "BDT",
-    "CcyNm": "Taka",
-    "CtryNm": "BANGLADESH",
-    "CcyNbr": "050",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "BBD",
-    "CcyNm": "Barbados Dollar",
-    "CtryNm": "BARBADOS",
-    "CcyNbr": "052",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "BYN",
-    "CcyNm": "Belarusian Ruble",
-    "CtryNm": "BELARUS",
-    "CcyNbr": "933",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "BZD",
-    "CcyNm": "Belize Dollar",
-    "CtryNm": "BELIZE",
-    "CcyNbr": "084",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "XOF",
-    "CcyNm": "CFA Franc BCEAO",
-    "CtryNm": "BENIN",
-    "CcyNbr": "952",
-    "CcyMnrUnts": "0"
-  },
-  {
-    "Ccy": "BMD",
-    "CcyNm": "Bermudian Dollar",
-    "CtryNm": "BERMUDA",
-    "CcyNbr": "060",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "INR",
-    "CcyNm": "Indian Rupee",
-    "CtryNm": "BHUTAN",
-    "CcyNbr": "356",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "BTN",
-    "CcyNm": "Ngultrum",
-    "CtryNm": "BHUTAN",
-    "CcyNbr": "064",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "BOB",
-    "CcyNm": "Boliviano",
-    "CtryNm": "BOLIVIA (PLURINATIONAL STATE OF)",
-    "CcyNbr": "068",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "BOV",
-    "CcyNm": "Mvdol",
-    "CtryNm": "BOLIVIA (PLURINATIONAL STATE OF)",
-    "CcyNbr": "984",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "BAM",
-    "CcyNm": "Convertible Mark",
-    "CtryNm": "BOSNIA AND HERZEGOVINA",
-    "CcyNbr": "977",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "BWP",
-    "CcyNm": "Pula",
-    "CtryNm": "BOTSWANA",
-    "CcyNbr": "072",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "NOK",
-    "CcyNm": "Norwegian Krone",
-    "CtryNm": "BOUVET ISLAND",
-    "CcyNbr": "578",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "BRL",
-    "CcyNm": "Brazilian Real",
-    "CtryNm": "BRAZIL",
-    "CcyNbr": "986",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "BND",
-    "CcyNm": "Brunei Dollar",
-    "CtryNm": "BRUNEI DARUSSALAM",
-    "CcyNbr": "096",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "BGN",
-    "CcyNm": "Bulgarian Lev",
-    "CtryNm": "BULGARIA",
-    "CcyNbr": "975",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "BIF",
-    "CcyNm": "Burundi Franc",
-    "CtryNm": "BURUNDI",
-    "CcyNbr": "108",
-    "CcyMnrUnts": "0"
-  },
-  {
-    "Ccy": "CVE",
-    "CcyNm": "Cabo Verde Escudo",
-    "CtryNm": "CABO VERDE",
-    "CcyNbr": "132",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "KHR",
-    "CcyNm": "Riel",
-    "CtryNm": "CAMBODIA",
-    "CcyNbr": "116",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "XAF",
-    "CcyNm": "CFA Franc BEAC",
-    "CtryNm": "CAMEROON",
-    "CcyNbr": "950",
-    "CcyMnrUnts": "0"
-  },
-  {
-    "Ccy": "CAD",
-    "CcyNm": "Canadian Dollar",
-    "CtryNm": "CANADA",
-    "CcyNbr": "124",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "KYD",
-    "CcyNm": "Cayman Islands Dollar",
-    "CtryNm": "CAYMAN ISLANDS (THE)",
-    "CcyNbr": "136",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "CLP",
-    "CcyNm": "Chilean Peso",
-    "CtryNm": "CHILE",
-    "CcyNbr": "152",
-    "CcyMnrUnts": "0"
-  },
-  {
-    "Ccy": "CLF",
-    "CcyNm": "Unidad de Fomento",
-    "CtryNm": "CHILE",
-    "CcyNbr": "990",
-    "CcyMnrUnts": "4"
-  },
-  {
-    "Ccy": "CNY",
-    "CcyNm": "Yuan Renminbi",
-    "CtryNm": "CHINA",
-    "CcyNbr": "156",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "COP",
-    "CcyNm": "Colombian Peso",
-    "CtryNm": "COLOMBIA",
-    "CcyNbr": "170",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "COU",
-    "CcyNm": "Unidad de Valor Real",
-    "CtryNm": "COLOMBIA",
-    "CcyNbr": "970",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "KMF",
-    "CcyNm": "Comorian Franc ",
-    "CtryNm": "COMOROS (THE)",
-    "CcyNbr": "174",
-    "CcyMnrUnts": "0"
-  },
-  {
-    "Ccy": "CDF",
-    "CcyNm": "Congolese Franc",
-    "CtryNm": "CONGO (THE DEMOCRATIC REPUBLIC OF THE)",
-    "CcyNbr": "976",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "NZD",
-    "CcyNm": "New Zealand Dollar",
-    "CtryNm": "COOK ISLANDS (THE)",
-    "CcyNbr": "554",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "CRC",
-    "CcyNm": "Costa Rican Colon",
-    "CtryNm": "COSTA RICA",
-    "CcyNbr": "188",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "CUP",
-    "CcyNm": "Cuban Peso",
-    "CtryNm": "CUBA",
-    "CcyNbr": "192",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "XCG",
-    "CcyNm": "Caribbean Guilder",
-    "CtryNm": "CURAÇAO",
-    "CcyNbr": "532",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "CZK",
-    "CcyNm": "Czech Koruna",
-    "CtryNm": "CZECHIA",
-    "CcyNbr": "203",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "DKK",
-    "CcyNm": "Danish Krone",
-    "CtryNm": "DENMARK",
-    "CcyNbr": "208",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "DJF",
-    "CcyNm": "Djibouti Franc",
-    "CtryNm": "DJIBOUTI",
-    "CcyNbr": "262",
-    "CcyMnrUnts": "0"
-  },
-  {
-    "Ccy": "DOP",
-    "CcyNm": "Dominican Peso",
-    "CtryNm": "DOMINICAN REPUBLIC (THE)",
-    "CcyNbr": "214",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "EGP",
-    "CcyNm": "Egyptian Pound",
-    "CtryNm": "EGYPT",
-    "CcyNbr": "818",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "SVC",
-    "CcyNm": "El Salvador Colon",
-    "CtryNm": "EL SALVADOR",
-    "CcyNbr": "222",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "ERN",
-    "CcyNm": "Nakfa",
-    "CtryNm": "ERITREA",
-    "CcyNbr": "232",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "SZL",
-    "CcyNm": "Lilangeni",
-    "CtryNm": "ESWATINI",
-    "CcyNbr": "748",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "ETB",
-    "CcyNm": "Ethiopian Birr",
-    "CtryNm": "ETHIOPIA",
-    "CcyNbr": "230",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "FKP",
-    "CcyNm": "Falkland Islands Pound",
-    "CtryNm": "FALKLAND ISLANDS (THE) [MALVINAS]",
-    "CcyNbr": "238",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "FJD",
-    "CcyNm": "Fiji Dollar",
-    "CtryNm": "FIJI",
-    "CcyNbr": "242",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "XPF",
-    "CcyNm": "CFP Franc",
-    "CtryNm": "FRENCH POLYNESIA",
-    "CcyNbr": "953",
-    "CcyMnrUnts": "0"
-  },
-  {
-    "Ccy": "GMD",
-    "CcyNm": "Dalasi",
-    "CtryNm": "GAMBIA (THE)",
-    "CcyNbr": "270",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "GEL",
-    "CcyNm": "Lari",
-    "CtryNm": "GEORGIA",
-    "CcyNbr": "981",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "GHS",
-    "CcyNm": "Ghana Cedi",
-    "CtryNm": "GHANA",
-    "CcyNbr": "936",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "GIP",
-    "CcyNm": "Gibraltar Pound",
-    "CtryNm": "GIBRALTAR",
-    "CcyNbr": "292",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "GTQ",
-    "CcyNm": "Quetzal",
-    "CtryNm": "GUATEMALA",
-    "CcyNbr": "320",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "GBP",
-    "CcyNm": "Pound Sterling",
-    "CtryNm": "GUERNSEY",
-    "CcyNbr": "826",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "GNF",
-    "CcyNm": "Guinean Franc",
-    "CtryNm": "GUINEA",
-    "CcyNbr": "324",
-    "CcyMnrUnts": "0"
-  },
-  {
-    "Ccy": "GYD",
-    "CcyNm": "Guyana Dollar",
-    "CtryNm": "GUYANA",
-    "CcyNbr": "328",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "HTG",
-    "CcyNm": "Gourde",
-    "CtryNm": "HAITI",
-    "CcyNbr": "332",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "HNL",
-    "CcyNm": "Lempira",
-    "CtryNm": "HONDURAS",
-    "CcyNbr": "340",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "HKD",
-    "CcyNm": "Hong Kong Dollar",
-    "CtryNm": "HONG KONG",
-    "CcyNbr": "344",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "HUF",
-    "CcyNm": "Forint",
-    "CtryNm": "HUNGARY",
-    "CcyNbr": "348",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "ISK",
-    "CcyNm": "Iceland Krona",
-    "CtryNm": "ICELAND",
-    "CcyNbr": "352",
-    "CcyMnrUnts": "0"
-  },
-  {
-    "Ccy": "IDR",
-    "CcyNm": "Rupiah",
-    "CtryNm": "INDONESIA",
-    "CcyNbr": "360",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "XDR",
-    "CcyNm": "SDR (Special Drawing Right)",
-    "CtryNm": "INTERNATIONAL MONETARY FUND (IMF) ",
-    "CcyNbr": "960",
-    "CcyMnrUnts": "N.A."
-  },
-  {
-    "Ccy": "IRR",
-    "CcyNm": "Iranian Rial",
-    "CtryNm": "IRAN (ISLAMIC REPUBLIC OF)",
-    "CcyNbr": "364",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "IQD",
-    "CcyNm": "Iraqi Dinar",
-    "CtryNm": "IRAQ",
-    "CcyNbr": "368",
-    "CcyMnrUnts": "3"
-  },
-  {
-    "Ccy": "ILS",
-    "CcyNm": "New Israeli Sheqel",
-    "CtryNm": "ISRAEL",
-    "CcyNbr": "376",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "JMD",
-    "CcyNm": "Jamaican Dollar",
-    "CtryNm": "JAMAICA",
-    "CcyNbr": "388",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "JPY",
-    "CcyNm": "Yen",
-    "CtryNm": "JAPAN",
-    "CcyNbr": "392",
-    "CcyMnrUnts": "0"
-  },
-  {
-    "Ccy": "JOD",
-    "CcyNm": "Jordanian Dinar",
-    "CtryNm": "JORDAN",
-    "CcyNbr": "400",
-    "CcyMnrUnts": "3"
-  },
-  {
-    "Ccy": "KZT",
-    "CcyNm": "Tenge",
-    "CtryNm": "KAZAKHSTAN",
-    "CcyNbr": "398",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "KES",
-    "CcyNm": "Kenyan Shilling",
-    "CtryNm": "KENYA",
-    "CcyNbr": "404",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "KPW",
-    "CcyNm": "North Korean Won",
-    "CtryNm": "KOREA (THE DEMOCRATIC PEOPLE’S REPUBLIC OF)",
-    "CcyNbr": "408",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "KRW",
-    "CcyNm": "Won",
-    "CtryNm": "KOREA (THE REPUBLIC OF)",
-    "CcyNbr": "410",
-    "CcyMnrUnts": "0"
-  },
-  {
-    "Ccy": "KWD",
-    "CcyNm": "Kuwaiti Dinar",
-    "CtryNm": "KUWAIT",
-    "CcyNbr": "414",
-    "CcyMnrUnts": "3"
-  },
-  {
-    "Ccy": "KGS",
-    "CcyNm": "Som",
-    "CtryNm": "KYRGYZSTAN",
-    "CcyNbr": "417",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "LAK",
-    "CcyNm": "Lao Kip",
-    "CtryNm": "LAO PEOPLE’S DEMOCRATIC REPUBLIC (THE)",
-    "CcyNbr": "418",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "LBP",
-    "CcyNm": "Lebanese Pound",
-    "CtryNm": "LEBANON",
-    "CcyNbr": "422",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "LSL",
-    "CcyNm": "Loti",
-    "CtryNm": "LESOTHO",
-    "CcyNbr": "426",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "ZAR",
-    "CcyNm": "Rand",
-    "CtryNm": "LESOTHO",
-    "CcyNbr": "710",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "LRD",
-    "CcyNm": "Liberian Dollar",
-    "CtryNm": "LIBERIA",
-    "CcyNbr": "430",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "LYD",
-    "CcyNm": "Libyan Dinar",
-    "CtryNm": "LIBYA",
-    "CcyNbr": "434",
-    "CcyMnrUnts": "3"
-  },
-  {
-    "Ccy": "CHF",
-    "CcyNm": "Swiss Franc",
-    "CtryNm": "LIECHTENSTEIN",
-    "CcyNbr": "756",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "MOP",
-    "CcyNm": "Pataca",
-    "CtryNm": "MACAO",
-    "CcyNbr": "446",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "MKD",
-    "CcyNm": "Denar",
-    "CtryNm": "NORTH MACEDONIA",
-    "CcyNbr": "807",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "MGA",
-    "CcyNm": "Malagasy Ariary",
-    "CtryNm": "MADAGASCAR",
-    "CcyNbr": "969",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "MWK",
-    "CcyNm": "Malawi Kwacha",
-    "CtryNm": "MALAWI",
-    "CcyNbr": "454",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "MYR",
-    "CcyNm": "Malaysian Ringgit",
-    "CtryNm": "MALAYSIA",
-    "CcyNbr": "458",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "MVR",
-    "CcyNm": "Rufiyaa",
-    "CtryNm": "MALDIVES",
-    "CcyNbr": "462",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "MRU",
-    "CcyNm": "Ouguiya",
-    "CtryNm": "MAURITANIA",
-    "CcyNbr": "929",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "MUR",
-    "CcyNm": "Mauritius Rupee",
-    "CtryNm": "MAURITIUS",
-    "CcyNbr": "480",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "XUA",
-    "CcyNm": "ADB Unit of Account",
-    "CtryNm": "MEMBER COUNTRIES OF THE AFRICAN DEVELOPMENT BANK GROUP",
-    "CcyNbr": "965",
-    "CcyMnrUnts": "N.A."
-  },
-  {
-    "Ccy": "MXN",
-    "CcyNm": "Mexican Peso",
-    "CtryNm": "MEXICO",
-    "CcyNbr": "484",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "MXV",
-    "CcyNm": "Mexican Unidad de Inversion (UDI)",
-    "CtryNm": "MEXICO",
-    "CcyNbr": "979",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "MDL",
-    "CcyNm": "Moldovan Leu",
-    "CtryNm": "MOLDOVA (THE REPUBLIC OF)",
-    "CcyNbr": "498",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "MNT",
-    "CcyNm": "Tugrik",
-    "CtryNm": "MONGOLIA",
-    "CcyNbr": "496",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "MAD",
-    "CcyNm": "Moroccan Dirham",
-    "CtryNm": "MOROCCO",
-    "CcyNbr": "504",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "MZN",
-    "CcyNm": "Mozambique Metical",
-    "CtryNm": "MOZAMBIQUE",
-    "CcyNbr": "943",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "MMK",
-    "CcyNm": "Kyat",
-    "CtryNm": "MYANMAR",
-    "CcyNbr": "104",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "NAD",
-    "CcyNm": "Namibia Dollar",
-    "CtryNm": "NAMIBIA",
-    "CcyNbr": "516",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "NPR",
-    "CcyNm": "Nepalese Rupee",
-    "CtryNm": "NEPAL",
-    "CcyNbr": "524",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "NIO",
-    "CcyNm": "Cordoba Oro",
-    "CtryNm": "NICARAGUA",
-    "CcyNbr": "558",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "NGN",
-    "CcyNm": "Naira",
-    "CtryNm": "NIGERIA",
-    "CcyNbr": "566",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "OMR",
-    "CcyNm": "Rial Omani",
-    "CtryNm": "OMAN",
-    "CcyNbr": "512",
-    "CcyMnrUnts": "3"
-  },
-  {
-    "Ccy": "PKR",
-    "CcyNm": "Pakistan Rupee",
-    "CtryNm": "PAKISTAN",
-    "CcyNbr": "586",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "PAB",
-    "CcyNm": "Balboa",
-    "CtryNm": "PANAMA",
-    "CcyNbr": "590",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "PGK",
-    "CcyNm": "Kina",
-    "CtryNm": "PAPUA NEW GUINEA",
-    "CcyNbr": "598",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "PYG",
-    "CcyNm": "Guarani",
-    "CtryNm": "PARAGUAY",
-    "CcyNbr": "600",
-    "CcyMnrUnts": "0"
-  },
-  {
-    "Ccy": "PEN",
-    "CcyNm": "Sol",
-    "CtryNm": "PERU",
-    "CcyNbr": "604",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "PHP",
-    "CcyNm": "Philippine Peso",
-    "CtryNm": "PHILIPPINES (THE)",
-    "CcyNbr": "608",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "PLN",
-    "CcyNm": "Zloty",
-    "CtryNm": "POLAND",
-    "CcyNbr": "985",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "QAR",
-    "CcyNm": "Qatari Rial",
-    "CtryNm": "QATAR",
-    "CcyNbr": "634",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "RON",
-    "CcyNm": "Romanian Leu",
-    "CtryNm": "ROMANIA",
-    "CcyNbr": "946",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "RUB",
-    "CcyNm": "Russian Ruble",
-    "CtryNm": "RUSSIAN FEDERATION (THE)",
-    "CcyNbr": "643",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "RWF",
-    "CcyNm": "Rwanda Franc",
-    "CtryNm": "RWANDA",
-    "CcyNbr": "646",
-    "CcyMnrUnts": "0"
-  },
-  {
-    "Ccy": "SHP",
-    "CcyNm": "Saint Helena Pound",
-    "CtryNm": "SAINT HELENA, ASCENSION AND TRISTAN DA CUNHA",
-    "CcyNbr": "654",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "WST",
-    "CcyNm": "Tala",
-    "CtryNm": "SAMOA",
-    "CcyNbr": "882",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "STN",
-    "CcyNm": "Dobra",
-    "CtryNm": "SAO TOME AND PRINCIPE",
-    "CcyNbr": "930",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "SAR",
-    "CcyNm": "Saudi Riyal",
-    "CtryNm": "SAUDI ARABIA",
-    "CcyNbr": "682",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "RSD",
-    "CcyNm": "Serbian Dinar",
-    "CtryNm": "SERBIA",
-    "CcyNbr": "941",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "SCR",
-    "CcyNm": "Seychelles Rupee",
-    "CtryNm": "SEYCHELLES",
-    "CcyNbr": "690",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "SLE",
-    "CcyNm": "Leone",
-    "CtryNm": "SIERRA LEONE",
-    "CcyNbr": "925",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "SGD",
-    "CcyNm": "Singapore Dollar",
-    "CtryNm": "SINGAPORE",
-    "CcyNbr": "702",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "XSU",
-    "CcyNm": "Sucre",
-    "CtryNm": "SISTEMA UNITARIO DE COMPENSACION REGIONAL DE PAGOS 'SUCRE'",
-    "CcyNbr": "994",
-    "CcyMnrUnts": "N.A."
-  },
-  {
-    "Ccy": "SBD",
-    "CcyNm": "Solomon Islands Dollar",
-    "CtryNm": "SOLOMON ISLANDS",
-    "CcyNbr": "090",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "SOS",
-    "CcyNm": "Somali Shilling",
-    "CtryNm": "SOMALIA",
-    "CcyNbr": "706",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "SSP",
-    "CcyNm": "South Sudanese Pound",
-    "CtryNm": "SOUTH SUDAN",
-    "CcyNbr": "728",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "LKR",
-    "CcyNm": "Sri Lanka Rupee",
-    "CtryNm": "SRI LANKA",
-    "CcyNbr": "144",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "SDG",
-    "CcyNm": "Sudanese Pound",
-    "CtryNm": "SUDAN (THE)",
-    "CcyNbr": "938",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "SRD",
-    "CcyNm": "Surinam Dollar",
-    "CtryNm": "SURINAME",
-    "CcyNbr": "968",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "SEK",
-    "CcyNm": "Swedish Krona",
-    "CtryNm": "SWEDEN",
-    "CcyNbr": "752",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "CHE",
-    "CcyNm": "WIR Euro",
-    "CtryNm": "SWITZERLAND",
-    "CcyNbr": "947",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "CHW",
-    "CcyNm": "WIR Franc",
-    "CtryNm": "SWITZERLAND",
-    "CcyNbr": "948",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "SYP",
-    "CcyNm": "Syrian Pound",
-    "CtryNm": "SYRIAN ARAB REPUBLIC",
-    "CcyNbr": "760",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "TWD",
-    "CcyNm": "New Taiwan Dollar",
-    "CtryNm": "TAIWAN (PROVINCE OF CHINA)",
-    "CcyNbr": "901",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "TJS",
-    "CcyNm": "Somoni",
-    "CtryNm": "TAJIKISTAN",
-    "CcyNbr": "972",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "TZS",
-    "CcyNm": "Tanzanian Shilling",
-    "CtryNm": "TANZANIA, UNITED REPUBLIC OF",
-    "CcyNbr": "834",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "THB",
-    "CcyNm": "Baht",
-    "CtryNm": "THAILAND",
-    "CcyNbr": "764",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "TOP",
-    "CcyNm": "Pa’anga",
-    "CtryNm": "TONGA",
-    "CcyNbr": "776",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "TTD",
-    "CcyNm": "Trinidad and Tobago Dollar",
-    "CtryNm": "TRINIDAD AND TOBAGO",
-    "CcyNbr": "780",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "TND",
-    "CcyNm": "Tunisian Dinar",
-    "CtryNm": "TUNISIA",
-    "CcyNbr": "788",
-    "CcyMnrUnts": "3"
-  },
-  {
-    "Ccy": "TRY",
-    "CcyNm": "Turkish Lira",
-    "CtryNm": "TÜRKİYE",
-    "CcyNbr": "949",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "TMT",
-    "CcyNm": "Turkmenistan New Manat",
-    "CtryNm": "TURKMENISTAN",
-    "CcyNbr": "934",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "UGX",
-    "CcyNm": "Uganda Shilling",
-    "CtryNm": "UGANDA",
-    "CcyNbr": "800",
-    "CcyMnrUnts": "0"
-  },
-  {
-    "Ccy": "UAH",
-    "CcyNm": "Hryvnia",
-    "CtryNm": "UKRAINE",
-    "CcyNbr": "980",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "AED",
-    "CcyNm": "UAE Dirham",
-    "CtryNm": "UNITED ARAB EMIRATES (THE)",
-    "CcyNbr": "784",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "USN",
-    "CcyNm": "US Dollar (Next day)",
-    "CtryNm": "UNITED STATES OF AMERICA (THE)",
-    "CcyNbr": "997",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "UYU",
-    "CcyNm": "Peso Uruguayo",
-    "CtryNm": "URUGUAY",
-    "CcyNbr": "858",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "UYI",
-    "CcyNm": "Uruguay Peso en Unidades Indexadas (UI)",
-    "CtryNm": "URUGUAY",
-    "CcyNbr": "940",
-    "CcyMnrUnts": "0"
-  },
-  {
-    "Ccy": "UYW",
-    "CcyNm": "Unidad Previsional",
-    "CtryNm": "URUGUAY",
-    "CcyNbr": "927",
-    "CcyMnrUnts": "4"
-  },
-  {
-    "Ccy": "UZS",
-    "CcyNm": "Uzbekistan Sum",
-    "CtryNm": "UZBEKISTAN",
-    "CcyNbr": "860",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "VUV",
-    "CcyNm": "Vatu",
-    "CtryNm": "VANUATU",
-    "CcyNbr": "548",
-    "CcyMnrUnts": "0"
-  },
-  {
-    "Ccy": "VES",
-    "CcyNm": "Bolívar Soberano",
-    "CtryNm": "VENEZUELA (BOLIVARIAN REPUBLIC OF)",
-    "CcyNbr": "928",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "VED",
-    "CcyNm": "Bolívar Soberano",
-    "CtryNm": "VENEZUELA (BOLIVARIAN REPUBLIC OF)",
-    "CcyNbr": "926",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "VND",
-    "CcyNm": "Dong",
-    "CtryNm": "VIETNAM",
-    "CcyNbr": "704",
-    "CcyMnrUnts": "0"
-  },
-  {
-    "Ccy": "YER",
-    "CcyNm": "Yemeni Rial",
-    "CtryNm": "YEMEN",
-    "CcyNbr": "886",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "ZMW",
-    "CcyNm": "Zambian Kwacha",
-    "CtryNm": "ZAMBIA",
-    "CcyNbr": "967",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "ZWG",
-    "CcyNm": "Zimbabwe Gold",
-    "CtryNm": "ZIMBABWE",
-    "CcyNbr": "924",
-    "CcyMnrUnts": "2"
-  },
-  {
-    "Ccy": "XBA",
-    "CcyNm": "Bond Markets Unit European Composite Unit (EURCO)",
-    "CtryNm": "ZZ01_Bond Markets Unit European_EURCO",
-    "CcyNbr": "955",
-    "CcyMnrUnts": "N.A."
-  },
-  {
-    "Ccy": "XBB",
-    "CcyNm": "Bond Markets Unit European Monetary Unit (E.M.U.-6)",
-    "CtryNm": "ZZ02_Bond Markets Unit European_EMU-6",
-    "CcyNbr": "956",
-    "CcyMnrUnts": "N.A."
-  },
-  {
-    "Ccy": "XBC",
-    "CcyNm": "Bond Markets Unit European Unit of Account 9 (E.U.A.-9)",
-    "CtryNm": "ZZ03_Bond Markets Unit European_EUA-9",
-    "CcyNbr": "957",
-    "CcyMnrUnts": "N.A."
-  },
-  {
-    "Ccy": "XBD",
-    "CcyNm": "Bond Markets Unit European Unit of Account 17 (E.U.A.-17)",
-    "CtryNm": "ZZ04_Bond Markets Unit European_EUA-17",
-    "CcyNbr": "958",
-    "CcyMnrUnts": "N.A."
-  },
-  {
-    "Ccy": "XTS",
-    "CcyNm": "Codes specifically reserved for testing purposes",
-    "CtryNm": "ZZ06_Testing_Code",
-    "CcyNbr": "963",
-    "CcyMnrUnts": "N.A."
-  },
-  {
-    "Ccy": "XXX",
-    "CcyNm": "The codes assigned for transactions where no currency is involved",
-    "CtryNm": "ZZ07_No_Currency",
-    "CcyNbr": "999",
-    "CcyMnrUnts": "N.A."
-  },
-  {
-    "Ccy": "XAU",
-    "CcyNm": "Gold",
-    "CtryNm": "ZZ08_Gold",
-    "CcyNbr": "959",
-    "CcyMnrUnts": "N.A."
-  },
-  {
-    "Ccy": "XPD",
-    "CcyNm": "Palladium",
-    "CtryNm": "ZZ09_Palladium",
-    "CcyNbr": "964",
-    "CcyMnrUnts": "N.A."
-  },
-  {
-    "Ccy": "XPT",
-    "CcyNm": "Platinum",
-    "CtryNm": "ZZ10_Platinum",
-    "CcyNbr": "962",
-    "CcyMnrUnts": "N.A."
-  },
-  {
-    "Ccy": "XAG",
-    "CcyNm": "Silver",
-    "CtryNm": "ZZ11_Silver",
-    "CcyNbr": "961",
-    "CcyMnrUnts": "N.A."
+{
+  "ISO_4217": {
+    "CcyTbl": {
+      "CcyNtry": [
+        {
+          "CtryNm": "AFGHANISTAN",
+          "CcyNm": "Afghani",
+          "Ccy": "AFN",
+          "CcyNbr": "971",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ÅLAND ISLANDS",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ALBANIA",
+          "CcyNm": "Lek",
+          "Ccy": "ALL",
+          "CcyNbr": "008",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ALGERIA",
+          "CcyNm": "Algerian Dinar",
+          "Ccy": "DZD",
+          "CcyNbr": "012",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "AMERICAN SAMOA",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ANDORRA",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ANGOLA",
+          "CcyNm": "Kwanza",
+          "Ccy": "AOA",
+          "CcyNbr": "973",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ANGUILLA",
+          "CcyNm": "East Caribbean Dollar",
+          "Ccy": "XCD",
+          "CcyNbr": "951",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ANTARCTICA",
+          "CcyNm": "No universal currency"
+        },
+        {
+          "CtryNm": "ANTIGUA AND BARBUDA",
+          "CcyNm": "East Caribbean Dollar",
+          "Ccy": "XCD",
+          "CcyNbr": "951",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ARAB MONETARY FUND",
+          "CcyNm": "Arab Accounting Dinar",
+          "Ccy": "XAD",
+          "CcyNbr": "396",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ARGENTINA",
+          "CcyNm": "Argentine Peso",
+          "Ccy": "ARS",
+          "CcyNbr": "032",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ARMENIA",
+          "CcyNm": "Armenian Dram",
+          "Ccy": "AMD",
+          "CcyNbr": "051",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ARUBA",
+          "CcyNm": "Aruban Florin",
+          "Ccy": "AWG",
+          "CcyNbr": "533",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "AUSTRALIA",
+          "CcyNm": "Australian Dollar",
+          "Ccy": "AUD",
+          "CcyNbr": "036",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "AUSTRIA",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "AZERBAIJAN",
+          "CcyNm": "Azerbaijan Manat",
+          "Ccy": "AZN",
+          "CcyNbr": "944",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BAHAMAS (THE)",
+          "CcyNm": "Bahamian Dollar",
+          "Ccy": "BSD",
+          "CcyNbr": "044",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BAHRAIN",
+          "CcyNm": "Bahraini Dinar",
+          "Ccy": "BHD",
+          "CcyNbr": "048",
+          "CcyMnrUnts": "3"
+        },
+        {
+          "CtryNm": "BANGLADESH",
+          "CcyNm": "Taka",
+          "Ccy": "BDT",
+          "CcyNbr": "050",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BARBADOS",
+          "CcyNm": "Barbados Dollar",
+          "Ccy": "BBD",
+          "CcyNbr": "052",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BELARUS",
+          "CcyNm": "Belarusian Ruble",
+          "Ccy": "BYN",
+          "CcyNbr": "933",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BELGIUM",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BELIZE",
+          "CcyNm": "Belize Dollar",
+          "Ccy": "BZD",
+          "CcyNbr": "084",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BENIN",
+          "CcyNm": "CFA Franc BCEAO",
+          "Ccy": "XOF",
+          "CcyNbr": "952",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "BERMUDA",
+          "CcyNm": "Bermudian Dollar",
+          "Ccy": "BMD",
+          "CcyNbr": "060",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BHUTAN",
+          "CcyNm": "Indian Rupee",
+          "Ccy": "INR",
+          "CcyNbr": "356",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BHUTAN",
+          "CcyNm": "Ngultrum",
+          "Ccy": "BTN",
+          "CcyNbr": "064",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BOLIVIA (PLURINATIONAL STATE OF)",
+          "CcyNm": "Boliviano",
+          "Ccy": "BOB",
+          "CcyNbr": "068",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BOLIVIA (PLURINATIONAL STATE OF)",
+          "CcyNm": {
+            "_IsFund": "true",
+            "__text": "Mvdol"
+          },
+          "Ccy": "BOV",
+          "CcyNbr": "984",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BONAIRE, SINT EUSTATIUS AND SABA",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BOSNIA AND HERZEGOVINA",
+          "CcyNm": "Convertible Mark",
+          "Ccy": "BAM",
+          "CcyNbr": "977",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BOTSWANA",
+          "CcyNm": "Pula",
+          "Ccy": "BWP",
+          "CcyNbr": "072",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BOUVET ISLAND",
+          "CcyNm": "Norwegian Krone",
+          "Ccy": "NOK",
+          "CcyNbr": "578",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BRAZIL",
+          "CcyNm": "Brazilian Real",
+          "Ccy": "BRL",
+          "CcyNbr": "986",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BRITISH INDIAN OCEAN TERRITORY (THE)",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BRUNEI DARUSSALAM",
+          "CcyNm": "Brunei Dollar",
+          "Ccy": "BND",
+          "CcyNbr": "096",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BULGARIA",
+          "CcyNm": "Bulgarian Lev",
+          "Ccy": "BGN",
+          "CcyNbr": "975",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "BURKINA FASO",
+          "CcyNm": "CFA Franc BCEAO",
+          "Ccy": "XOF",
+          "CcyNbr": "952",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "BURUNDI",
+          "CcyNm": "Burundi Franc",
+          "Ccy": "BIF",
+          "CcyNbr": "108",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "CABO VERDE",
+          "CcyNm": "Cabo Verde Escudo",
+          "Ccy": "CVE",
+          "CcyNbr": "132",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "CAMBODIA",
+          "CcyNm": "Riel",
+          "Ccy": "KHR",
+          "CcyNbr": "116",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "CAMEROON",
+          "CcyNm": "CFA Franc BEAC",
+          "Ccy": "XAF",
+          "CcyNbr": "950",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "CANADA",
+          "CcyNm": "Canadian Dollar",
+          "Ccy": "CAD",
+          "CcyNbr": "124",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "CAYMAN ISLANDS (THE)",
+          "CcyNm": "Cayman Islands Dollar",
+          "Ccy": "KYD",
+          "CcyNbr": "136",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "CENTRAL AFRICAN REPUBLIC (THE)",
+          "CcyNm": "CFA Franc BEAC",
+          "Ccy": "XAF",
+          "CcyNbr": "950",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "CHAD",
+          "CcyNm": "CFA Franc BEAC",
+          "Ccy": "XAF",
+          "CcyNbr": "950",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "CHILE",
+          "CcyNm": "Chilean Peso",
+          "Ccy": "CLP",
+          "CcyNbr": "152",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "CHILE",
+          "CcyNm": {
+            "_IsFund": "true",
+            "__text": "Unidad de Fomento"
+          },
+          "Ccy": "CLF",
+          "CcyNbr": "990",
+          "CcyMnrUnts": "4"
+        },
+        {
+          "CtryNm": "CHINA",
+          "CcyNm": "Yuan Renminbi",
+          "Ccy": "CNY",
+          "CcyNbr": "156",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "CHRISTMAS ISLAND",
+          "CcyNm": "Australian Dollar",
+          "Ccy": "AUD",
+          "CcyNbr": "036",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "COCOS (KEELING) ISLANDS (THE)",
+          "CcyNm": "Australian Dollar",
+          "Ccy": "AUD",
+          "CcyNbr": "036",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "COLOMBIA",
+          "CcyNm": "Colombian Peso",
+          "Ccy": "COP",
+          "CcyNbr": "170",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "COLOMBIA",
+          "CcyNm": {
+            "_IsFund": "true",
+            "__text": "Unidad de Valor Real"
+          },
+          "Ccy": "COU",
+          "CcyNbr": "970",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "COMOROS (THE)",
+          "CcyNm": "Comorian Franc",
+          "Ccy": "KMF",
+          "CcyNbr": "174",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "CONGO (THE DEMOCRATIC REPUBLIC OF THE)",
+          "CcyNm": "Congolese Franc",
+          "Ccy": "CDF",
+          "CcyNbr": "976",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "CONGO (THE)",
+          "CcyNm": "CFA Franc BEAC",
+          "Ccy": "XAF",
+          "CcyNbr": "950",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "COOK ISLANDS (THE)",
+          "CcyNm": "New Zealand Dollar",
+          "Ccy": "NZD",
+          "CcyNbr": "554",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "COSTA RICA",
+          "CcyNm": "Costa Rican Colon",
+          "Ccy": "CRC",
+          "CcyNbr": "188",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "CÔTE D'IVOIRE",
+          "CcyNm": "CFA Franc BCEAO",
+          "Ccy": "XOF",
+          "CcyNbr": "952",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "CROATIA",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "CUBA",
+          "CcyNm": "Cuban Peso",
+          "Ccy": "CUP",
+          "CcyNbr": "192",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "CURAÇAO",
+          "CcyNm": "Caribbean Guilder",
+          "Ccy": "XCG",
+          "CcyNbr": "532",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "CYPRUS",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "CZECHIA",
+          "CcyNm": "Czech Koruna",
+          "Ccy": "CZK",
+          "CcyNbr": "203",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "DENMARK",
+          "CcyNm": "Danish Krone",
+          "Ccy": "DKK",
+          "CcyNbr": "208",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "DJIBOUTI",
+          "CcyNm": "Djibouti Franc",
+          "Ccy": "DJF",
+          "CcyNbr": "262",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "DOMINICA",
+          "CcyNm": "East Caribbean Dollar",
+          "Ccy": "XCD",
+          "CcyNbr": "951",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "DOMINICAN REPUBLIC (THE)",
+          "CcyNm": "Dominican Peso",
+          "Ccy": "DOP",
+          "CcyNbr": "214",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ECUADOR",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "EGYPT",
+          "CcyNm": "Egyptian Pound",
+          "Ccy": "EGP",
+          "CcyNbr": "818",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "EL SALVADOR",
+          "CcyNm": "El Salvador Colon",
+          "Ccy": "SVC",
+          "CcyNbr": "222",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "EL SALVADOR",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "EQUATORIAL GUINEA",
+          "CcyNm": "CFA Franc BEAC",
+          "Ccy": "XAF",
+          "CcyNbr": "950",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "ERITREA",
+          "CcyNm": "Nakfa",
+          "Ccy": "ERN",
+          "CcyNbr": "232",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ESTONIA",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ESWATINI",
+          "CcyNm": "Lilangeni",
+          "Ccy": "SZL",
+          "CcyNbr": "748",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ETHIOPIA",
+          "CcyNm": "Ethiopian Birr",
+          "Ccy": "ETB",
+          "CcyNbr": "230",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "EUROPEAN UNION",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "FALKLAND ISLANDS (THE) [MALVINAS]",
+          "CcyNm": "Falkland Islands Pound",
+          "Ccy": "FKP",
+          "CcyNbr": "238",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "FAROE ISLANDS (THE)",
+          "CcyNm": "Danish Krone",
+          "Ccy": "DKK",
+          "CcyNbr": "208",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "FIJI",
+          "CcyNm": "Fiji Dollar",
+          "Ccy": "FJD",
+          "CcyNbr": "242",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "FINLAND",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "FRANCE",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "FRENCH GUIANA",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "FRENCH POLYNESIA",
+          "CcyNm": "CFP Franc",
+          "Ccy": "XPF",
+          "CcyNbr": "953",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "FRENCH SOUTHERN TERRITORIES (THE)",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "GABON",
+          "CcyNm": "CFA Franc BEAC",
+          "Ccy": "XAF",
+          "CcyNbr": "950",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "GAMBIA (THE)",
+          "CcyNm": "Dalasi",
+          "Ccy": "GMD",
+          "CcyNbr": "270",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "GEORGIA",
+          "CcyNm": "Lari",
+          "Ccy": "GEL",
+          "CcyNbr": "981",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "GERMANY",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "GHANA",
+          "CcyNm": "Ghana Cedi",
+          "Ccy": "GHS",
+          "CcyNbr": "936",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "GIBRALTAR",
+          "CcyNm": "Gibraltar Pound",
+          "Ccy": "GIP",
+          "CcyNbr": "292",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "GREECE",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "GREENLAND",
+          "CcyNm": "Danish Krone",
+          "Ccy": "DKK",
+          "CcyNbr": "208",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "GRENADA",
+          "CcyNm": "East Caribbean Dollar",
+          "Ccy": "XCD",
+          "CcyNbr": "951",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "GUADELOUPE",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "GUAM",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "GUATEMALA",
+          "CcyNm": "Quetzal",
+          "Ccy": "GTQ",
+          "CcyNbr": "320",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "GUERNSEY",
+          "CcyNm": "Pound Sterling",
+          "Ccy": "GBP",
+          "CcyNbr": "826",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "GUINEA",
+          "CcyNm": "Guinean Franc",
+          "Ccy": "GNF",
+          "CcyNbr": "324",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "GUINEA-BISSAU",
+          "CcyNm": "CFA Franc BCEAO",
+          "Ccy": "XOF",
+          "CcyNbr": "952",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "GUYANA",
+          "CcyNm": "Guyana Dollar",
+          "Ccy": "GYD",
+          "CcyNbr": "328",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "HAITI",
+          "CcyNm": "Gourde",
+          "Ccy": "HTG",
+          "CcyNbr": "332",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "HAITI",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "HEARD ISLAND AND McDONALD ISLANDS",
+          "CcyNm": "Australian Dollar",
+          "Ccy": "AUD",
+          "CcyNbr": "036",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "HOLY SEE (THE)",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "HONDURAS",
+          "CcyNm": "Lempira",
+          "Ccy": "HNL",
+          "CcyNbr": "340",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "HONG KONG",
+          "CcyNm": "Hong Kong Dollar",
+          "Ccy": "HKD",
+          "CcyNbr": "344",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "HUNGARY",
+          "CcyNm": "Forint",
+          "Ccy": "HUF",
+          "CcyNbr": "348",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ICELAND",
+          "CcyNm": "Iceland Krona",
+          "Ccy": "ISK",
+          "CcyNbr": "352",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "INDIA",
+          "CcyNm": "Indian Rupee",
+          "Ccy": "INR",
+          "CcyNbr": "356",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "INDONESIA",
+          "CcyNm": "Rupiah",
+          "Ccy": "IDR",
+          "CcyNbr": "360",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "INTERNATIONAL MONETARY FUND (IMF)",
+          "CcyNm": "SDR (Special Drawing Right)",
+          "Ccy": "XDR",
+          "CcyNbr": "960",
+          "CcyMnrUnts": "N.A."
+        },
+        {
+          "CtryNm": "IRAN (ISLAMIC REPUBLIC OF)",
+          "CcyNm": "Iranian Rial",
+          "Ccy": "IRR",
+          "CcyNbr": "364",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "IRAQ",
+          "CcyNm": "Iraqi Dinar",
+          "Ccy": "IQD",
+          "CcyNbr": "368",
+          "CcyMnrUnts": "3"
+        },
+        {
+          "CtryNm": "IRELAND",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ISLE OF MAN",
+          "CcyNm": "Pound Sterling",
+          "Ccy": "GBP",
+          "CcyNbr": "826",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ISRAEL",
+          "CcyNm": "New Israeli Sheqel",
+          "Ccy": "ILS",
+          "CcyNbr": "376",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ITALY",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "JAMAICA",
+          "CcyNm": "Jamaican Dollar",
+          "Ccy": "JMD",
+          "CcyNbr": "388",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "JAPAN",
+          "CcyNm": "Yen",
+          "Ccy": "JPY",
+          "CcyNbr": "392",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "JERSEY",
+          "CcyNm": "Pound Sterling",
+          "Ccy": "GBP",
+          "CcyNbr": "826",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "JORDAN",
+          "CcyNm": "Jordanian Dinar",
+          "Ccy": "JOD",
+          "CcyNbr": "400",
+          "CcyMnrUnts": "3"
+        },
+        {
+          "CtryNm": "KAZAKHSTAN",
+          "CcyNm": "Tenge",
+          "Ccy": "KZT",
+          "CcyNbr": "398",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "KENYA",
+          "CcyNm": "Kenyan Shilling",
+          "Ccy": "KES",
+          "CcyNbr": "404",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "KIRIBATI",
+          "CcyNm": "Australian Dollar",
+          "Ccy": "AUD",
+          "CcyNbr": "036",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "KOREA (THE DEMOCRATIC PEOPLE’S REPUBLIC OF)",
+          "CcyNm": "North Korean Won",
+          "Ccy": "KPW",
+          "CcyNbr": "408",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "KOREA (THE REPUBLIC OF)",
+          "CcyNm": "Won",
+          "Ccy": "KRW",
+          "CcyNbr": "410",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "KUWAIT",
+          "CcyNm": "Kuwaiti Dinar",
+          "Ccy": "KWD",
+          "CcyNbr": "414",
+          "CcyMnrUnts": "3"
+        },
+        {
+          "CtryNm": "KYRGYZSTAN",
+          "CcyNm": "Som",
+          "Ccy": "KGS",
+          "CcyNbr": "417",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "LAO PEOPLE’S DEMOCRATIC REPUBLIC (THE)",
+          "CcyNm": "Lao Kip",
+          "Ccy": "LAK",
+          "CcyNbr": "418",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "LATVIA",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "LEBANON",
+          "CcyNm": "Lebanese Pound",
+          "Ccy": "LBP",
+          "CcyNbr": "422",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "LESOTHO",
+          "CcyNm": "Loti",
+          "Ccy": "LSL",
+          "CcyNbr": "426",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "LESOTHO",
+          "CcyNm": "Rand",
+          "Ccy": "ZAR",
+          "CcyNbr": "710",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "LIBERIA",
+          "CcyNm": "Liberian Dollar",
+          "Ccy": "LRD",
+          "CcyNbr": "430",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "LIBYA",
+          "CcyNm": "Libyan Dinar",
+          "Ccy": "LYD",
+          "CcyNbr": "434",
+          "CcyMnrUnts": "3"
+        },
+        {
+          "CtryNm": "LIECHTENSTEIN",
+          "CcyNm": "Swiss Franc",
+          "Ccy": "CHF",
+          "CcyNbr": "756",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "LITHUANIA",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "LUXEMBOURG",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MACAO",
+          "CcyNm": "Pataca",
+          "Ccy": "MOP",
+          "CcyNbr": "446",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "NORTH MACEDONIA",
+          "CcyNm": "Denar",
+          "Ccy": "MKD",
+          "CcyNbr": "807",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MADAGASCAR",
+          "CcyNm": "Malagasy Ariary",
+          "Ccy": "MGA",
+          "CcyNbr": "969",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MALAWI",
+          "CcyNm": "Malawi Kwacha",
+          "Ccy": "MWK",
+          "CcyNbr": "454",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MALAYSIA",
+          "CcyNm": "Malaysian Ringgit",
+          "Ccy": "MYR",
+          "CcyNbr": "458",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MALDIVES",
+          "CcyNm": "Rufiyaa",
+          "Ccy": "MVR",
+          "CcyNbr": "462",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MALI",
+          "CcyNm": "CFA Franc BCEAO",
+          "Ccy": "XOF",
+          "CcyNbr": "952",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "MALTA",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MARSHALL ISLANDS (THE)",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MARTINIQUE",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MAURITANIA",
+          "CcyNm": "Ouguiya",
+          "Ccy": "MRU",
+          "CcyNbr": "929",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MAURITIUS",
+          "CcyNm": "Mauritius Rupee",
+          "Ccy": "MUR",
+          "CcyNbr": "480",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MAYOTTE",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MEMBER COUNTRIES OF THE AFRICAN DEVELOPMENT BANK GROUP",
+          "CcyNm": "ADB Unit of Account",
+          "Ccy": "XUA",
+          "CcyNbr": "965",
+          "CcyMnrUnts": "N.A."
+        },
+        {
+          "CtryNm": "MEXICO",
+          "CcyNm": "Mexican Peso",
+          "Ccy": "MXN",
+          "CcyNbr": "484",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MEXICO",
+          "CcyNm": {
+            "_IsFund": "true",
+            "__text": "Mexican Unidad de Inversion (UDI)"
+          },
+          "Ccy": "MXV",
+          "CcyNbr": "979",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MICRONESIA (FEDERATED STATES OF)",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MOLDOVA (THE REPUBLIC OF)",
+          "CcyNm": "Moldovan Leu",
+          "Ccy": "MDL",
+          "CcyNbr": "498",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MONACO",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MONGOLIA",
+          "CcyNm": "Tugrik",
+          "Ccy": "MNT",
+          "CcyNbr": "496",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MONTENEGRO",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MONTSERRAT",
+          "CcyNm": "East Caribbean Dollar",
+          "Ccy": "XCD",
+          "CcyNbr": "951",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MOROCCO",
+          "CcyNm": "Moroccan Dirham",
+          "Ccy": "MAD",
+          "CcyNbr": "504",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MOZAMBIQUE",
+          "CcyNm": "Mozambique Metical",
+          "Ccy": "MZN",
+          "CcyNbr": "943",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "MYANMAR",
+          "CcyNm": "Kyat",
+          "Ccy": "MMK",
+          "CcyNbr": "104",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "NAMIBIA",
+          "CcyNm": "Namibia Dollar",
+          "Ccy": "NAD",
+          "CcyNbr": "516",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "NAMIBIA",
+          "CcyNm": "Rand",
+          "Ccy": "ZAR",
+          "CcyNbr": "710",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "NAURU",
+          "CcyNm": "Australian Dollar",
+          "Ccy": "AUD",
+          "CcyNbr": "036",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "NEPAL",
+          "CcyNm": "Nepalese Rupee",
+          "Ccy": "NPR",
+          "CcyNbr": "524",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "NETHERLANDS (THE)",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "NEW CALEDONIA",
+          "CcyNm": "CFP Franc",
+          "Ccy": "XPF",
+          "CcyNbr": "953",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "NEW ZEALAND",
+          "CcyNm": "New Zealand Dollar",
+          "Ccy": "NZD",
+          "CcyNbr": "554",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "NICARAGUA",
+          "CcyNm": "Cordoba Oro",
+          "Ccy": "NIO",
+          "CcyNbr": "558",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "NIGER (THE)",
+          "CcyNm": "CFA Franc BCEAO",
+          "Ccy": "XOF",
+          "CcyNbr": "952",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "NIGERIA",
+          "CcyNm": "Naira",
+          "Ccy": "NGN",
+          "CcyNbr": "566",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "NIUE",
+          "CcyNm": "New Zealand Dollar",
+          "Ccy": "NZD",
+          "CcyNbr": "554",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "NORFOLK ISLAND",
+          "CcyNm": "Australian Dollar",
+          "Ccy": "AUD",
+          "CcyNbr": "036",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "NORTHERN MARIANA ISLANDS (THE)",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "NORWAY",
+          "CcyNm": "Norwegian Krone",
+          "Ccy": "NOK",
+          "CcyNbr": "578",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "OMAN",
+          "CcyNm": "Rial Omani",
+          "Ccy": "OMR",
+          "CcyNbr": "512",
+          "CcyMnrUnts": "3"
+        },
+        {
+          "CtryNm": "PAKISTAN",
+          "CcyNm": "Pakistan Rupee",
+          "Ccy": "PKR",
+          "CcyNbr": "586",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "PALAU",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "PALESTINE, STATE OF",
+          "CcyNm": "No universal currency"
+        },
+        {
+          "CtryNm": "PANAMA",
+          "CcyNm": "Balboa",
+          "Ccy": "PAB",
+          "CcyNbr": "590",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "PANAMA",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "PAPUA NEW GUINEA",
+          "CcyNm": "Kina",
+          "Ccy": "PGK",
+          "CcyNbr": "598",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "PARAGUAY",
+          "CcyNm": "Guarani",
+          "Ccy": "PYG",
+          "CcyNbr": "600",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "PERU",
+          "CcyNm": "Sol",
+          "Ccy": "PEN",
+          "CcyNbr": "604",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "PHILIPPINES (THE)",
+          "CcyNm": "Philippine Peso",
+          "Ccy": "PHP",
+          "CcyNbr": "608",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "PITCAIRN",
+          "CcyNm": "New Zealand Dollar",
+          "Ccy": "NZD",
+          "CcyNbr": "554",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "POLAND",
+          "CcyNm": "Zloty",
+          "Ccy": "PLN",
+          "CcyNbr": "985",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "PORTUGAL",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "PUERTO RICO",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "QATAR",
+          "CcyNm": "Qatari Rial",
+          "Ccy": "QAR",
+          "CcyNbr": "634",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "RÉUNION",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ROMANIA",
+          "CcyNm": "Romanian Leu",
+          "Ccy": "RON",
+          "CcyNbr": "946",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "RUSSIAN FEDERATION (THE)",
+          "CcyNm": "Russian Ruble",
+          "Ccy": "RUB",
+          "CcyNbr": "643",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "RWANDA",
+          "CcyNm": "Rwanda Franc",
+          "Ccy": "RWF",
+          "CcyNbr": "646",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "SAINT BARTHÉLEMY",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SAINT HELENA, ASCENSION AND TRISTAN DA CUNHA",
+          "CcyNm": "Saint Helena Pound",
+          "Ccy": "SHP",
+          "CcyNbr": "654",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SAINT KITTS AND NEVIS",
+          "CcyNm": "East Caribbean Dollar",
+          "Ccy": "XCD",
+          "CcyNbr": "951",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SAINT LUCIA",
+          "CcyNm": "East Caribbean Dollar",
+          "Ccy": "XCD",
+          "CcyNbr": "951",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SAINT MARTIN (FRENCH PART)",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SAINT PIERRE AND MIQUELON",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SAINT VINCENT AND THE GRENADINES",
+          "CcyNm": "East Caribbean Dollar",
+          "Ccy": "XCD",
+          "CcyNbr": "951",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SAMOA",
+          "CcyNm": "Tala",
+          "Ccy": "WST",
+          "CcyNbr": "882",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SAN MARINO",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SAO TOME AND PRINCIPE",
+          "CcyNm": "Dobra",
+          "Ccy": "STN",
+          "CcyNbr": "930",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SAUDI ARABIA",
+          "CcyNm": "Saudi Riyal",
+          "Ccy": "SAR",
+          "CcyNbr": "682",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SENEGAL",
+          "CcyNm": "CFA Franc BCEAO",
+          "Ccy": "XOF",
+          "CcyNbr": "952",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "SERBIA",
+          "CcyNm": "Serbian Dinar",
+          "Ccy": "RSD",
+          "CcyNbr": "941",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SEYCHELLES",
+          "CcyNm": "Seychelles Rupee",
+          "Ccy": "SCR",
+          "CcyNbr": "690",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SIERRA LEONE",
+          "CcyNm": "Leone",
+          "Ccy": "SLE",
+          "CcyNbr": "925",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SINGAPORE",
+          "CcyNm": "Singapore Dollar",
+          "Ccy": "SGD",
+          "CcyNbr": "702",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SINT MAARTEN (DUTCH PART)",
+          "CcyNm": "Caribbean Guilder",
+          "Ccy": "XCG",
+          "CcyNbr": "532",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SISTEMA UNITARIO DE COMPENSACION REGIONAL DE PAGOS \"SUCRE\"",
+          "CcyNm": "Sucre",
+          "Ccy": "XSU",
+          "CcyNbr": "994",
+          "CcyMnrUnts": "N.A."
+        },
+        {
+          "CtryNm": "SLOVAKIA",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SLOVENIA",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SOLOMON ISLANDS",
+          "CcyNm": "Solomon Islands Dollar",
+          "Ccy": "SBD",
+          "CcyNbr": "090",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SOMALIA",
+          "CcyNm": "Somali Shilling",
+          "Ccy": "SOS",
+          "CcyNbr": "706",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SOUTH AFRICA",
+          "CcyNm": "Rand",
+          "Ccy": "ZAR",
+          "CcyNbr": "710",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS",
+          "CcyNm": "No universal currency"
+        },
+        {
+          "CtryNm": "SOUTH SUDAN",
+          "CcyNm": "South Sudanese Pound",
+          "Ccy": "SSP",
+          "CcyNbr": "728",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SPAIN",
+          "CcyNm": "Euro",
+          "Ccy": "EUR",
+          "CcyNbr": "978",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SRI LANKA",
+          "CcyNm": "Sri Lanka Rupee",
+          "Ccy": "LKR",
+          "CcyNbr": "144",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SUDAN (THE)",
+          "CcyNm": "Sudanese Pound",
+          "Ccy": "SDG",
+          "CcyNbr": "938",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SURINAME",
+          "CcyNm": "Surinam Dollar",
+          "Ccy": "SRD",
+          "CcyNbr": "968",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SVALBARD AND JAN MAYEN",
+          "CcyNm": "Norwegian Krone",
+          "Ccy": "NOK",
+          "CcyNbr": "578",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SWEDEN",
+          "CcyNm": "Swedish Krona",
+          "Ccy": "SEK",
+          "CcyNbr": "752",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SWITZERLAND",
+          "CcyNm": "Swiss Franc",
+          "Ccy": "CHF",
+          "CcyNbr": "756",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SWITZERLAND",
+          "CcyNm": {
+            "_IsFund": "true",
+            "__text": "WIR Euro"
+          },
+          "Ccy": "CHE",
+          "CcyNbr": "947",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SWITZERLAND",
+          "CcyNm": {
+            "_IsFund": "true",
+            "__text": "WIR Franc"
+          },
+          "Ccy": "CHW",
+          "CcyNbr": "948",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "SYRIAN ARAB REPUBLIC",
+          "CcyNm": "Syrian Pound",
+          "Ccy": "SYP",
+          "CcyNbr": "760",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "TAIWAN (PROVINCE OF CHINA)",
+          "CcyNm": "New Taiwan Dollar",
+          "Ccy": "TWD",
+          "CcyNbr": "901",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "TAJIKISTAN",
+          "CcyNm": "Somoni",
+          "Ccy": "TJS",
+          "CcyNbr": "972",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "TANZANIA, UNITED REPUBLIC OF",
+          "CcyNm": "Tanzanian Shilling",
+          "Ccy": "TZS",
+          "CcyNbr": "834",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "THAILAND",
+          "CcyNm": "Baht",
+          "Ccy": "THB",
+          "CcyNbr": "764",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "TIMOR-LESTE",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "TOGO",
+          "CcyNm": "CFA Franc BCEAO",
+          "Ccy": "XOF",
+          "CcyNbr": "952",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "TOKELAU",
+          "CcyNm": "New Zealand Dollar",
+          "Ccy": "NZD",
+          "CcyNbr": "554",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "TONGA",
+          "CcyNm": "Pa’anga",
+          "Ccy": "TOP",
+          "CcyNbr": "776",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "TRINIDAD AND TOBAGO",
+          "CcyNm": "Trinidad and Tobago Dollar",
+          "Ccy": "TTD",
+          "CcyNbr": "780",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "TUNISIA",
+          "CcyNm": "Tunisian Dinar",
+          "Ccy": "TND",
+          "CcyNbr": "788",
+          "CcyMnrUnts": "3"
+        },
+        {
+          "CtryNm": "TÜRKİYE",
+          "CcyNm": "Turkish Lira",
+          "Ccy": "TRY",
+          "CcyNbr": "949",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "TURKMENISTAN",
+          "CcyNm": "Turkmenistan New Manat",
+          "Ccy": "TMT",
+          "CcyNbr": "934",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "TURKS AND CAICOS ISLANDS (THE)",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "TUVALU",
+          "CcyNm": "Australian Dollar",
+          "Ccy": "AUD",
+          "CcyNbr": "036",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "UGANDA",
+          "CcyNm": "Uganda Shilling",
+          "Ccy": "UGX",
+          "CcyNbr": "800",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "UKRAINE",
+          "CcyNm": "Hryvnia",
+          "Ccy": "UAH",
+          "CcyNbr": "980",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "UNITED ARAB EMIRATES (THE)",
+          "CcyNm": "UAE Dirham",
+          "Ccy": "AED",
+          "CcyNbr": "784",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "UNITED KINGDOM OF GREAT BRITAIN AND NORTHERN IRELAND (THE)",
+          "CcyNm": "Pound Sterling",
+          "Ccy": "GBP",
+          "CcyNbr": "826",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "UNITED STATES MINOR OUTLYING ISLANDS (THE)",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "UNITED STATES OF AMERICA (THE)",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "UNITED STATES OF AMERICA (THE)",
+          "CcyNm": {
+            "_IsFund": "true",
+            "__text": "US Dollar (Next day)"
+          },
+          "Ccy": "USN",
+          "CcyNbr": "997",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "URUGUAY",
+          "CcyNm": "Peso Uruguayo",
+          "Ccy": "UYU",
+          "CcyNbr": "858",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "URUGUAY",
+          "CcyNm": {
+            "_IsFund": "true",
+            "__text": "Uruguay Peso en Unidades Indexadas (UI)"
+          },
+          "Ccy": "UYI",
+          "CcyNbr": "940",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "URUGUAY",
+          "CcyNm": "Unidad Previsional",
+          "Ccy": "UYW",
+          "CcyNbr": "927",
+          "CcyMnrUnts": "4"
+        },
+        {
+          "CtryNm": "UZBEKISTAN",
+          "CcyNm": "Uzbekistan Sum",
+          "Ccy": "UZS",
+          "CcyNbr": "860",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "VANUATU",
+          "CcyNm": "Vatu",
+          "Ccy": "VUV",
+          "CcyNbr": "548",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "VENEZUELA (BOLIVARIAN REPUBLIC OF)",
+          "CcyNm": "Bolívar Soberano",
+          "Ccy": "VES",
+          "CcyNbr": "928",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "VENEZUELA (BOLIVARIAN REPUBLIC OF)",
+          "CcyNm": "Bolívar Soberano",
+          "Ccy": "VED",
+          "CcyNbr": "926",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "VIET NAM",
+          "CcyNm": "Dong",
+          "Ccy": "VND",
+          "CcyNbr": "704",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "VIRGIN ISLANDS (BRITISH)",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "VIRGIN ISLANDS (U.S.)",
+          "CcyNm": "US Dollar",
+          "Ccy": "USD",
+          "CcyNbr": "840",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "WALLIS AND FUTUNA",
+          "CcyNm": "CFP Franc",
+          "Ccy": "XPF",
+          "CcyNbr": "953",
+          "CcyMnrUnts": "0"
+        },
+        {
+          "CtryNm": "WESTERN SAHARA",
+          "CcyNm": "Moroccan Dirham",
+          "Ccy": "MAD",
+          "CcyNbr": "504",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "YEMEN",
+          "CcyNm": "Yemeni Rial",
+          "Ccy": "YER",
+          "CcyNbr": "886",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ZAMBIA",
+          "CcyNm": "Zambian Kwacha",
+          "Ccy": "ZMW",
+          "CcyNbr": "967",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ZIMBABWE",
+          "CcyNm": "Zimbabwe Gold",
+          "Ccy": "ZWG",
+          "CcyNbr": "924",
+          "CcyMnrUnts": "2"
+        },
+        {
+          "CtryNm": "ZZ01_Bond Markets Unit European_EURCO",
+          "CcyNm": "Bond Markets Unit European Composite Unit (EURCO)",
+          "Ccy": "XBA",
+          "CcyNbr": "955",
+          "CcyMnrUnts": "N.A."
+        },
+        {
+          "CtryNm": "ZZ02_Bond Markets Unit European_EMU-6",
+          "CcyNm": "Bond Markets Unit European Monetary Unit (E.M.U.-6)",
+          "Ccy": "XBB",
+          "CcyNbr": "956",
+          "CcyMnrUnts": "N.A."
+        },
+        {
+          "CtryNm": "ZZ03_Bond Markets Unit European_EUA-9",
+          "CcyNm": "Bond Markets Unit European Unit of Account 9 (E.U.A.-9)",
+          "Ccy": "XBC",
+          "CcyNbr": "957",
+          "CcyMnrUnts": "N.A."
+        },
+        {
+          "CtryNm": "ZZ04_Bond Markets Unit European_EUA-17",
+          "CcyNm": "Bond Markets Unit European Unit of Account 17 (E.U.A.-17)",
+          "Ccy": "XBD",
+          "CcyNbr": "958",
+          "CcyMnrUnts": "N.A."
+        },
+        {
+          "CtryNm": "ZZ06_Testing_Code",
+          "CcyNm": "Codes specifically reserved for testing purposes",
+          "Ccy": "XTS",
+          "CcyNbr": "963",
+          "CcyMnrUnts": "N.A."
+        },
+        {
+          "CtryNm": "ZZ07_No_Currency",
+          "CcyNm": "The codes assigned for transactions where no currency is involved",
+          "Ccy": "XXX",
+          "CcyNbr": "999",
+          "CcyMnrUnts": "N.A."
+        },
+        {
+          "CtryNm": "ZZ08_Gold",
+          "CcyNm": "Gold",
+          "Ccy": "XAU",
+          "CcyNbr": "959",
+          "CcyMnrUnts": "N.A."
+        },
+        {
+          "CtryNm": "ZZ09_Palladium",
+          "CcyNm": "Palladium",
+          "Ccy": "XPD",
+          "CcyNbr": "964",
+          "CcyMnrUnts": "N.A."
+        },
+        {
+          "CtryNm": "ZZ10_Platinum",
+          "CcyNm": "Platinum",
+          "Ccy": "XPT",
+          "CcyNbr": "962",
+          "CcyMnrUnts": "N.A."
+        },
+        {
+          "CtryNm": "ZZ11_Silver",
+          "CcyNm": "Silver",
+          "Ccy": "XAG",
+          "CcyNbr": "961",
+          "CcyMnrUnts": "N.A."
+        }
+      ]
+    },
+    "_Pblshd": "2025-05-12"
   }
-]
+}

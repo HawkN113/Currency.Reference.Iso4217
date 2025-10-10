@@ -1,5 +1,5 @@
 [
-  { "Ccy": "AFN", "CcyNm": "Afghan Afghani" },
+  { "Ccy": "AFN", "CcyNm": "Afghani" },
   { "Ccy": "AMD", "CcyNm": "Armenian Dram" },
   { "Ccy": "AOA", "CcyNm": "Angolan Kwanza" },
   { "Ccy": "BDT", "CcyNm": "Bangladeshi Taka" },
@@ -24,7 +24,7 @@
   { "Ccy": "STN", "CcyNm": "São Tomé and Príncipe Dobra" },
   { "Ccy": "SZL", "CcyNm": "Swazi Lilangeni" },
   { "Ccy": "TJS", "CcyNm": "Tajikistani Somoni" },
-  { "Ccy": "TOP", "CcyNm": "Tongan Paʻanga" },
+  { "Ccy": "TOP", "CcyNm": "Tongan Pa'anga" },
   { "Ccy": "UAH", "CcyNm": "Ukrainian Hryvnia" },
   { "Ccy": "VUV", "CcyNm": "Vanuatu Vatu" },
   { "Ccy": "WST", "CcyNm": "Samoan Tala" },
