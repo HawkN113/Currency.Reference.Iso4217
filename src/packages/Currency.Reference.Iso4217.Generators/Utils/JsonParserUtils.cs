@@ -1,11 +1,81 @@
 ﻿using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
-namespace Currency.Reference.Iso4217.Generators.Extensions;
+namespace Currency.Reference.Iso4217.Generators.Utils;
 
-public static class JsonExtensions
+internal static class JsonParserUtils
 {
-    public static string? Extract(string json, string key)
+    private static (int EndIndex, int Depth) FindJsonBlockEnd(string json, int startIndex, char open, char close)
+    {
+        var depth = 0;
+        var inString = false;
+        var escape = false;
+
+        for (var i = startIndex; i < json.Length; i++)
+        {
+            var ch = json[i];
+            if (HandleEscapeChar(ch, ref inString, ref escape))
+                continue;
+
+            if (inString)
+                continue;
+
+            if (ch == open) depth++;
+            else if (ch == close)
+            {
+                depth--;
+                if (depth == 0)
+                    return (i, depth);
+            }
+        }
+
+        return (-1, depth);
+    }
+
+    public static bool HandleEscapeChar(char ch, ref bool inString, ref bool escape)
+    {
+        if (!escape)
+            return ch switch
+            {
+                '\\' => escape = true,
+                '"' => inString = !inString,
+                _ => false
+            };
+        escape = false;
+        return true;
+    }
+
+    public static string ExtractPublishedDate(string json)
+    {
+        var match = Regex.Match(json, @"""_Pblshd""\s*:\s*""([^""]+)""",
+            RegexOptions.Compiled | RegexOptions.Singleline);
+
+        if (!match.Success)
+            throw new InvalidOperationException("Published date ('_Pblshd') is required.");
+
+        return match.Groups[1].Value;
+    }
+
+    public static string ExtractArray(string json, string keyName)
+    {
+        var keyMatch = Regex.Match(json, $@"""{keyName}""\s*:\s*\[",
+            RegexOptions.Compiled | RegexOptions.Singleline);
+
+        if (!keyMatch.Success)
+            throw new InvalidOperationException($"The block '{keyName}' is required in the JSON content.");
+
+        var arrayStart = keyMatch.Index + keyMatch.Length - 1;
+        if (arrayStart < 0 || arrayStart >= json.Length || json[arrayStart] != '[')
+            throw new InvalidOperationException($"Cannot locate '[' for '{keyName}'.");
+
+        var (arrayEnd, _) = FindJsonBlockEnd(json, arrayStart, '[', ']');
+        if (arrayEnd == -1)
+            throw new InvalidOperationException($"Cannot locate end of '{keyName}' array.");
+
+        return json.Substring(arrayStart + 1, arrayEnd - arrayStart - 1);
+    }
+    
+     public static string? Extract(string json, string key)
     {
         if (string.IsNullOrEmpty(json) || string.IsNullOrEmpty(key))
             return null;

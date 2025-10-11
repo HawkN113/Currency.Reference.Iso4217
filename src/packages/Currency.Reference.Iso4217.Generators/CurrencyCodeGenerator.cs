@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using System.Text;
-using Currency.Reference.Iso4217.Generators.Base;
 using Currency.Reference.Iso4217.Generators.Handlers;
 using Currency.Reference.Iso4217.Generators.Models;
 using Microsoft.CodeAnalysis;

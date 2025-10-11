@@ -4,8 +4,7 @@ using Currency.Reference.Iso4217.Generators.Factories;
 using Currency.Reference.Iso4217.Generators.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
-
-namespace Currency.Reference.Iso4217.Generators.Base;
+namespace Currency.Reference.Iso4217.Generators;
 
 public abstract class BaseIncrementalGenerator : IIncrementalGenerator
 {

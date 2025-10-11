@@ -23,9 +23,9 @@ internal class CurrencyLoader
 
     public CurrencyLoader(string originalJson, string replacementJson, string historicalJson)
     {
-        var actualCurrencyData = new JsonCurrencyHandler(originalJson).LoadActualCurrencies();
+        var actualCurrencyData = new JsonCurrencyHandler(originalJson).LoadCurrencies();
         var replacements = new JsonReplacementCurrencyHandler(replacementJson).LoadNameReplacements();
-        var historicalCurrencyData = new JsonHistoricalCurrencyHandler(historicalJson).LoadHistoricalCurrencies();
+        var historicalCurrencyData = new JsonHistoricalCurrencyHandler(historicalJson).LoadCurrencies();
         _actualCurrencyData!.Currencies = new List<Models.Currency>(actualCurrencyData.Currencies.Count);
         _historicalCurrencyData!.Currencies = new List<Models.Currency>(historicalCurrencyData.Currencies.Count);
 
