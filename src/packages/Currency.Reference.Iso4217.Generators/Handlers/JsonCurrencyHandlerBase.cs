@@ -31,10 +31,7 @@ internal abstract class JsonCurrencyHandlerBase(string jsonContent)
         for (var i = 0; i < arrayContent.Length; i++)
         {
             var ch = arrayContent[i];
-            if (JsonParserUtils.HandleEscapeChar(ch, ref inString, ref escape))
-                continue;
-
-            if (inString)
+            if (JsonParserUtils.HandleEscapeChar(ch, ref inString, ref escape) || inString)
                 continue;
 
             switch (ch)
@@ -84,8 +81,8 @@ internal abstract class JsonCurrencyHandlerBase(string jsonContent)
     private static string ExtractCurrencyName(string obj)
     {
         var name = JsonParserUtils.Extract(obj, "CcyNm");
-        if (!string.IsNullOrWhiteSpace(name) &&
-            !name.TrimStart().StartsWith("{") &&
+        if (!string.IsNullOrEmpty(name) &&
+            !name!.TrimStart().StartsWith("{") &&
             !name.Contains("\"__text\""))
             return name;
 

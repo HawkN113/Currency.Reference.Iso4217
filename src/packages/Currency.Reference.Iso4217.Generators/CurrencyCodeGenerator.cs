@@ -28,9 +28,10 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
                                       }
                                       """;
 
-    public override void Initialize(IncrementalGeneratorInitializationContext context)
+  public override void Initialize(IncrementalGeneratorInitializationContext context)
     {
         ErrorFactory.Clear();
+
         var jsonProvider = context.CompilationProvider.Select((_, _) =>
         {
             try
@@ -39,10 +40,12 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
             }
             catch (Exception ex)
             {
-                return ($"{Constants.ErrorMark}:{ex.Message}", $"{Constants.ErrorMark}:{ex.Message}", $"{Constants.ErrorMark}:{ex.Message}");
+                var message = $"{Constants.ErrorMark}:{ex.Message}";
+                return (message, message, message);
             }
         });
-        context.RegisterSourceOutput(jsonProvider, (spc, tuple) => { GenerateSourceOutput(tuple, spc); });
+
+        context.RegisterSourceOutput(jsonProvider, (spc, tuple) => GenerateSourceOutput(tuple, spc));
     }
 
     private void GenerateSourceOutput((string, string, string) tuple, SourceProductionContext spc)
@@ -50,48 +53,9 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
         try
         {
             var (originalJson, replacementJson, historicalJson) = tuple;
-            if (originalJson.StartsWith(Constants.ErrorMark) || replacementJson.StartsWith(Constants.ErrorMark) ||
-                historicalJson.StartsWith(Constants.ErrorMark))
+
+            if (HasResourceErrors(originalJson, replacementJson, historicalJson))
             {
-                if (originalJson.StartsWith(Constants.ErrorMark))
-                    ErrorFactory.Create(new ErrorDescription
-                    {
-                        DiagnosticDescriptor = new DiagnosticDescriptor(
-                            id: DiagnosticDescriptors.ResourceLoadErrorId,
-                            title: Constants.DiagnosticsTitle,
-                            messageFormat: $"Failed to load original resource: {originalJson.Substring(9)}",
-                            category: string.Empty,
-                            defaultSeverity: DiagnosticSeverity.Error,
-                            isEnabledByDefault: true),
-                        GeneratorType = GeneratorType.Currency
-                    });
-                if (replacementJson.StartsWith(Constants.ErrorMark))
-                    ErrorFactory.Create(
-                        new ErrorDescription
-                        {
-                            DiagnosticDescriptor = new DiagnosticDescriptor(
-                                id: DiagnosticDescriptors.ResourceLoadErrorId,
-                                title: Constants.DiagnosticsTitle,
-                                messageFormat: $"Failed to load historical resource: {historicalJson.Substring(9)}",
-                                category: string.Empty,
-                                defaultSeverity: DiagnosticSeverity.Error,
-                                isEnabledByDefault: true),
-                            GeneratorType = GeneratorType.Currency
-                        });
-                if (historicalJson.StartsWith(Constants.ErrorMark))
-                    ErrorFactory.Create(
-                        new ErrorDescription
-                        {
-                            DiagnosticDescriptor = new DiagnosticDescriptor(
-                                id: DiagnosticDescriptors.ResourceLoadErrorId,
-                                title: Constants.DiagnosticsTitle,
-                                messageFormat:
-                                $"Failed to load replacement's resource: {historicalJson.Substring(9)}",
-                                category: string.Empty,
-                                defaultSeverity: DiagnosticSeverity.Error,
-                                isEnabledByDefault: true),
-                            GeneratorType = GeneratorType.Currency
-                        });
                 AddStubIfErrors(spc, HintName, StubSource, GeneratorType.Currency);
                 return;
             }
@@ -101,32 +65,41 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
                 Constants.GeneratorName,
                 Constants.DefaultNamespace
             );
+            
             if (string.IsNullOrEmpty(loader.ActualCurrencyData.PublishedDate))
+            {
                 sb.AppendLine("    /// <summary> Currency codes ISO4217 </summary>");
+            }
             else
+            {
                 sb.AppendLine("    /// <summary>")
-                    .AppendLine("    /// Currency codes ISO4217")
-                    .AppendLine($"    /// Last published at {loader.ActualCurrencyData.PublishedDate}")
-                    .AppendLine("    /// </summary>");
+                  .AppendLine("    /// Currency codes ISO4217")
+                  .AppendLine($"    /// Last published at {loader.ActualCurrencyData.PublishedDate}")
+                  .AppendLine("    /// </summary>");
+            }
+
             sb.AppendLine("    public enum CurrencyCode")
-                .AppendLine("    {")
-                .AppendLine("        /// <summary> Unknown currency code </summary>")
-                .AppendLine("        None,");
+              .AppendLine("    {")
+              .AppendLine("        /// <summary> Unknown currency code </summary>")
+              .AppendLine("        None,");
+
             foreach (var c in loader.ActualCurrencyData.Currencies)
             {
                 sb.AppendLine($"        /// <summary> {c.Name} </summary>");
                 if (c.IsHistoric && !string.IsNullOrEmpty(c.WithdrawalDate))
                     sb.AppendLine($"        [Obsolete(\"Currency withdrawn on {c.WithdrawalDate}\")]");
+
                 sb.AppendLine($"        {c.Code},");
             }
 
             sb.AppendLine("    }")
-                .AppendLine("}");
+              .AppendLine("}");
+
             spc.AddSource(HintName, SourceText.From(sb.ToString(), Encoding.UTF8));
         }
         catch (Exception ex)
         {
-            ErrorFactory.Create(new ErrorDescription()
+            ErrorFactory.Create(new ErrorDescription
             {
                 DiagnosticDescriptor = new DiagnosticDescriptor(
                     id: DiagnosticDescriptors.UnexpectedErrorId,
@@ -137,7 +110,46 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
                     isEnabledByDefault: true),
                 GeneratorType = GeneratorType.Currency
             });
+
             AddStubIfErrors(spc, HintName, StubSource, GeneratorType.Currency);
         }
+    }
+
+    private bool HasResourceErrors(string originalJson, string replacementJson, string historicalJson)
+    {
+        var hasError = false;
+
+        void ReportError(string message, GeneratorType type)
+        {
+            ErrorFactory.Create(new ErrorDescription
+            {
+                DiagnosticDescriptor = new DiagnosticDescriptor(
+                    id: DiagnosticDescriptors.ResourceLoadErrorId,
+                    title: Constants.DiagnosticsTitle,
+                    messageFormat: message,
+                    category: string.Empty,
+                    defaultSeverity: DiagnosticSeverity.Error,
+                    isEnabledByDefault: true),
+                GeneratorType = type
+            });
+        }
+
+        if (originalJson.StartsWith(Constants.ErrorMark, StringComparison.Ordinal))
+        {
+            ReportError($"Failed to load original resource: {originalJson.Substring(9)}", GeneratorType.Currency);
+            hasError = true;
+        }
+        if (replacementJson.StartsWith(Constants.ErrorMark, StringComparison.Ordinal))
+        {
+            ReportError($"Failed to load replacement resource: {replacementJson.Substring(9)}", GeneratorType.Currency);
+            hasError = true;
+        }
+        if (historicalJson.StartsWith(Constants.ErrorMark, StringComparison.Ordinal))
+        {
+            ReportError($"Failed to load historical resource: {historicalJson.Substring(9)}", GeneratorType.Currency);
+            hasError = true;
+        }
+
+        return hasError;
     }
 }

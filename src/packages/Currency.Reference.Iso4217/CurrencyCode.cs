@@ -7,7 +7,7 @@ namespace Currency.Reference.Iso4217
 {
     /// <summary>
     /// Currency codes ISO4217
-    /// Last published at 2025-05-12
+    /// Last published at 2025-05-12.
     /// </summary>
     public enum CurrencyCode
     {

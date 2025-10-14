@@ -34,15 +34,25 @@ internal static class JsonParserUtils
 
     public static bool HandleEscapeChar(char ch, ref bool inString, ref bool escape)
     {
-        if (!escape)
-            return ch switch
-            {
-                '\\' => escape = true,
-                '"' => inString = !inString,
-                _ => false
-            };
-        escape = false;
-        return true;
+        if (escape)
+        {
+            escape = false;
+            return true;
+        }
+
+        switch (ch)
+        {
+            case '\\':
+                escape = true;
+                return true;
+
+            case '"':
+                inString = !inString;
+                return true;
+
+            default:
+                return false;
+        }
     }
 
     public static string ExtractPublishedDate(string json)
@@ -119,14 +129,12 @@ internal static class JsonParserUtils
                 sb.Append(c);
                 continue;
             }
-
-            if (i + 1 >= s.Length)
+            if (++i >= s.Length)
             {
                 sb.Append('\\');
                 break;
             }
 
-            i++;
             var esc = s[i];
             switch (esc)
             {
@@ -138,18 +146,20 @@ internal static class JsonParserUtils
                 case 'n': sb.Append('\n'); break;
                 case 'r': sb.Append('\r'); break;
                 case 't': sb.Append('\t'); break;
+
                 case 'u':
                     if (i + 4 < s.Length)
                     {
-                        var hex = s.Substring(i + 1, 4);
-                        if (int.TryParse(hex, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out int codePoint))
+                        string hex = s.Substring(i + 1, 4);
+                        if (int.TryParse(hex, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out int code))
                         {
-                            sb.Append((char)codePoint);
+                            sb.Append((char)code);
                             i += 4;
                         }
                         else
                         {
-                            sb.Append("\\u");
+                            sb.Append("\\u").Append(hex);
+                            i += 4;
                         }
                     }
                     else
@@ -157,8 +167,9 @@ internal static class JsonParserUtils
                         sb.Append("\\u");
                     }
                     break;
+
                 default:
-                    sb.Append(esc);
+                    sb.Append('\\').Append(esc);
                     break;
             }
         }
