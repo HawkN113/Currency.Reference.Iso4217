@@ -59,6 +59,10 @@
                           ReferenceOutputAssembly="false" />
     </ItemGroup>
     <Target Name="CleanGeneratedFilesBeforeBuild" BeforeTargets="CoreCompile" Condition="'$(GenerateCurrencyFiles)' == 'true'">
+        <ItemGroup>
+            <Compile Remove="CurrencyCode.cs" />
+            <Compile Remove="LocalDatabase.cs" />
+        </ItemGroup>
         <Delete Files="$(CurrencyCodeFile)" Condition="Exists('$(CurrencyCodeFile)')" />
         <Delete Files="$(LocalDatabaseFile)" Condition="Exists('$(LocalDatabaseFile)')" />
         <Message Text="Temporary removed file '$(CurrencyCodeFile)'" Importance="High" Condition="!Exists('$(CurrencyCodeFile)')" />
@@ -71,12 +75,21 @@
     <Target Name="CopyGeneratedFiles" AfterTargets="CoreCompile" Condition="'$(GenerateCurrencyFiles)' == 'true'">
         <Copy SourceFiles="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.CurrencyCodeGenerator\CurrencyCode.g.cs"
               DestinationFiles="CurrencyCode.cs"
-              SkipUnchangedFiles="false" />
+              SkipUnchangedFiles="false" 
+              ContinueOnError="false" />
         <Message Text="Copied generated file '$(CurrencyCodeFile)' into repository " Importance="High" Condition="Exists('$(CurrencyCodeFile)')"  />
         <Copy SourceFiles="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.LocalDatabaseGenerator\LocalDatabase.g.cs"
               DestinationFiles="LocalDatabase.cs"
-              SkipUnchangedFiles="false" />
+              SkipUnchangedFiles="false" 
+              ContinueOnError="false" />
         <Message Text="Copied generated file '$(LocalDatabaseFile)' into repository " Importance="High" Condition="Exists('$(LocalDatabaseFile)')"  />
+        <ItemGroup>
+            <Compile Include="CurrencyCode.cs" Condition="Exists('CurrencyCode.cs')" />
+            <Compile Include="LocalDatabase.cs" Condition="Exists('LocalDatabase.cs')" />
+        </ItemGroup>
+        <PropertyGroup>
+            <GenerateCurrencyFiles>false</GenerateCurrencyFiles>
+        </PropertyGroup>
     </Target>
     <!-- Warning! [Finish] Do not modify the settings manually. -->
     

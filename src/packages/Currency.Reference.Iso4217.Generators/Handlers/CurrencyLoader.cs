@@ -1,7 +1,7 @@
 ﻿using Currency.Reference.Iso4217.Generators.Models;
 namespace Currency.Reference.Iso4217.Generators.Handlers;
 
-internal class CurrencyLoader
+internal sealed class CurrencyLoader
 {
     private readonly CurrencyData _actualCurrencyData = new();
     private readonly CurrencyData _historicalCurrencyData = new();
@@ -14,54 +14,42 @@ internal class CurrencyLoader
 
     private static readonly HashSet<string> SpecialUnits = new(StringComparer.OrdinalIgnoreCase)
         { "XBA", "XBB", "XBC", "XBD", "XSU", "XUA" };
-    
+
     private static readonly HashSet<string> ExcludedCodes = new(StringComparer.OrdinalIgnoreCase)
         { "VED", "XAD", "XCG", "ZWG" };
-    
+
     public CurrencyData ActualCurrencyData => _actualCurrencyData;
     public CurrencyData HistoricalCurrencyData => _historicalCurrencyData;
 
-    public CurrencyLoader(string originalJson, string replacementJson, string historicalJson)
+    public CurrencyLoader(string actualJson, string replacementJson, string historicalJson)
     {
-        var actualCurrencyData = new JsonCurrencyHandler(originalJson).LoadCurrencies();
         var replacements = new JsonReplacementCurrencyHandler(replacementJson).LoadNameReplacements();
-        var historicalCurrencyData = new JsonHistoricalCurrencyHandler(historicalJson).LoadCurrencies();
-        _actualCurrencyData!.Currencies = new List<Models.Currency>(actualCurrencyData.Currencies.Count);
-        _historicalCurrencyData!.Currencies = new List<Models.Currency>(historicalCurrencyData.Currencies.Count);
+        var actual = new JsonCurrencyHandler(actualJson).LoadCurrencies();
+        var historical = new JsonHistoricalCurrencyHandler(historicalJson).LoadCurrencies();
 
-        _actualCurrencyData.PublishedDate = actualCurrencyData.PublishedDate;
-        foreach (var item in actualCurrencyData.Currencies.Where(c => !ExcludedCodes.Contains(c.Code)))
-        {
-            _actualCurrencyData.Currencies.Add(new Models.Currency()
-            {
-                Code = item.Code,
-                Name = replacements.TryGetValue(item.Code, out var newName) ? newName : item.Name,
-                Country = item.Country,
-                NumericCode = item.NumericCode,
-                CurrencyType = GetCurrencyType(item.Code),
-                IsHistoric = !string.IsNullOrEmpty(item.WithdrawalDate),
-                WithdrawalDate = item.WithdrawalDate
-            });
-        }
+        _actualCurrencyData.PublishedDate = actual.PublishedDate;
+        _historicalCurrencyData.PublishedDate = historical.PublishedDate;
 
-        _historicalCurrencyData.PublishedDate = historicalCurrencyData.PublishedDate;
-        foreach (var item in historicalCurrencyData.Currencies.Where(c => !ExcludedCodes.Contains(c.Code)))
-        {
-            _historicalCurrencyData.Currencies.Add(new Models.Currency()
-            {
-                Code = item.Code,
-                Name = replacements.TryGetValue(item.Code, out var newName) ? newName : item.Name,
-                Country = item.Country,
-                NumericCode = item.NumericCode,
-                CurrencyType = GetCurrencyType(item.Code),
-                IsHistoric = !string.IsNullOrEmpty(item.WithdrawalDate),
-                WithdrawalDate = item.WithdrawalDate
-            });
-        }
-
-        _actualCurrencyData.Currencies = _actualCurrencyData.Currencies.OrderBy(c => c.Code).ToList();
-        _historicalCurrencyData.Currencies = _historicalCurrencyData.Currencies.OrderBy(c => c.Code).ToList();
+        _actualCurrencyData.Currencies = ProcessCurrencies(actual.Currencies, replacements);
+        _historicalCurrencyData.Currencies = ProcessCurrencies(historical.Currencies, replacements);
     }
+
+    private static List<Models.Currency> ProcessCurrencies(IEnumerable<CurrencyRaw> currencies,
+        IReadOnlyDictionary<string, string> replacements)
+        => currencies
+            .Where(c => !ExcludedCodes.Contains(c.Code))
+            .Select(c => new Models.Currency
+            {
+                Code = c.Code,
+                Name = replacements.TryGetValue(c.Code, out var newName) ? newName : c.Name,
+                Country = c.Country,
+                NumericCode = c.NumericCode,
+                CurrencyType = GetCurrencyType(c.Code),
+                IsHistoric = !string.IsNullOrEmpty(c.WithdrawalDate),
+                WithdrawalDate = c.WithdrawalDate
+            })
+            .OrderBy(c => c.Code)
+            .ToList();
 
     private static CurrencyType GetCurrencyType(string code)
     {

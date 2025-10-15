@@ -74,7 +74,7 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
             {
                 sb.AppendLine("    /// <summary>")
                   .AppendLine("    /// Currency codes ISO4217")
-                  .AppendLine($"    /// Last published at {loader.ActualCurrencyData.PublishedDate}")
+                  .AppendLine($"    /// Last published at {loader.ActualCurrencyData.PublishedDate}.")
                   .AppendLine("    /// </summary>");
             }
 

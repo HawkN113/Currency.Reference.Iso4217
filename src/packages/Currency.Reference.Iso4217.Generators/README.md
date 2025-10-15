@@ -12,6 +12,7 @@
 - Rebuild the solution again.
 
 ### How to update currencies
+- Open https://www.iso.org/iso-4217-currency-codes.html
 - Download an XML file https://www.six-group.com/dam/download/financial-information/data-center/iso-currrency/lists/list-one.xml and convert to JSON
 - Save JSON data in the file ``Content\list-original-currencies.json``
 - Download an XML file https://www.six-group.com/dam/download/financial-information/data-center/iso-currrency/lists/list-three.xml and convert to JSON
