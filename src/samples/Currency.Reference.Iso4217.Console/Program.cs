@@ -36,7 +36,7 @@ try
                  .Build())
     {
         Console.WriteLine(
-            $" --> {currency.Code} - {currency.Name}");
+            $"\t{currency.Code} - {currency.Name}");
     }
 
     // ---- Get fiat currencies ---- 
@@ -46,7 +46,7 @@ try
                  .Includes.Type(CurrencyType.Fiat)
                  .Build())
     {
-        Console.WriteLine($" --> {currency.Code} - {currency.Name}");
+        Console.WriteLine($"\t {currency.Code} - {currency.Name}");
     }
 
     // ---- Get currencies by query ---- 
@@ -58,7 +58,7 @@ try
                  .Build())
     {
         Console.WriteLine(
-            $" --> {currency.Code} - {currency.Name})");
+            $"\t{currency.Code} - {currency.Name}");
     }
 
     // ---- Get historical currencies ---- 
@@ -69,7 +69,7 @@ try
             ? currency.WithdrawalDate.Value.ToString("yyyy MMMM dd")
             : "Unknown date";
         Console.WriteLine(
-            $" --> {currency.Code} - {currency.Name} ({withdrawalDate})");
+            $"\t{currency.Code} - {currency.Name} ({withdrawalDate})");
     }
 
     // -------------------------
@@ -78,9 +78,9 @@ try
 
     Console.WriteLine(" ---- Lookup currency ---- ");
     Console.WriteLine(
-        $" --> Lookup by string 'AFN': {currencyService.Get("AFN")!.Code}");
+        $"\tLookup by string 'AFN': {currencyService.Get("AFN")!.Code}");
     Console.WriteLine(
-        $" --> Lookup by currency code 'CurrencyCode.AFN': {currencyService.Get(CurrencyCode.AFN)!.Code}");
+        $"\tLookup by currency code 'CurrencyCode.AFN': {currencyService.Get(CurrencyCode.AFN)!.Code}");
 
     // --------------------
     // ---- Validation ----
@@ -89,10 +89,10 @@ try
     Console.WriteLine(" ---- Validation ----");
     currencyService.TryValidate("ESP", out var invalidateResult);
     Console.WriteLine(
-        $" --> Validation code 'ESP': {invalidateResult.Reason}, validation status: {invalidateResult.IsValid}");
+        $"\tValidation code 'ESP': {invalidateResult.Reason}, validation status: {invalidateResult.IsValid}");
     currencyService.TryValidate("USD", out var validateResult);
     Console.WriteLine(
-        $" --> Validation code 'USD': {validateResult.Reason}, validation status: {validateResult.IsValid}");
+        $"\tValidation code 'USD': {validateResult.Reason}, validation status: {validateResult.IsValid}");
 
     await host.RunAsync();
 }

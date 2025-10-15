@@ -47,22 +47,16 @@ internal sealed class CurrencyQueryBuilder:
 
     public IReadOnlyList<Models.Currency> Build()
     {
-        var query = _actualCurrencies.Where(c => _includedTypes.Contains(c.CurrencyType!.Value));
-        
-        if (_withCodes.Count > 0)
-            query = query.Where(c => _withCodes.Contains(c.Code));
-        if (_withoutCodes.Count > 0)
-            query = query.Where(c => !_withoutCodes.Contains(c.Code));
-        if (_withNames.Count > 0)
-            query = query.Where(c => _withNames.Contains(c.Name));
-        if (_withoutNames.Count > 0)
-            query = query.Where(c => !_withoutNames.Contains(c.Name));
-        if (_withNumericCodes.Count > 0)
-            query = query.Where(c => c.NumericCode is not null && _withNumericCodes.Contains(c.NumericCode!));
-        if (_withoutNumericCodes.Count > 0)
-            query = query.Where(c => c.NumericCode is not null && !_withoutNumericCodes.Contains(c.NumericCode!));
-        
-        return query.ToList();
+        Func<Models.Currency, bool> filter = c =>
+            _includedTypes.Contains(c.CurrencyType!.Value) &&
+            (_withCodes.Count == 0 || _withCodes.Contains(c.Code)) &&
+            (_withoutCodes.Count == 0 || !_withoutCodes.Contains(c.Code)) &&
+            (_withNames.Count == 0 || _withNames.Contains(c.Name)) &&
+            (_withoutNames.Count == 0 || !_withoutNames.Contains(c.Name)) &&
+            (_withNumericCodes.Count == 0 || (c.NumericCode != null && _withNumericCodes.Contains(c.NumericCode!))) &&
+            (_withoutNumericCodes.Count == 0 || (c.NumericCode != null && !_withoutNumericCodes.Contains(c.NumericCode!)));
+
+        return _actualCurrencies.Where(filter).ToList();
     }
     
     IIncludeFilterBuilder IIncludeFilterBuilder.Codes(params string[] codes)
