@@ -103,6 +103,16 @@ var currencies = currencyService?.Query()
    .Build();
 ```
 
+#### Get currencies by advanced query (LINQ)
+Includes only `EUR` and `USD` in the list:
+```csharp
+var currencies = currencyService?.Query()
+   .Includes
+        .Type(CurrencyType.Fiat)
+   .Where(q => q.Code is "EUR" or nameof(CurrencyCode.USD))
+   .Build();
+```
+
 #### Get historical currencies
 ```csharp
 var historical = currencyService.GetAllHistorical();

@@ -60,6 +60,18 @@ try
         Console.WriteLine(
             $"\t{currency.Code} - {currency.Name}");
     }
+    
+    // ---- Get currencies by advanced query (LINQ) ---- 
+    Console.WriteLine(" ---- Advanced Query (LINQ): Includes only `EUR` and `USD` in the list ---- ");
+    foreach (var currency in currencyService!.Query()
+                 .Includes
+                 .Type(CurrencyType.Fiat)
+                 .Where(q => q.Code is nameof(CurrencyCode.EUR) or nameof(CurrencyCode.USD))
+                 .Build())
+    {
+        Console.WriteLine(
+            $"\t{currency.Code} - {currency.Name}");
+    }
 
     // ---- Get historical currencies ---- 
     Console.WriteLine(" ---- Historical (Withdrawal) currencies ---- ");

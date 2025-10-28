@@ -18,14 +18,18 @@ public interface ICurrencyQueryFilter : ICurrencyQueryFinal
     /// Includes specific currencies by configuring an include filter.
     /// </summary>
     /// <param name="configure">Action to configure included codes, names, or numeric codes.</param>
-    /// <returns>The current <see cref="ICurrencyQueryFilter"/> instance.</returns>
-    ICurrencyQueryFilter With(Action<IIncludeFilterBuilder> configure);
+    /// <returns>The current <see cref="ICurrencyQueryNoWhereFilter"/> instance.</returns>
+    ICurrencyQueryNoWhereFilter With(Action<IIncludeFilterBuilder> configure);
     
     /// <summary>
     /// Excludes specific currencies by configuring an exclude filter.
     /// </summary>
     /// <param name="configure">Action to configure excluded codes, names, or numeric codes.</param>
-    /// <returns>The current <see cref="ICurrencyQueryFilter"/> instance.</returns>
-    ICurrencyQueryFilter Without(Action<IExcludeFilterBuilder> configure);
+    /// <returns>The current <see cref="ICurrencyQueryNoWhereFilter"/> instance.</returns>
+    ICurrencyQueryNoWhereFilter Without(Action<IExcludeFilterBuilder> configure);
     
+    /// <summary>
+    /// Adds a custom predicate filter to the query (after Type).
+    /// </summary>
+    ICurrencyQueryFinal Where(Func<Models.Currency, bool> predicate);
 }

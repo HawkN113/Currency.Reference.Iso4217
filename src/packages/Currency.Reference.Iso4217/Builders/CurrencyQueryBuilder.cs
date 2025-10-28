@@ -6,6 +6,7 @@ internal sealed class CurrencyQueryBuilder:
     ICurrencyQueryStart,
     ICurrencyQueryTypeSelector,
     ICurrencyQueryFilter,
+    ICurrencyQueryNoWhereFilter,
     IIncludeFilterBuilder,
     IExcludeFilterBuilder
 {
@@ -17,6 +18,7 @@ internal sealed class CurrencyQueryBuilder:
     private readonly HashSet<string> _withoutNames = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _withNumericCodes = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _withoutNumericCodes = new(StringComparer.OrdinalIgnoreCase);
+    private readonly List<Func<Models.Currency, bool>> _customPredicates = [];
 
     public CurrencyQueryBuilder(IReadOnlyList<Models.Currency> currencies)
     {
@@ -33,21 +35,27 @@ internal sealed class CurrencyQueryBuilder:
         return this;
     }
 
-    public ICurrencyQueryFilter With(Action<IIncludeFilterBuilder> configure)
+    public ICurrencyQueryNoWhereFilter With(Action<IIncludeFilterBuilder> configure)
     {
         configure(this);
         return this;
     }
 
-    public ICurrencyQueryFilter Without(Action<IExcludeFilterBuilder> configure)
+    public ICurrencyQueryNoWhereFilter Without(Action<IExcludeFilterBuilder> configure)
     {
         configure(this);
+        return this;
+    }
+
+    public ICurrencyQueryFinal Where(Func<Models.Currency, bool> predicate)
+    {
+        _customPredicates.Add(predicate);
         return this;
     }
 
     public IReadOnlyList<Models.Currency> Build()
     {
-        Func<Models.Currency, bool> filter = c =>
+        Func<Models.Currency, bool> baseFilter  = c =>
             _includedTypes.Contains(c.CurrencyType!.Value) &&
             (_withCodes.Count == 0 || _withCodes.Contains(c.Code)) &&
             (_withoutCodes.Count == 0 || !_withoutCodes.Contains(c.Code)) &&
@@ -56,7 +64,10 @@ internal sealed class CurrencyQueryBuilder:
             (_withNumericCodes.Count == 0 || (c.NumericCode != null && _withNumericCodes.Contains(c.NumericCode!))) &&
             (_withoutNumericCodes.Count == 0 || (c.NumericCode != null && !_withoutNumericCodes.Contains(c.NumericCode!)));
 
-        return _actualCurrencies.Where(filter).ToList();
+        return _actualCurrencies
+            .Where(baseFilter)
+            .Where(c => _customPredicates.All(p => p(c)))
+            .ToList();
     }
     
     IIncludeFilterBuilder IIncludeFilterBuilder.Codes(params string[] codes)
