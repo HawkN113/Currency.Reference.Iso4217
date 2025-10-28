@@ -39,6 +39,11 @@
       </EmbeddedResource>
     </ItemGroup>
 
+    <ItemGroup>
+        <InternalsVisibleTo Include="Currency.Reference.Iso4217.Generators.Tests" />
+        <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+    </ItemGroup>
+
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <DebugType>embedded</DebugType>
     </PropertyGroup>
