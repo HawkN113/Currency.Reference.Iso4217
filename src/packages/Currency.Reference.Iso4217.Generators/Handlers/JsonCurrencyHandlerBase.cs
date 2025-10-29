@@ -1,5 +1,5 @@
 ﻿using System.Text.RegularExpressions;
-using Currency.Reference.Iso4217.Generators.Utils;
+using Currency.Reference.Iso4217.Generators.Utility;
 namespace Currency.Reference.Iso4217.Generators.Handlers;
 
 internal abstract class JsonCurrencyHandlerBase(string jsonContent)
@@ -9,8 +9,8 @@ internal abstract class JsonCurrencyHandlerBase(string jsonContent)
 
     public CurrencyDataSet LoadCurrencies()
     {
-        var publishedDate = JsonParserUtils.ExtractPublishedDate(jsonContent);
-        var arrayContent = JsonParserUtils.ExtractArray(jsonContent, ArrayKey);
+        var publishedDate = JsonParser.ExtractPublishedDate(jsonContent);
+        var arrayContent = JsonParser.ExtractArray(jsonContent, ArrayKey);
         var currencies = ParseCurrencies(arrayContent);
 
         return new CurrencyDataSet
@@ -31,7 +31,7 @@ internal abstract class JsonCurrencyHandlerBase(string jsonContent)
         for (var i = 0; i < arrayContent.Length; i++)
         {
             var ch = arrayContent[i];
-            if (JsonParserUtils.HandleEscapeChar(ch, ref inString, ref escape) || inString)
+            if (JsonParser.HandleEscapeChar(ch, ref inString, ref escape) || inString)
                 continue;
 
             switch (ch)
@@ -59,14 +59,14 @@ internal abstract class JsonCurrencyHandlerBase(string jsonContent)
 
     private CurrencyRaw? ParseCurrency(string obj)
     {
-        var code = JsonParserUtils.Extract(obj, "Ccy");
+        var code = JsonParser.Extract(obj, "Ccy");
         if (string.IsNullOrEmpty(code))
             return null;
 
         var name = ExtractCurrencyName(obj);
-        var country = JsonParserUtils.Extract(obj, "CtryNm") ?? string.Empty;
-        var num = JsonParserUtils.Extract(obj, "CcyNbr");
-        var withdrawalDate = IsHistorical ? JsonParserUtils.Extract(obj, "WthdrwlDt") : null;
+        var country = JsonParser.Extract(obj, "CtryNm") ?? string.Empty;
+        var num = JsonParser.Extract(obj, "CcyNbr");
+        var withdrawalDate = IsHistorical ? JsonParser.Extract(obj, "WthdrwlDt") : null;
 
         return new CurrencyRaw
         {
@@ -80,7 +80,7 @@ internal abstract class JsonCurrencyHandlerBase(string jsonContent)
 
     private static string ExtractCurrencyName(string obj)
     {
-        var name = JsonParserUtils.Extract(obj, "CcyNm");
+        var name = JsonParser.Extract(obj, "CcyNm");
         if (!string.IsNullOrEmpty(name) &&
             !name!.TrimStart().StartsWith("{") &&
             !name.Contains("\"__text\""))

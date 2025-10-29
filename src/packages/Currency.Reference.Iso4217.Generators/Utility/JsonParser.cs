@@ -1,9 +1,9 @@
 ﻿using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
-namespace Currency.Reference.Iso4217.Generators.Utils;
+namespace Currency.Reference.Iso4217.Generators.Utility;
 
-internal static class JsonParserUtils
+internal static class JsonParser
 {
     private static int FindJsonBlockEnd(string json, int startIndex, char open, char close)
     {

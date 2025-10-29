@@ -1,6 +1,5 @@
 ﻿using Currency.Reference.Iso4217.Generators.Handlers;
 using Currency.Reference.Iso4217.Generators.Models;
-
 namespace Currency.Reference.Iso4217.Generators.Tests.Handlers;
 
 public class CurrencyLoaderTests

@@ -15,7 +15,8 @@ public class ServiceCollectionExtensionsTests
         var services = new ServiceCollection();
 
         // Act
-        services.AddCurrencyService(); var provider = services.BuildServiceProvider();
+        services.AddCurrencyService();
+        var provider = services.BuildServiceProvider();
         var service1 = provider.GetRequiredService<ICurrencyService>();
         var service2 = provider.GetRequiredService<ICurrencyService>();
 
@@ -60,47 +61,28 @@ public class ServiceCollectionExtensionsTests
     {
         public bool TryValidate(string value, out ValidationResult result)
         {
-            throw new NotImplementedException();
+            result = new ValidationResult();
+            return true;
         }
 
         public bool TryValidate(CurrencyCode code, out ValidationResult result)
         {
-            throw new NotImplementedException();
+            result = new ValidationResult();
+            return true;
         }
 
-        public bool Exists(string value)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Exists(string value) => true;
 
-        public bool Exists(CurrencyCode code)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Exists(CurrencyCode code) => true;
 
-        public Models.Currency? Get(string value)
-        {
-            throw new NotImplementedException();
-        }
+        public Models.Currency? Get(string value) => null;
 
-        public Models.Currency? Get(CurrencyCode code)
-        {
-            throw new NotImplementedException();
-        }
+        public Models.Currency? Get(CurrencyCode code) => null;
 
-        public Models.Currency? GetHistorical(string value)
-        {
-            throw new NotImplementedException();
-        }
+        public Models.Currency? GetHistorical(string value) => null;
 
-        public Models.Currency[] GetAllHistorical()
-        {
-            throw new NotImplementedException();
-        }
+        public Models.Currency[] GetAllHistorical() => [];
 
-        public ICurrencyQueryStart Query()
-        {
-            throw new NotImplementedException();
-        }
+        public ICurrencyQueryStart Query() => null!;
     }
 }
