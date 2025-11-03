@@ -1,31 +1,31 @@
 @Currency.Reference.Iso4217.WebApi_HostAddress = http://localhost:5165
 
 ### Get all fiat currencies
-GET {{Currency.Reference.Iso4217.WebApi_HostAddress}}/fiatCurrencies/
+GET {{Currency.Reference.Iso4217.WebApi_HostAddress}}/fiat/currencies
 Accept: application/json
 
 ###
 
 ### Get historical currencies
-GET {{Currency.Reference.Iso4217.WebApi_HostAddress}}/historicalCurrencies/
+GET {{Currency.Reference.Iso4217.WebApi_HostAddress}}/historical/currencies
 Accept: application/json
 
 ###
 
 ### Get fiat currency by code (EUR, USD, etc.)
-GET {{Currency.Reference.Iso4217.WebApi_HostAddress}}/fiatCurrency?code=EUR
+GET {{Currency.Reference.Iso4217.WebApi_HostAddress}}/fiat/currency?code=EUR
 Accept: application/json
 
 ###
 
 ### Get precious metals (XAG, XAU, XPD, XPT)
-GET {{Currency.Reference.Iso4217.WebApi_HostAddress}}/preciousMetals
+GET {{Currency.Reference.Iso4217.WebApi_HostAddress}}/preciousMetals/currencies
 Accept: application/json
 
 ###
 
 ### Get special currencies (XBA, XSU, XXX, etc.)
-GET {{Currency.Reference.Iso4217.WebApi_HostAddress}}/specialCurrencies
+GET {{Currency.Reference.Iso4217.WebApi_HostAddress}}/special/currencies
 Accept: application/json
 
 ###

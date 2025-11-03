@@ -8,7 +8,7 @@ static class CurrencyEndpointExtensions
 {
     public static IEndpointRouteBuilder MapCurrencyEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGet("/fiatCurrencies", CurrencyHandler.GetFiatCurrencies)
+        app.MapGet("/fiat/currencies", CurrencyHandler.GetFiatCurrencies)
             .WithName("GetFiatCurrencies")
             .WithOpenApi(o =>
             {
@@ -17,7 +17,7 @@ static class CurrencyEndpointExtensions
                 return o;
             });
 
-        app.MapGet("/fiatCurrency", CurrencyHandler.GetFiatCurrency)
+        app.MapGet("/fiat/currency", CurrencyHandler.GetFiatCurrency)
             .WithName("GetFiatCurrency")
             .WithOpenApi(o =>
             {
@@ -26,7 +26,7 @@ static class CurrencyEndpointExtensions
                 return o;
             });
 
-        app.MapGet("/preciousMetals", CurrencyHandler.GetPreciousMetals)
+        app.MapGet("/preciousMetals/currencies", CurrencyHandler.GetPreciousMetals)
             .WithName("GetPreciousMetals")
             .WithOpenApi(o =>
             {
@@ -35,7 +35,7 @@ static class CurrencyEndpointExtensions
                 return o;
             });
 
-        app.MapGet("/specialCurrencies", CurrencyHandler.GetSpecialCurrencies)
+        app.MapGet("/special/currencies", CurrencyHandler.GetSpecialCurrencies)
             .WithName("GetSpecialCurrencies")
             .WithOpenApi(o =>
             {
@@ -44,7 +44,7 @@ static class CurrencyEndpointExtensions
                 return o;
             });
 
-        app.MapGet("/historicalCurrencies", CurrencyHandler.GetHistoricalCurrencies)
+        app.MapGet("/historical/currencies", CurrencyHandler.GetHistoricalCurrencies)
             .WithName("GetHistoricalCurrencies")
             .WithOpenApi(o =>
             {
