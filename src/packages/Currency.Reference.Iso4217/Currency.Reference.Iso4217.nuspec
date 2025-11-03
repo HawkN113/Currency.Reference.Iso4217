@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Currency.Reference.Iso4217</id>
+        <version>8.0.0</version>
+        <title>Currency.Reference.Iso4217</title>
+        <authors>Nikolay Selyutin (HawkN113)</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Provides strongly typed ISO 4217 currency codes, utilities for working with historical and withdrawn currencies and replacement mappings. Lightweight, dependency-free, and optimized for .NET 8 applications.</description>
+        <summary>ISO 4217 currency reference library with strongly typed codes, historical currencies, and utilities.</summary>
+        <tags>iso4217 currency currencies finance money money-codes .net8</tags>
+        <repository type="git" url="https://github.com/HawkN113/Currency.Reference.Iso4217" branch="main" />
+        <projectUrl>https://github.com/HawkN113/Currency.Reference.Iso4217</projectUrl>
+        <license type="expression">MIT</license>
+        <icon>content\Currency.Reference.Iso4217.ico.png</icon>
+        <readme>content\README.md</readme>
+        <language>en-GB</language>
+        <releaseNotes>
+            - Added support for .NET 8.0
+            - Strongly typed CurrencyCode enum generated at compile time
+            - Historical currencies support
+            - Lightweight &amp; dependency-free
+        </releaseNotes>
+        <copyright>Copyright © 2025 Nikolay Selyutin (HawkN113)</copyright>
+        <dependencies>
+            <group targetFramework="net8.0" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\Release\net8.0\Package\Content\Currency.Reference.Iso4217.ico.png" target="content\Currency.Reference.Iso4217.ico.png" />
+        <file src="Package\Content\README.md" target="content\README.md" />
+        <file src="bin\Release\net8.0\Currency.Reference.Iso4217.dll" target="lib\net8.0\Currency.Reference.Iso4217.dll" />
+        <file src="bin\Release\net8.0\Currency.Reference.Iso4217.xml" target="lib\net8.0\Currency.Reference.Iso4217.xml" />
+    </files>
+</package>

@@ -1,0 +1,96 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <FileVersion>8.0.0.0</FileVersion>
+        <OutputType>Library</OutputType>
+        <Copyright>Copyright © 2025 Nikolay Selyutin (HawkN113)</Copyright>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+        <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+        <GenerateAssemblyFileVersionAttribute>true</GenerateAssemblyFileVersionAttribute>
+        <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+        <Optimize>true</Optimize>
+        <PublicSign>false</PublicSign>
+        <TargetFramework>net8.0</TargetFramework>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <IncludeSymbols>false</IncludeSymbols>
+        <!-- Use when need to update 'CurrencyCode' and 'LocalDatabase' -->
+        <GenerateCurrencyFiles>false</GenerateCurrencyFiles>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+        <CurrencyCodeFile>$(MSBuildProjectDirectory)\CurrencyCode.cs</CurrencyCodeFile>
+        <LocalDatabaseFile>$(MSBuildProjectDirectory)\LocalDatabase.cs</LocalDatabaseFile>
+        <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\Generated</CompilerGeneratedFilesOutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DebugType>embedded</DebugType>
+        <DocumentationFile>bin\Debug\Currency.Reference.Iso4217.xml</DocumentationFile>
+        <WarningsAsErrors>;NU1605</WarningsAsErrors>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <DebugType>embedded</DebugType>
+        <DocumentationFile>bin\Release\Currency.Reference.Iso4217.xml</DocumentationFile>
+        <WarningsAsErrors>;NU1605</WarningsAsErrors>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Package\Content\Currency.Reference.Iso4217.ico.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Currency.Reference.Iso4217.Tests" />
+        <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+    </ItemGroup>
+    
+    <!-- Warning! [Start] Do not modify the settings manually. -->
+    <!-- Need to update 'CurrencyCode' and 'LocalDatabase' -->
+    <ItemGroup Condition="'$(GenerateCurrencyFiles)' == 'true'">
+        <ProjectReference Include="..\..\packages\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false" />
+    </ItemGroup>
+    <Target Name="CleanGeneratedFilesBeforeBuild" BeforeTargets="CoreCompile" Condition="'$(GenerateCurrencyFiles)' == 'true'">
+        <ItemGroup>
+            <Compile Remove="CurrencyCode.cs" />
+            <Compile Remove="LocalDatabase.cs" />
+        </ItemGroup>
+        <Delete Files="$(CurrencyCodeFile)" Condition="Exists('$(CurrencyCodeFile)')" />
+        <Delete Files="$(LocalDatabaseFile)" Condition="Exists('$(LocalDatabaseFile)')" />
+        <Message Text="Temporary removed file '$(CurrencyCodeFile)'" Importance="High" Condition="!Exists('$(CurrencyCodeFile)')" />
+        <Message Text="Temporary removed file '$(LocalDatabaseFile)'" Importance="High" Condition="!Exists('$(LocalDatabaseFile)')"  />
+    </Target>
+    <ItemGroup Condition="'$(GenerateCurrencyFiles)' == 'true'">
+        <Compile Remove="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\**\*.g.cs" ContinueOnError="true" />
+        <None Include="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\**\*.g.cs" ContinueOnError="true" />
+    </ItemGroup>
+    <Target Name="CopyGeneratedFiles" AfterTargets="CoreCompile" Condition="'$(GenerateCurrencyFiles)' == 'true'">
+        <Copy SourceFiles="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.CurrencyCodeGenerator\CurrencyCode.g.cs"
+              DestinationFiles="CurrencyCode.cs"
+              SkipUnchangedFiles="false" 
+              ContinueOnError="false" />
+        <Message Text="Copied generated file '$(CurrencyCodeFile)' into repository " Importance="High" Condition="Exists('$(CurrencyCodeFile)')"  />
+        <Copy SourceFiles="$(CompilerGeneratedFilesOutputPath)\Currency.Reference.Iso4217.Generators\Currency.Reference.Iso4217.Generators.LocalDatabaseGenerator\LocalDatabase.g.cs"
+              DestinationFiles="LocalDatabase.cs"
+              SkipUnchangedFiles="false" 
+              ContinueOnError="false" />
+        <Message Text="Copied generated file '$(LocalDatabaseFile)' into repository " Importance="High" Condition="Exists('$(LocalDatabaseFile)')"  />
+        <ItemGroup>
+            <Compile Include="CurrencyCode.cs" Condition="Exists('CurrencyCode.cs')" />
+            <Compile Include="LocalDatabase.cs" Condition="Exists('LocalDatabase.cs')" />
+        </ItemGroup>
+        <PropertyGroup>
+            <GenerateCurrencyFiles>false</GenerateCurrencyFiles>
+        </PropertyGroup>
+    </Target>
+    <!-- Warning! [Finish] Do not modify the settings manually. -->
+    
+</Project>
