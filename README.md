@@ -1,8 +1,7 @@
 # Currency.Reference.Iso4217
 
 [![NuGet](https://img.shields.io/nuget/v/Currency.Reference.Iso4217?label=Currency.Reference.Iso4217)](https://www.nuget.org/packages/Currency.Reference.Iso4217/)
-[![NuGet](https://img.shields.io/nuget/v/Currency.Reference.Iso4217.Generators?label=Currency.Reference.Iso4217.Generators)](https://www.nuget.org/packages/Currency.Reference.Iso4217.Generators/)
-[![GitHub license](https://img.shields.io/github/license/HawkN113/Flash.Configuration)](https://github.com/HawkN113/Flash.Configuration/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/HawkN113/Currency.Reference.Iso4217)](https://github.com/HawkN113/Currency.Reference.Iso4217/blob/main/LICENSE)
 
 | ![Currency.Reference.Iso4217](docs/img/Currency.Reference.Iso4217.png) | **Currency.Reference.Iso4217** provides ISO 4217 currency codes, historical currency data, and replacement mappings. |
 |--------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
