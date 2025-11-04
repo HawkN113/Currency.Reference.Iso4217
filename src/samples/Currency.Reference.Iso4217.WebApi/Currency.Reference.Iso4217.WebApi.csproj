@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
     <ItemGroup>
-        <!--<PackageReference Include="Currency.Reference.Iso4217" Version="8.0.0" />-->
+        <!--<PackageReference Include="HawkN.Currency.Reference.Iso4217" Version="8.0.0" />-->
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.20"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2"/>
     </ItemGroup>

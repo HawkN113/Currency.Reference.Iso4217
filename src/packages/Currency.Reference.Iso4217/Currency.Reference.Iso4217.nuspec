@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
-        <id>Currency.Reference.Iso4217</id>
+        <id>HawkN.Currency.Reference.Iso4217</id>
         <version>8.0.0</version>
         <title>Currency.Reference.Iso4217</title>
         <authors>Nikolay Selyutin (HawkN113)</authors>

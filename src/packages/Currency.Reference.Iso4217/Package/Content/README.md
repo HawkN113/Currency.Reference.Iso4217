@@ -1,6 +1,6 @@
-# Currency.Reference.Iso4217
+# HawkN.Currency.Reference.Iso4217
 
-Currency.Reference.Iso4217 provides ISO 4217 currency codes, historical currency data, and replacement mappings.
+**Currency.Reference.Iso4217** provides ISO 4217 currency codes, historical currency data, and replacement mappings.
 
 ## Features
 - **Actual currency list**
@@ -11,19 +11,12 @@ Currency.Reference.Iso4217 provides ISO 4217 currency codes, historical currency
 
 ---
 
-## Packages
-
-| Package | Description |
-|---------|-------------|
-| [Currency.Reference.Iso4217](https://www.nuget.org/packages/Currency.Reference.Iso4217) | Main library with domain models, currency utilities, and generated `CurrencyCode` type. |
----
-
 ## Getting Started
 
 ### Install via NuGet
 
 ```bash
-dotnet add package Currency.Reference.Iso4217 --version 8.0.0
+dotnet add package HawkN.Currency.Reference.Iso4217 --version 8.0.0
 ```
 ---
 
@@ -139,171 +132,170 @@ var validResult = currencyService.TryValidate(CurrencyCode.AFN, out var validate
 
 ### Supported fiat currencies
 Last updated at 15.10.2025
-| Currency code  | Currency name                            |
-|:---------------:|:-----------------------------------------:|
-| AED | UAE Dirham |
-| AFN | Afghani |
-| ALL | Albanian Lek |
-| AMD | Armenian Dram |
-| AOA | Angolan Kwanza |
-| ARS | Argentine Peso |
-| AUD | Australian Dollar |
-| AWG | Aruban Florin |
-| AZN | Azerbaijan Manat |
-| BAM | Convertible Mark |
-| BBD | Barbados Dollar |
-| BDT | Bangladeshi Taka |
-| BGN | Bulgarian Lev |
-| BHD | Bahraini Dinar |
-| BIF | Burundi Franc |
-| BMD | Bermudian Dollar |
-| BND | Brunei Dollar |
-| BOB | Bolivian Boliviano |
-| BOV | Bolivian Mvdol |
-| BRL | Brazilian Real |
-| BSD | Bahamian Dollar |
-| BTN | Bhutanese Ngultrum |
-| BWP | Botswana Pula |
-| BYN | Belarusian Ruble |
-| BZD | Belize Dollar |
-| CAD | Canadian Dollar |
-| CDF | Congolese Franc |
-| CHE | WIR Euro |
-| CHF | Swiss Franc |
-| CHW | WIR Franc |
-| CLF | Unidad de Fomento |
-| CLP | Chilean Peso |
-| CNY | Chinese Yuan |
-| COP | Colombian Peso |
-| COU | Unidad de Valor Real |
-| CRC | Costa Rican Colon |
-| CUP | Cuban Peso |
-| CVE | Cape Verde Escudo |
-| CZK | Czech Koruna |
-| DJF | Djibouti Franc |
-| DKK | Danish Krone |
-| DOP | Dominican Peso |
-| DZD | Algerian Dinar |
-| EGP | Egyptian Pound |
-| ERN | Eritrean Nakfa |
-| ETB | Ethiopian Birr |
-| EUR | Euro |
-| FJD | Fiji Dollar |
-| FKP | Falkland Islands Pound |
-| GBP | Pound Sterling |
-| GEL | Georgian Lari |
-| GHS | Ghana Cedi |
-| GIP | Gibraltar Pound |
-| GMD | Gambian Dalasi |
-| GNF | Guinean Franc |
-| GTQ | Guatemalan Quetzal |
-| GYD | Guyanese Dollar |
-| HKD | Hong Kong Dollar |
-| HNL | Honduran Lempira |
-| HTG | Haitian Gourde |
-| HUF | Hungarian Forint |
-| IDR | Indonesian Rupiah |
-| ILS | New Israeli Sheqel |
-| INR | Indian Rupee |
-| IQD | Iraqi Dinar |
-| IRR | Iranian Rial |
-| ISK | Icelandic Krona |
-| JMD | Jamaican Dollar |
-| JOD | Jordanian Dinar |
-| JPY | Japanese Yen |
-| KES | Kenyan Shilling |
-| KGS | Kyrgyzstani Som |
-| KHR | Cambodian Riel |
-| KMF | Comorian Franc |
-| KPW | North Korean Won |
-| KRW | South Korean Won |
-| KWD | Kuwaiti Dinar |
-| KYD | Cayman Islands Dollar |
-| KZT | Kazakhstani Tenge |
-| LAK | Lao Kip |
-| LBP | Lebanese Pound |
-| LKR | Sri Lankan Rupee |
-| LRD | Liberian Dollar |
-| LSL | Lesotho Loti |
-| LYD | Libyan Dinar |
-| MAD | Moroccan Dirham |
-| MDL | Moldovan Leu |
-| MGA | Malagasy Ariary |
-| MKD | Macedonian Denar |
-| MMK | Myanmar Kyat |
-| MNT | Mongolian Tugrik |
-| MOP | Macanese Pataca |
-| MRU | Mauritanian Ouguiya |
-| MUR | Mauritian Rupee |
-| MVR | Maldivian Rufiyaa |
-| MWK | Malawi Kwacha |
-| MXN | Mexican Peso |
-| MXV | Mexican Unidad de Inversion (UDI) |
-| MYR | Malaysian Ringgit |
-| MZN | Mozambique Metical |
-| NAD | Namibian Dollar |
-| NGN | Nigerian Naira |
-| NIO | Cordoba Oro |
-| NOK | Norwegian Krone |
-| NPR | Nepalese Rupee |
-| NZD | New Zealand Dollar |
-| OMR | Omani Rial |
-| PAB | Panamanian Balboa |
-| PEN | Peruvian Sol |
-| PGK | Papua New Guinean Kina |
-| PHP | Philippine Peso |
-| PKR | Pakistani Rupee |
-| PLN | Polish Zloty |
-| PYG | Paraguayan Guarani |
-| QAR | Qatari Riyal |
-| RON | Romanian Leu |
-| RSD | Serbian Dinar |
-| RUB | Russian Ruble |
-| RWF | Rwanda Franc |
-| SAR | Saudi Riyal |
-| SBD | Solomon Islands Dollar |
-| SCR | Seychelles Rupee |
-| SDG | Sudanese Pound |
-| SEK | Swedish Krona |
-| SGD | Singapore Dollar |
-| SHP | Saint Helena Pound |
-| SLE | Sierra Leonean Leone |
-| SOS | Somali Shilling |
-| SRD | Surinamese Dollar |
-| SSP | South Sudanese Pound |
-| STN | São Tomé and Príncipe Dobra |
-| SVC | El Salvador Colon |
-| SYP | Syrian Pound |
-| SZL | Swazi Lilangeni |
-| THB | Thai Baht |
-| TJS | Tajikistani Somoni |
-| TMT | Turkmenistan New Manat |
-| TND | Tunisian Dinar |
-| TOP | Tongan Pa'anga |
-| TRY | Turkish Lira |
-| TTD | Trinidad and Tobago Dollar |
-| TWD | New Taiwan Dollar |
-| TZS | Tanzanian Shilling |
-| UAH | Ukrainian Hryvnia |
-| UGX | Uganda Shilling |
-| USD | US Dollar |
-| USN | US Dollar (Next day) |
-| UYI | Uruguay Peso en Unidades Indexadas (UI) |
-| UYU | Peso Uruguayo |
-| UYW | Unidad Previsional |
-| UZS | Uzbekistan Sum |
-| VES | Bolívar Soberano |
-| VND | Vietnamese Dong |
-| VUV | Vanuatu Vatu |
-| WST | Samoan Tala |
-| XAF | CFA Franc BEAC |
-| XCD | East Caribbean Dollar |
-| XDR | SDR (Special Drawing Right) |
-| XOF | CFA Franc BCEAO |
-| XPF | CFP Franc |
-| YER | Yemeni Rial |
-| ZAR | South African Rand |
-| ZMW | Zambian Kwacha |
+- AED (UAE Dirham)
+- AFN (Afghani)
+- ALL (Albanian Lek)
+- AMD (Armenian Dram)
+- AOA (Angolan Kwanza)
+- ARS (Argentine Peso)
+- AUD (Australian Dollar)
+- AWG (Aruban Florin)
+- AZN (Azerbaijan Manat)
+- BAM (Convertible Mark)
+- BBD (Barbados Dollar)
+- BDT (Bangladeshi Taka)
+- BGN (Bulgarian Lev)
+- BHD (Bahraini Dinar)
+- BIF (Burundi Franc)
+- BMD (Bermudian Dollar)
+- BND (Brunei Dollar)
+- BOB (Bolivian Boliviano)
+- BOV (Bolivian Mvdol)
+- BRL (Brazilian Real)
+- BSD (Bahamian Dollar)
+- BTN (Bhutanese Ngultrum)
+- BWP (Botswana Pula)
+- BYN (Belarusian Ruble)
+- BZD (Belize Dollar)
+- CAD (Canadian Dollar)
+- CDF (Congolese Franc)
+- CHE (WIR Euro)
+- CHF (Swiss Franc)
+- CHW (WIR Franc)
+- CLF (Unidad de Fomento)
+- CLP (Chilean Peso)
+- CNY (Chinese Yuan)
+- COP (Colombian Peso)
+- COU (Unidad de Valor Real)
+- CRC (Costa Rican Colon)
+- CUP (Cuban Peso)
+- CVE (Cape Verde Escudo)
+- CZK (Czech Koruna)
+- DJF (Djibouti Franc)
+- DKK (Danish Krone)
+- DOP (Dominican Peso)
+- DZD (Algerian Dinar)
+- EGP (Egyptian Pound)
+- ERN (Eritrean Nakfa)
+- ETB (Ethiopian Birr)
+- EUR (Euro)
+- FJD (Fiji Dollar)
+- FKP (Falkland Islands Pound)
+- GBP (Pound Sterling)
+- GEL (Georgian Lari)
+- GHS (Ghana Cedi)
+- GIP (Gibraltar Pound)
+- GMD (Gambian Dalasi)
+- GNF (Guinean Franc)
+- GTQ (Guatemalan Quetzal)
+- GYD (Guyanese Dollar)
+- HKD (Hong Kong Dollar)
+- HNL (Honduran Lempira)
+- HTG (Haitian Gourde)
+- HUF (Hungarian Forint)
+- IDR (Indonesian Rupiah)
+- ILS (New Israeli Sheqel)
+- INR (Indian Rupee)
+- IQD (Iraqi Dinar)
+- IRR (Iranian Rial)
+- ISK (Icelandic Krona)
+- JMD (Jamaican Dollar)
+- JOD (Jordanian Dinar)
+- JPY (Japanese Yen)
+- KES (Kenyan Shilling)
+- KGS (Kyrgyzstani Som)
+- KHR (Cambodian Riel)
+- KMF (Comorian Franc)
+- KPW (North Korean Won)
+- KRW (South Korean Won)
+- KWD (Kuwaiti Dinar)
+- KYD (Cayman Islands Dollar)
+- KZT (Kazakhstani Tenge)
+- LAK (Lao Kip)
+- LBP (Lebanese Pound)
+- LKR (Sri Lankan Rupee)
+- LRD (Liberian Dollar)
+- LSL (Lesotho Loti)
+- LYD (Libyan Dinar)
+- MAD (Moroccan Dirham)
+- MDL (Moldovan Leu)
+- MGA (Malagasy Ariary)
+- MKD (Macedonian Denar)
+- MMK (Myanmar Kyat)
+- MNT (Mongolian Tugrik)  
+- MOP (Macanese Pataca)
+- MRU (Mauritanian Ouguiya)
+- MUR (Mauritian Rupee)
+- MVR (Maldivian Rufiyaa)
+- MWK (Malawi Kwacha)
+- MXN (Mexican Peso)
+- MXV (Mexican Unidad de Inversion (UDI))
+- MYR (Malaysian Ringgit)
+- MZN (Mozambique Metical)
+- NAD (Namibian Dollar)
+- NGN (Nigerian Naira)
+- NIO (Cordoba Oro)
+- NOK (Norwegian Krone)
+- NPR (Nepalese Rupee)
+- NZD (New Zealand Dollar)
+- OMR (Omani Rial)
+- PAB (Panamanian Balboa)
+- PEN (Peruvian Sol)
+- PGK (Papua New Guinean Kina)
+- PHP (Philippine Peso)
+- PKR (Pakistani Rupee)
+- PLN (Polish Zloty)
+- PYG (Paraguayan Guarani)
+- QAR (Qatari Riyal)
+- RON (Romanian Leu)
+- RSD (Serbian Dinar)
+- RUB (Russian Ruble)
+- RWF (Rwanda Franc)
+- SAR (Saudi Riyal)
+- SBD (Solomon Islands Dollar)
+- SCR (Seychelles Rupee)
+- SDG (Sudanese Pound)
+- SEK (Swedish Krona)
+- SGD (Singapore Dollar)
+- SHP (Saint Helena Pound)
+- SLE (Sierra Leonean Leone)
+- SOS (Somali Shilling)
+- SRD (Surinamese Dollar)
+- SSP (South Sudanese Pound)
+- STN (São Tomé and Príncipe Dobra)
+- SVC (El Salvador Colon)
+- SYP (Syrian Pound)
+- SZL (Swazi Lilangeni)
+- THB (Thai Baht)  
+- TJS (Tajikistani Somoni)
+- TMT (Turkmenistan New Manat)
+- TND (Tunisian Dinar)
+- TOP (Tongan Pa'anga)
+- TRY (Turkish Lira)
+- TTD (Trinidad and Tobago Dollar)
+- TWD (New Taiwan Dollar)
+- TZS (Tanzanian Shilling)
+- UAH (Ukrainian Hryvnia)
+- UGX (Uganda Shilling)
+- USD (US Dollar)
+- USN (US Dollar (Next day))
+- UYI (Uruguay Peso en Unidades Indexadas (UI))
+- UYU (Peso Uruguayo)
+- UYW (Unidad Previsional)
+- UZS (Uzbekistan Sum)
+- VES (Bolívar Soberano)
+- VND (Vietnamese Dong)
+- VUV (Vanuatu Vatu)
+- WST (Samoan Tala)
+- XAF (CFA Franc BEAC)
+- XCD (East Caribbean Dollar)
+- XDR (SDR (Special Drawing Right))
+- XOF (CFA Franc BCEAO)
+- XPF (CFP Franc)
+- YER (Yemeni Rial)
+- ZAR (South African Rand)
+- ZMW (Zambian Kwacha)
+
 ---
 
 ### Generated Types
