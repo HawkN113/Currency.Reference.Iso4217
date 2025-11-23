@@ -9,9 +9,9 @@ on:
     branches:
       - main
       - dev
-  schedule: 
+  schedule:
     - cron: '11 3 * * 6'
-
+	
   workflow_dispatch:
     inputs:
       branch:
