@@ -17,7 +17,7 @@ on:
       branch:
         description: 'Branch to run the scan on'
         required: false
-        default: '${{ github.ref_name || 'main' }}'
+        default: "${{ github.ref_name || 'main' }}"
 
 jobs:
   analyze:
@@ -37,7 +37,7 @@ jobs:
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
-        languages: csharp # Явно указываем язык
+        languages: csharp
         
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
