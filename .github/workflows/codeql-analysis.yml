@@ -17,7 +17,7 @@ on:
       branch:
         description: 'Branch to run the scan on'
         required: false
-        default: "dev" 
+        default: "${{ github.ref_name || 'main' }}" 
 
 jobs:
   analyze:
