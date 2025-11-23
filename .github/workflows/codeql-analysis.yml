@@ -45,7 +45,7 @@ jobs:
         dotnet-version: '8.0.x'
         
     - name: Perform Build for CodeQL
-      run: dotnet build src/Currency.Reference.Iso4217.Solution.sln --configuration Release
+      run: dotnet build src/Currency.Reference.Iso4217.sln --configuration Release
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v4
