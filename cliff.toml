@@ -63,7 +63,7 @@ commit_parsers = [
     { message = "^chore\\(release\\)", skip = true },
     { message = "^chore\\(deps", skip = true },
 
-    { body = ".*security.*", group = "🛡️ Security" },
+    { body = "^security", group = "🛡️ Security" },
     { message = "^revert", group = "⏪ Revert" },
 
     # Catch-all fallback group

@@ -2,7 +2,7 @@
 using Currency.Reference.Iso4217.Models;
 namespace Currency.Reference.Iso4217.Builders;
 
-internal sealed class CurrencyQueryBuilder:
+internal sealed class CurrencyQueryBuilder :
     ICurrencyQueryStart,
     ICurrencyQueryTypeSelector,
     ICurrencyQueryFilter,
@@ -27,7 +27,7 @@ internal sealed class CurrencyQueryBuilder:
     }
 
     public ICurrencyQueryTypeSelector Includes { get; }
-    
+
     public ICurrencyQueryFilter Type(CurrencyType type)
     {
         if (!_includedTypes.Add(type))
@@ -55,7 +55,7 @@ internal sealed class CurrencyQueryBuilder:
 
     public IReadOnlyList<Models.Currency> Build()
     {
-        Func<Models.Currency, bool> baseFilter  = c =>
+        Func<Models.Currency, bool> baseFilter = c =>
             _includedTypes.Contains(c.CurrencyType!.Value) &&
             (_withCodes.Count == 0 || _withCodes.Contains(c.Code)) &&
             (_withoutCodes.Count == 0 || !_withoutCodes.Contains(c.Code)) &&
@@ -69,7 +69,7 @@ internal sealed class CurrencyQueryBuilder:
             .Where(c => _customPredicates.All(p => p(c)))
             .ToList();
     }
-    
+
     IIncludeFilterBuilder IIncludeFilterBuilder.Codes(params string[] codes)
     {
         foreach (var code in codes) _withCodes.Add(code);
@@ -87,7 +87,7 @@ internal sealed class CurrencyQueryBuilder:
         foreach (var nc in numericCodes) _withNumericCodes.Add(nc.ToString());
         return this;
     }
-    
+
     IExcludeFilterBuilder IExcludeFilterBuilder.Codes(params string[] codes)
     {
         foreach (var code in codes) _withoutCodes.Add(code);

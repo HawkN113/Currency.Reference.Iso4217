@@ -28,7 +28,7 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
                                       }
                                       """;
 
-  public override void Initialize(IncrementalGeneratorInitializationContext context)
+    public override void Initialize(IncrementalGeneratorInitializationContext context)
     {
         ErrorFactory.Clear();
 
@@ -65,7 +65,7 @@ public class CurrencyCodeGenerator : BaseIncrementalGenerator
                 Constants.GeneratorName,
                 Constants.DefaultNamespace
             );
-            
+
             if (string.IsNullOrEmpty(loader.ActualCurrencyData.PublishedDate))
             {
                 sb.AppendLine("    /// <summary> Currency codes ISO4217 </summary>");

@@ -49,7 +49,7 @@ public class ErrorFactoryTests
         // Assert
         _factory.Create(descriptor1);
         _factory.Create(descriptor2);
-        
+
         // Act
         Assert.True(_factory.IsExists());
         Assert.Single(GetPrivateList());

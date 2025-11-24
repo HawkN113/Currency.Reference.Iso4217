@@ -44,7 +44,7 @@ public interface ICurrencyService
     /// <param name="value">Currency code or name.</param>
     /// <returns>Currency object or null if not found.</returns>
     Models.Currency? GetHistorical(string value);
-    
+
     /// <summary>
     /// Retrieves all historical (withdrawn) currencies defined by ISO 4217.
     /// </summary>

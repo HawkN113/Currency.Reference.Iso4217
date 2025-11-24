@@ -136,11 +136,11 @@ public class LocalDatabaseGenerator : BaseIncrementalGenerator
     private static string ParseWithdrawalDate(string raw)
     {
         if (string.IsNullOrWhiteSpace(raw)) return "null";
-        return DateTime.TryParseExact(raw,  "yyyy-MM", CultureInfo.InvariantCulture, DateTimeStyles.None, out var dt)
+        return DateTime.TryParseExact(raw, "yyyy-MM", CultureInfo.InvariantCulture, DateTimeStyles.None, out var dt)
             ? $"new DateOnly({dt.Year}, {dt.Month}, 1)"
             : "null";
     }
-    
+
     private void ReportResourceError(string msg)
     {
         var parts = msg.Split([':'], 2);

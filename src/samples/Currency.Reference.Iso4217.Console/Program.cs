@@ -60,7 +60,7 @@ try
         Console.WriteLine(
             $"\t{currency.Code} - {currency.Name}");
     }
-    
+
     // ---- Get currencies by advanced query (LINQ) ---- 
     Console.WriteLine(" ---- Advanced Query (LINQ): Includes only `EUR` and `USD` in the list ---- ");
     foreach (var currency in currencyService!.Query()
