@@ -76,7 +76,7 @@ public class ErrorFactoryTests
     [Fact]
     public void IsExists_Should_Return_False_When_Empty()
     {
-        // Act && Assert
+        // Act & Assert
         Assert.False(_factory.IsExists());
     }
 
