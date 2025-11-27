@@ -3,7 +3,7 @@
 **Currency.Reference.Iso4217** provides ISO 4217 currency codes, historical currency data, and replacement mappings.
 
 ## Features
-- **Actual currency list**
+- **Actual currency list** - Provides a complete and up-to-date set of currency codes and their details according to the ISO 4217 standard.
 - **Strongly typed currency codes** – `CurrencyCode` enum is generated at compile-time.
 - **Historical currency support** – Access withdrawn currencies.
 - **Lightweight & Dependency-Free** – Minimal overhead, compatible with .NET 8 and above.
@@ -16,7 +16,7 @@
 ### Install via NuGet
 
 ```bash
-dotnet add package HawkN.Currency.Reference.Iso4217 --version 8.0.0
+dotnet add package HawkN.Currency.Reference.Iso4217 --version 8.0.1
 ```
 ---
 
@@ -131,7 +131,7 @@ var validResult = currencyService.TryValidate(CurrencyCode.AFN, out var validate
 ---
 
 ### Supported fiat currencies
-Last updated at 15.10.2025
+Last updated at 27.11.2025
 - AED (UAE Dirham)
 - AFN (Afghani)
 - ALL (Albanian Lek)
