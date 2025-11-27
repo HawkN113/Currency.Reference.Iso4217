@@ -2,13 +2,13 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>HawkN.Currency.Reference.Iso4217</id>
-        <version>8.0.0</version>
+        <version>8.0.1</version>
         <title>Currency.Reference.Iso4217</title>
         <authors>Nikolay Selyutin (HawkN113)</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Provides strongly typed ISO 4217 currency codes, utilities for working with historical and withdrawn currencies and replacement mappings. Lightweight, dependency-free, and optimized for .NET 8 applications.</description>
         <summary>ISO 4217 currency reference library with strongly typed codes, historical currencies, and utilities.</summary>
-        <tags>iso4217 currency currencies finance money money-codes .net8</tags>
+        <tags>iso4217 currency currencies finance money money-codes .net8 dotnet-core dotnet-library csharp currency-code nuget-package</tags>
         <repository type="git" url="https://github.com/HawkN113/Currency.Reference.Iso4217" branch="main" />
         <projectUrl>https://github.com/HawkN113/Currency.Reference.Iso4217</projectUrl>
         <license type="expression">MIT</license>
