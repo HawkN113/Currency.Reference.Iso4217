@@ -55,12 +55,12 @@ jobs:
     - name: Extract Project Version
       id: get_version
       run: |
-        VERSION=$(grep -oP '(?<=<Version>).*(?=</Version>)' ${{ env.PACKAGE_PROJECT_PATH }} | head -1)
+        VERSION=$(grep -oP '(?<=<Version>).*(?=</Version>)' ${{ env.PACKAGE_PROJECT_PATH }} || true | head -1)
         if [ -z "$VERSION" ]; then
-          VERSION=$(grep -oP '(?<=<VersionPrefix>).*(?=</VersionPrefix>)' ${{ env.PACKAGE_PROJECT_PATH }} | head -1)
+          VERSION=$(grep -oP '(?<=<VersionPrefix>).*(?=</VersionPrefix>)' ${{ env.PACKAGE_PROJECT_PATH }} || true | head -1)
         fi
         if [ -z "$VERSION" ]; then
-          VERSION=$(grep -oP '(?<=<PackageVersion>).*(?=</PackageVersion>)' ${{ env.PACKAGE_PROJECT_PATH }} | head -1)
+          VERSION=$(grep -oP '(?<=<PackageVersion>).*(?=</PackageVersion>)' ${{ env.PACKAGE_PROJECT_PATH }} || true | head -1)
         fi
         if [ -z "$VERSION" ]; then
           VERSION=$(date +%Y%m%d)
