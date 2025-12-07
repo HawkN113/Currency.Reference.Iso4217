@@ -16,7 +16,7 @@
         <IncludeBuildOutput>false</IncludeBuildOutput>
         <IncludeSymbols>false</IncludeSymbols>
         <IsPackable>true</IsPackable>
-        <VersionPrefix>8.0.1.0</VersionPrefix>
+        <VersionPrefix>8.0.1</VersionPrefix>
         <!-- Use when need to update 'CurrencyCode' and 'LocalDatabase' -->
         <GenerateCurrencyFiles>false</GenerateCurrencyFiles>
         <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>

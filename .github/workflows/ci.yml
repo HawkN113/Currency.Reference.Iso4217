@@ -30,6 +30,7 @@ jobs:
       PACKAGE_PROJECT_PATH: src/packages/Currency.Reference.Iso4217/Currency.Reference.Iso4217.csproj
       PACKAGE_NUSPEC_FILE_PATH: Currency.Reference.Iso4217.nuspec
       OUTPUT_NUGET_DIR: nuget-packages
+      ARTIFACTS_DIR: artifacts
 
     steps:
     - name: Checkout repository
@@ -60,7 +61,7 @@ jobs:
     - name: Check Code Formatting
       run: dotnet format ${{ env.SOLUTION_NAME }} --no-restore --verify-no-changes --verbosity detailed
 
-    - name: Extract Project Version
+    - name: Extract Project version
       id: get_version
       run: |
         VERSION=$(grep -oP '(?<=<Version>).*(?=</Version>)' ${{ env.PACKAGE_PROJECT_PATH }} || true | head -1)
@@ -79,6 +80,11 @@ jobs:
     - name: Validate Package Creation
       run: dotnet pack ${{ env.PACKAGE_PROJECT_PATH }} /p:NuspecFile=${{ env.PACKAGE_NUSPEC_FILE_PATH }} --configuration Release --no-build --output ${{ env.OUTPUT_NUGET_DIR }}
 
+    - name: Prepare artifacts folder
+      run: |
+        mkdir -p ${{ env.ARTIFACTS_DIR }}
+        cp ${{ env.OUTPUT_NUGET_DIR }}/*.nupkg ${{ env.ARTIFACTS_DIR }}/
+
     - name: Upload Package artifact (Optional)
       uses: actions/upload-artifact@v4
       with:
@@ -91,7 +97,7 @@ jobs:
     - name: Install git-cliff
       run: cargo install git-cliff
 
-    - name: Determine previous tag
+    - name: Determine previous version
       id: prev_tag
       run: |
         PREV=$(git tag --sort=-creatordate | sed -n '2p')
@@ -105,9 +111,16 @@ jobs:
         else
           git-cliff --unreleased > CHANGELOG.md
         fi
+        cp CHANGELOG.md ${{ env.ARTIFACTS_DIR }}
 
-    - name: Upload Changelog artifact (Optional)
+#    - name: Upload Changelog artifact (Optional)
+#      uses: actions/upload-artifact@v4
+#      with:
+#        name: changelog-${{ env.CURRENT_VERSION }}
+#        path: CHANGELOG.md
+
+    - name: Upload all artifacts (Optional)
       uses: actions/upload-artifact@v4
       with:
-        name: changelog-${{ env.CURRENT_VERSION }}
-        path: CHANGELOG.md
+        name: artifacts-${{ env.CURRENT_VERSION }}
+        path: ${{ env.ARTIFACTS_DIR }}
