@@ -85,12 +85,6 @@ jobs:
         mkdir -p ${{ env.ARTIFACTS_DIR }}
         cp ${{ env.OUTPUT_NUGET_DIR }}/*.nupkg ${{ env.ARTIFACTS_DIR }}/
 
-    - name: Upload Package artifact (Optional)
-      uses: actions/upload-artifact@v4
-      with:
-        name: ${{ env.OUTPUT_NUGET_DIR }}-${{ env.CURRENT_VERSION }} 
-        path: ${{ env.OUTPUT_NUGET_DIR }}/*.nupkg
-
     - name: Install Rust toolchain
       uses: dtolnay/rust-toolchain@stable
 
@@ -112,12 +106,6 @@ jobs:
           git-cliff --unreleased > CHANGELOG.md
         fi
         cp CHANGELOG.md ${{ env.ARTIFACTS_DIR }}
-
-#    - name: Upload Changelog artifact (Optional)
-#      uses: actions/upload-artifact@v4
-#      with:
-#        name: changelog-${{ env.CURRENT_VERSION }}
-#        path: CHANGELOG.md
 
     - name: Upload all artifacts (Optional)
       uses: actions/upload-artifact@v4
