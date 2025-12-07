@@ -1,0 +1,78 @@
+name: "CI - Code Quality and Tests"
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build-and-test:
+    name: Build and test
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    env:
+      SOLUTION_NAME: Currency.Reference.Iso4217.Solution.sln
+      PACKAGE_PROJECT_PATH: packages/Currency.Reference.Iso4217.csproj
+      PACKAGE_NUSPEC_FILE_PATH: Currency.Reference.Iso4217.nuspec
+      OUTPUT_NUGET_DIR: nuget-packages
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+        
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Cache NuGet packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+
+    - name: Restore dependencies
+      run: dotnet restore
+        
+    - name: Perform build
+      run: dotnet build src/${{ env.SOLUTION_NAME }} --no-restore --configuration Release
+
+    - name: Run Unit Tests
+      run: dotnet test --configuration Release --no-build --verbosity normal
+        
+    - name: Check Code Formatting
+      run: dotnet format --no-restore --verify-only
+
+    - name: Extract Project Version
+      id: get_version
+      run: |
+        VERSION=$(grep -oP '(?<=<Version>).*(?=</Version>)' ${{ env.PACKAGE_PROJECT_PATH }} | head -1)
+        if [ -z "$VERSION" ]; then
+          VERSION=$(grep -oP '(?<=<VersionPrefix>).*(?=</VersionPrefix>)' ${{ env.PACKAGE_PROJECT_PATH }} | head -1)
+        fi
+        if [ -z "$VERSION" ]; then
+          VERSION=$(grep -oP '(?<=<PackageVersion>).*(?=</PackageVersion>)' ${{ env.PACKAGE_PROJECT_PATH }} | head -1)
+        fi
+        if [ -z "$VERSION" ]; then
+          VERSION=$(date +%Y%m%d)
+        fi
+        echo "CURRENT_VERSION=$VERSION" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Validate Package Creation
+      run: dotnet pack src/${{ env.PACKAGE_PROJECT_PATH }} /p:NuspecFile=${{ env.PACKAGE_NUSPEC_FILE_PATH }} --configuration Release --no-build --output ${{ env.OUTPUT_NUGET_DIR }}
+
+    - name: Upload Package Artifact (Optional)
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.OUTPUT_NUGET_DIR }}-${{ env.CURRENT_VERSION }} 
+        path: ${{ env.OUTPUT_NUGET_DIR }}/*.nupkg
