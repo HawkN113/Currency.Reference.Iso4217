@@ -90,9 +90,16 @@ jobs:
 
     - name: Install git-cliff
       run: cargo install git-cliff
+
+    - name: Determine previous tag
+      id: prev_tag
+      run: |
+        PREV=$(git tag --sort=-creatordate | sed -n '2p')
+        if [ -z "$PREV" ]; then PREV="8.0.0"; fi
+        echo "PREVIOUS_VERSION=$PREV" >> $GITHUB_ENV
     
     - name: Create CHANGELOG.md
-      run: git-cliff --tag ${{ env.CURRENT_VERSION }} > CHANGELOG.md
+      run: git-cliff --tag ${{ env.CURRENT_VERSION }} --previous-tag ${{ env.PREVIOUS_VERSION }} > CHANGELOG.md
       
     - name: Upload Changelog artifact (Optional)
       uses: actions/upload-artifact@v4
