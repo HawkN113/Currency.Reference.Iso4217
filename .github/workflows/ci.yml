@@ -1,4 +1,4 @@
-name: "CI - Code Quality and Tests"
+name: "CI — Build, Tests & Code Quality"
 
 on:
   push:
@@ -99,7 +99,7 @@ jobs:
         echo "PREVIOUS_VERSION=$PREV" >> $GITHUB_ENV
     
     - name: Create CHANGELOG.md
-      run: git-cliff --tag ${{ env.CURRENT_VERSION }} --previous-tag ${{ env.PREVIOUS_VERSION }} > CHANGELOG.md
+      run: git-cliff ${{ env.PREVIOUS_TAG }}..${{ env.CURRENT_VERSION }} > CHANGELOG.md
       
     - name: Upload Changelog artifact (Optional)
       uses: actions/upload-artifact@v4
