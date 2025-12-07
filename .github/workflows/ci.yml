@@ -47,7 +47,7 @@ jobs:
       run: dotnet build src/${{ env.SOLUTION_NAME }} --no-restore --configuration Release
 
     - name: Run Unit Tests
-      run: dotnet test --configuration Release --no-build --verbosity normal
+      run: dotnet test src/${{ env.SOLUTION_NAME }} --configuration Release --no-build --verbosity normal
         
     - name: Check Code Formatting
       run: dotnet format --no-restore --verify-only
