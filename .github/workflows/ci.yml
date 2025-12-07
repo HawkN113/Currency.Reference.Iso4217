@@ -19,7 +19,7 @@ jobs:
 
     env:
       SOLUTION_NAME: src/Currency.Reference.Iso4217.Solution.sln
-      PACKAGE_PROJECT_PATH: src/packages/Currency.Reference.Iso4217.csproj
+      PACKAGE_PROJECT_PATH: src/packages/Currency.Reference.Iso4217/Currency.Reference.Iso4217.csproj
       PACKAGE_NUSPEC_FILE_PATH: Currency.Reference.Iso4217.nuspec
       OUTPUT_NUGET_DIR: nuget-packages
 

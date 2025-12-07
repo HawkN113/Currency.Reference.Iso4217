@@ -28,7 +28,7 @@ jobs:
       packages: read
 
     env:
-      SOLUTION_NAME: Currency.Reference.Iso4217.Solution.sln
+      SOLUTION_NAME: src/Currency.Reference.Iso4217.Solution.sln
 
     steps:
     - name: Checkout repository
@@ -47,7 +47,7 @@ jobs:
         dotnet-version: '8.0.x'
         
     - name: Perform Build for CodeQL
-      run: dotnet build src/${{ env.SOLUTION_NAME }} --configuration Release
+      run: dotnet build ${{ env.SOLUTION_NAME }} --configuration Release
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v4
