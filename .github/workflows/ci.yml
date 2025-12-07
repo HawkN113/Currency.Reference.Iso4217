@@ -9,6 +9,13 @@ on:
       - main
       - dev
 
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run CI manually'
+        required: false
+        default: "dev"
+
 jobs:
   build-and-test:
     name: Build and test
@@ -16,6 +23,7 @@ jobs:
 
     permissions:
       contents: read
+      packages: read
 
     env:
       SOLUTION_NAME: src/Currency.Reference.Iso4217.Solution.sln
@@ -71,8 +79,20 @@ jobs:
     - name: Validate Package Creation
       run: dotnet pack ${{ env.PACKAGE_PROJECT_PATH }} /p:NuspecFile=${{ env.PACKAGE_NUSPEC_FILE_PATH }} --configuration Release --no-build --output ${{ env.OUTPUT_NUGET_DIR }}
 
-    - name: Upload Package Artifact (Optional)
+    - name: Upload Package artifact (Optional)
       uses: actions/upload-artifact@v4
       with:
         name: ${{ env.OUTPUT_NUGET_DIR }}-${{ env.CURRENT_VERSION }} 
         path: ${{ env.OUTPUT_NUGET_DIR }}/*.nupkg
+
+    - name: Generate Changelog tool setup
+      uses: orf/install-git-cliff@v1
+    
+    - name: Create CHANGELOG.md
+      run: git-cliff --tag ${{ env.CURRENT_VERSION }} > CHANGELOG.md
+      
+    - name: Upload Changelog artifact (Optional)
+      uses: actions/upload-artifact@v4
+      with:
+        name: changelog-${{ env.CURRENT_VERSION }}
+        path: CHANGELOG.md
