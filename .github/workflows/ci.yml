@@ -85,8 +85,11 @@ jobs:
         name: ${{ env.OUTPUT_NUGET_DIR }}-${{ env.CURRENT_VERSION }} 
         path: ${{ env.OUTPUT_NUGET_DIR }}/*.nupkg
 
-    - name: Generate Changelog tool setup
-      uses: orf/install-git-cliff@v1
+    - name: Install Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+
+    - name: Install git-cliff
+      run: cargo install git-cliff
     
     - name: Create CHANGELOG.md
       run: git-cliff --tag ${{ env.CURRENT_VERSION }} > CHANGELOG.md
