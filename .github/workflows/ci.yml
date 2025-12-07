@@ -18,8 +18,8 @@ jobs:
       contents: read
 
     env:
-      SOLUTION_NAME: Currency.Reference.Iso4217.Solution.sln
-      PACKAGE_PROJECT_PATH: packages/Currency.Reference.Iso4217.csproj
+      SOLUTION_NAME: src/Currency.Reference.Iso4217.Solution.sln
+      PACKAGE_PROJECT_PATH: src/packages/Currency.Reference.Iso4217.csproj
       PACKAGE_NUSPEC_FILE_PATH: Currency.Reference.Iso4217.nuspec
       OUTPUT_NUGET_DIR: nuget-packages
 
@@ -41,16 +41,16 @@ jobs:
           ${{ runner.os }}-nuget-
 
     - name: Restore dependencies
-      run: dotnet restore src/${{ env.SOLUTION_NAME }}
+      run: dotnet restore ${{ env.SOLUTION_NAME }}
         
     - name: Perform build
-      run: dotnet build src/${{ env.SOLUTION_NAME }} --no-restore --configuration Release
+      run: dotnet build ${{ env.SOLUTION_NAME }} --no-restore --configuration Release
 
     - name: Run Unit Tests
-      run: dotnet test src/${{ env.SOLUTION_NAME }} --configuration Release --no-build --verbosity normal
+      run: dotnet test ${{ env.SOLUTION_NAME }} --configuration Release --no-build --verbosity normal
         
     - name: Check Code Formatting
-      run: dotnet format src/${{ env.SOLUTION_NAME }} --no-restore --verify-no-changes --verbosity detailed
+      run: dotnet format ${{ env.SOLUTION_NAME }} --no-restore --verify-no-changes --verbosity detailed
 
     - name: Extract Project Version
       id: get_version
@@ -69,7 +69,7 @@ jobs:
       shell: bash
 
     - name: Validate Package Creation
-      run: dotnet pack src/${{ env.PACKAGE_PROJECT_PATH }} /p:NuspecFile=${{ env.PACKAGE_NUSPEC_FILE_PATH }} --configuration Release --no-build --output ${{ env.OUTPUT_NUGET_DIR }}
+      run: dotnet pack ${{ env.PACKAGE_PROJECT_PATH }} /p:NuspecFile=${{ env.PACKAGE_NUSPEC_FILE_PATH }} --configuration Release --no-build --output ${{ env.OUTPUT_NUGET_DIR }}
 
     - name: Upload Package Artifact (Optional)
       uses: actions/upload-artifact@v4
