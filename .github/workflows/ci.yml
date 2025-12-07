@@ -50,7 +50,7 @@ jobs:
       run: dotnet test src/${{ env.SOLUTION_NAME }} --configuration Release --no-build --verbosity normal
         
     - name: Check Code Formatting
-      run: dotnet format src/${{ env.SOLUTION_NAME }} --no-restore --verify-only
+      run: dotnet format src/${{ env.SOLUTION_NAME }} --no-restore --verify-no-changes --verbosity detailed
 
     - name: Extract Project Version
       id: get_version
