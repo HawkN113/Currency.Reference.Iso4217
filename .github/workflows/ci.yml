@@ -18,7 +18,7 @@ on:
 
 jobs:
   build-and-test:
-    name: Build and test
+    name: Build, test and code quality
     runs-on: ubuntu-latest
 
     permissions:
@@ -58,10 +58,10 @@ jobs:
     - name: Run Unit Tests
       run: dotnet test ${{ env.SOLUTION_NAME }} --configuration Release --no-build --verbosity normal
         
-    - name: Check Code Formatting
+    - name: Check code formatting
       run: dotnet format ${{ env.SOLUTION_NAME }} --no-restore --verify-no-changes --verbosity detailed
 
-    - name: Extract Project version
+    - name: Extract project version
       id: get_version
       run: |
         VERSION=$(grep -oP '(?<=<Version>).*(?=</Version>)' ${{ env.PACKAGE_PROJECT_PATH }} || true | head -1)
@@ -77,7 +77,7 @@ jobs:
         echo "CURRENT_VERSION=$VERSION" >> $GITHUB_ENV
       shell: bash
 
-    - name: Validate Package Creation
+    - name: Validate package creation
       run: dotnet pack ${{ env.PACKAGE_PROJECT_PATH }} /p:NuspecFile=${{ env.PACKAGE_NUSPEC_FILE_PATH }} --configuration Release --no-build --output ${{ env.OUTPUT_NUGET_DIR }}
 
     - name: Prepare artifacts folder

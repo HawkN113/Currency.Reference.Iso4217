@@ -47,8 +47,8 @@ jobs:
       with:
         dotnet-version: '8.0.x'
         
-    - name: Perform Build for CodeQL
+    - name: Perform build for CodeQL
       run: dotnet build ${{ env.SOLUTION_NAME }} --configuration Release
 
-    - name: Perform CodeQL Analysis
+    - name: Perform CodeQL analysis
       uses: github/codeql-action/analyze@v4
