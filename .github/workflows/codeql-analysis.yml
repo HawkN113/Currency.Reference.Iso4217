@@ -1,4 +1,4 @@
-name: "CodeQL Security Scan"
+name: "CI – CodeQL security analysis"
 
 on:
   push:
@@ -6,16 +6,16 @@ on:
       - main
       - dev
   pull_request:
+    types: [opened,synchronize,reopened]
     branches:
-      - main
-      - dev
+      - '**'
   schedule: 
     - cron: '11 3 * * 6'
 
   workflow_dispatch:
     inputs:
       branch:
-        description: 'Branch to run the scan on'
+        description: 'Branch to run the security scan on'
         required: false
         default: "dev" 
 
@@ -28,11 +28,14 @@ jobs:
       contents: read
       packages: read
 
+    env:
+      SOLUTION_NAME: src/Currency.Reference.Iso4217.Solution.sln
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        ref: ${{ github.event.inputs.branch }}
+        ref: ${{ github.event.inputs.branch || github.ref }} 
         
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v4
@@ -44,8 +47,8 @@ jobs:
       with:
         dotnet-version: '8.0.x'
         
-    - name: Perform Build for CodeQL
-      run: dotnet build src/Currency.Reference.Iso4217.Solution.sln --configuration Release
+    - name: Perform build for CodeQL
+      run: dotnet build ${{ env.SOLUTION_NAME }} --configuration Release
 
-    - name: Perform CodeQL Analysis
+    - name: Perform CodeQL analysis
       uses: github/codeql-action/analyze@v4

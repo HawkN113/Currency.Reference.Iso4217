@@ -1,0 +1,114 @@
+name: "CI — Build, Tests & Code Quality"
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - main
+      - dev
+
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run CI manually'
+        required: false
+        default: "dev"
+
+jobs:
+  build-and-test:
+    name: Build, test and code quality
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: read
+
+    env:
+      SOLUTION_NAME: src/Currency.Reference.Iso4217.Solution.sln
+      PACKAGE_PROJECT_PATH: src/packages/Currency.Reference.Iso4217/Currency.Reference.Iso4217.csproj
+      PACKAGE_NUSPEC_FILE_PATH: Currency.Reference.Iso4217.nuspec
+      OUTPUT_NUGET_DIR: nuget-packages
+      ARTIFACTS_DIR: artifacts
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+        
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Cache NuGet packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+
+    - name: Restore dependencies
+      run: dotnet restore ${{ env.SOLUTION_NAME }}
+        
+    - name: Perform build
+      run: dotnet build ${{ env.SOLUTION_NAME }} --no-restore --configuration Release
+
+    - name: Run Unit Tests
+      run: dotnet test ${{ env.SOLUTION_NAME }} --configuration Release --no-build --verbosity normal
+        
+    - name: Check code formatting
+      run: dotnet format ${{ env.SOLUTION_NAME }} --no-restore --verify-no-changes --verbosity detailed
+
+    - name: Extract project version
+      id: get_version
+      run: |
+        VERSION=$(grep -oP '(?<=<Version>).*(?=</Version>)' ${{ env.PACKAGE_PROJECT_PATH }} || true | head -1)
+        if [ -z "$VERSION" ]; then
+          VERSION=$(grep -oP '(?<=<VersionPrefix>).*(?=</VersionPrefix>)' ${{ env.PACKAGE_PROJECT_PATH }} || true | head -1)
+        fi
+        if [ -z "$VERSION" ]; then
+          VERSION=$(grep -oP '(?<=<PackageVersion>).*(?=</PackageVersion>)' ${{ env.PACKAGE_PROJECT_PATH }} || true | head -1)
+        fi
+        if [ -z "$VERSION" ]; then
+          VERSION=$(date +%Y%m%d)
+        fi
+        echo "CURRENT_VERSION=$VERSION" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Validate package creation
+      run: dotnet pack ${{ env.PACKAGE_PROJECT_PATH }} /p:NuspecFile=${{ env.PACKAGE_NUSPEC_FILE_PATH }} --configuration Release --no-build --output ${{ env.OUTPUT_NUGET_DIR }}
+
+    - name: Prepare artifacts folder
+      run: |
+        mkdir -p ${{ env.ARTIFACTS_DIR }}
+        cp ${{ env.OUTPUT_NUGET_DIR }}/*.nupkg ${{ env.ARTIFACTS_DIR }}/
+
+    - name: Install Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+
+    - name: Install git-cliff
+      run: cargo install git-cliff
+
+    - name: Determine previous version
+      id: prev_tag
+      run: |
+        PREV=$(git tag --sort=-creatordate | sed -n '2p')
+        if [ -z "$PREV" ]; then PREV="8.0.0"; fi
+        echo "PREVIOUS_VERSION=$PREV" >> $GITHUB_ENV
+    
+    - name: Create CHANGELOG.md
+      run: |
+        if git rev-parse ${{ env.PREVIOUS_VERSION }} >/dev/null 2>&1 && git rev-parse ${{ env.CURRENT_VERSION }} >/dev/null 2>&1; then
+          git-cliff ${{ env.PREVIOUS_VERSION }}..${{ env.CURRENT_VERSION }} > CHANGELOG.md
+        else
+          git-cliff --unreleased > CHANGELOG.md
+        fi
+        cp CHANGELOG.md ${{ env.ARTIFACTS_DIR }}
+
+    - name: Upload all artifacts (Optional)
+      uses: actions/upload-artifact@v4
+      with:
+        name: artifacts-${{ env.CURRENT_VERSION }}
+        path: ${{ env.ARTIFACTS_DIR }}

@@ -1,6 +1,6 @@
 ﻿namespace Currency.Reference.Iso4217.Generators.Handlers;
 
-internal sealed class JsonHistoricalCurrencyHandler(string jsonContent): JsonCurrencyHandlerBase(jsonContent)
+internal sealed class JsonHistoricalCurrencyHandler(string jsonContent) : JsonCurrencyHandlerBase(jsonContent)
 {
     protected override string ArrayKey => "HstrcCcyNtry";
     protected override bool IsHistorical => true;

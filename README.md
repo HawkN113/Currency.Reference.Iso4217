@@ -10,7 +10,7 @@
 ---
 
 ## Features
-- **Actual currency list**
+- **Actual currency list** - Provides a complete and up-to-date set of currency codes and their details according to the `ISO 4217` standard.
 - **Strongly typed currency codes** – `CurrencyCode` enum is generated at compile-time.
 - **Historical currency support** – Access withdrawn currencies.
 - **Lightweight & Dependency-Free** – Minimal overhead, compatible with .NET 8 and above.

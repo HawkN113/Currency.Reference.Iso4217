@@ -111,14 +111,14 @@ public class CurrencyLoaderTests
     [Fact]
     public void Constructor_Should_Load_And_Process_Currencies_Correctly()
     {
+        // Arrange
         var loader = new CurrencyLoader(ActualJson, ReplacementJson, HistoricalJson);
 
+        // Act & Assert
         Assert.NotNull(loader.ActualCurrencyData);
         Assert.NotNull(loader.HistoricalCurrencyData);
-
         Assert.Equal("2025-05-12", loader.ActualCurrencyData.PublishedDate);
         Assert.Equal("2025-05-12", loader.HistoricalCurrencyData.PublishedDate);
-
         var actualCodes = loader.ActualCurrencyData.Currencies.Select(c => c.Code).ToArray();
         Assert.DoesNotContain("VED", actualCodes);
         Assert.Contains("USD", actualCodes);
@@ -128,28 +128,32 @@ public class CurrencyLoaderTests
     [Fact]
     public void Replacement_Should_Update_Names()
     {
+        // Arrange
         var loader = new CurrencyLoader(ActualJson, ReplacementJson, HistoricalJson);
 
+        // Act & Assert
         var usd = loader.ActualCurrencyData.Currencies.First(c => c.Code == "USD");
-
         Assert.Equal("US Dollar", usd.Name);
     }
 
     [Fact]
     public void CurrencyTypes_Should_Be_Assigned_Correctly()
     {
+        // Arrange
         var loader = new CurrencyLoader(ActualJson, ReplacementJson, HistoricalJson);
 
+        // Act & Assert
         var usd = loader.ActualCurrencyData.Currencies.First(c => c.Code == "USD");
-
         Assert.Equal(CurrencyType.Fiat, usd.CurrencyType);
     }
 
     [Fact]
     public void HistoricalCurrencies_Should_Have_IsHistoric_True()
     {
+        // Arrange
         var loader = new CurrencyLoader(ActualJson, ReplacementJson, HistoricalJson);
 
+        // Act & Assert
         var adp = loader.HistoricalCurrencyData.Currencies.First(c => c.Code == "ADP");
         Assert.True(adp.IsHistoric);
         Assert.Equal("2003-07", adp.WithdrawalDate);
@@ -158,8 +162,10 @@ public class CurrencyLoaderTests
     [Fact]
     public void ExcludedCodes_Should_Be_Filtered_Out()
     {
+        // Arrange
         var loader = new CurrencyLoader(ActualJson, ReplacementJson, HistoricalJson);
 
+        // Act & Assert
         Assert.DoesNotContain(loader.ActualCurrencyData.Currencies, c => c.Code == "VED");
         Assert.DoesNotContain(loader.HistoricalCurrencyData.Currencies, c => c.Code == "ZWG");
     }
@@ -167,11 +173,14 @@ public class CurrencyLoaderTests
     [Fact]
     public void Currencies_Should_Be_Sorted_By_Code()
     {
+        // Arrange
         var loader = new CurrencyLoader(ActualJson, ReplacementJson, HistoricalJson);
 
+        // Act
         var actualCodes = loader.ActualCurrencyData.Currencies.Select(c => c.Code).ToList();
         var sorted = actualCodes.OrderBy(c => c).ToList();
 
+        // Assert
         Assert.Equal(sorted, actualCodes);
     }
 }

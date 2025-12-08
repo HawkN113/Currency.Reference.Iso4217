@@ -49,7 +49,7 @@ public class CurrencyServiceTests
         var result = _service.Exists(input);
         Assert.Equal(expected, result);
     }
-    
+
     [Theory]
     [InlineData("XX7")]
     public void Exists_String_NotShould_Work(string input)
