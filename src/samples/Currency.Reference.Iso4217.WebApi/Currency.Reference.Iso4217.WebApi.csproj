@@ -3,6 +3,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <IsPackable>false</IsPackable>
     </PropertyGroup>
     <ItemGroup>
         <!--<PackageReference Include="HawkN.Currency.Reference.Iso4217" Version="8.0.0" />-->

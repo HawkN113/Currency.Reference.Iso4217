@@ -51,7 +51,10 @@ public class JsonParserTests
     [Fact]
     public void ExtractArray_ShouldThrow_WhenKeyNotFound()
     {
+        // Arrange
         var json = """{ "Other": [] }""";
+
+        // Act
         var ex = Assert.Throws<InvalidOperationException>(() => JsonParser.ExtractArray(json, "Data"));
         Assert.Contains("required in the JSON content", ex.Message);
     }
@@ -59,7 +62,10 @@ public class JsonParserTests
     [Fact]
     public void ExtractArray_ShouldThrow_WhenArrayIsMalformed()
     {
-        var json = """{ "Data": [ { "A": 1 }"""; // нет закрывающей скобки
+        // Arrange
+        var json = """{ "Data": [ { "A": 1 }""";
+
+        // Act
         var ex = Assert.Throws<InvalidOperationException>(() => JsonParser.ExtractArray(json, "Data"));
         Assert.Contains("Cannot locate end", ex.Message);
     }
@@ -79,7 +85,10 @@ public class JsonParserTests
     [Fact]
     public void Extract_ShouldReturnString_WhenKeyIsString()
     {
+        // Arrange
         var json = """{ "Name": "Euro" }""";
+
+        // Act
         var result = JsonParser.Extract(json, "Name");
         Assert.Equal("Euro", result);
     }
@@ -87,7 +96,10 @@ public class JsonParserTests
     [Fact]
     public void Extract_ShouldReturnNumber_WhenKeyIsNumeric()
     {
+        // Arrange
         var json = """{ "Code": 840 }""";
+
+        // Act
         var result = JsonParser.Extract(json, "Code");
         Assert.Equal("840", result);
     }
@@ -95,7 +107,10 @@ public class JsonParserTests
     [Fact]
     public void Extract_ShouldReturnNull_WhenKeyNotFound()
     {
+        // Arrange
         var json = """{ "X": 1 }""";
+
+        // Act
         var result = JsonParser.Extract(json, "Y");
         Assert.Null(result);
     }
@@ -103,7 +118,10 @@ public class JsonParserTests
     [Fact]
     public void Extract_ShouldReturnNormalizedString_WithSingleQuotes()
     {
+        // Arrange
         var json = """{ "Text": "He said \"Hello\"" }""";
+
+        // Act
         var result = JsonParser.Extract(json, "Text");
         Assert.Equal("He said 'Hello'", result);
     }
@@ -111,8 +129,10 @@ public class JsonParserTests
     [Fact]
     public void HandleEscapeChar_ShouldToggleStringState()
     {
+        // Arrange
         bool inString = false, escape = false;
 
+        // Act & Assert
         Assert.True(JsonParser.HandleEscapeChar('"', ref inString, ref escape));
         Assert.True(inString);
         Assert.True(JsonParser.HandleEscapeChar('"', ref inString, ref escape));
@@ -122,7 +142,10 @@ public class JsonParserTests
     [Fact]
     public void HandleEscapeChar_ShouldHandleBackslash()
     {
+        // Arrange
         bool inString = false, escape = false;
+
+        // Act & Assert
         Assert.True(JsonParser.HandleEscapeChar('\\', ref inString, ref escape));
         Assert.True(escape);
     }
@@ -130,7 +153,10 @@ public class JsonParserTests
     [Fact]
     public void HandleEscapeChar_ShouldReturnFalseForOtherChars()
     {
+        // Arrange
         bool inString = false, escape = false;
+
+        // Act & Assert
         var result = JsonParser.HandleEscapeChar('x', ref inString, ref escape);
         Assert.False(result);
     }

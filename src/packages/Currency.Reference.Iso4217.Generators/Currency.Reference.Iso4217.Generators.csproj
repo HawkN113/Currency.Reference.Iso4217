@@ -20,6 +20,7 @@
         <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
         <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
         <IncludeBuildOutput>false</IncludeBuildOutput>
+        <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>

@@ -1,0 +1,114 @@
+name: "CD - Publish NuGet Package"
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+      
+jobs:
+  publish:
+    name: Publish to NuGet
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      SOLUTION_NAME: src/Currency.Reference.Iso4217.Solution.sln
+      PACKAGE_PROJECT_PATH: src/packages/Currency.Reference.Iso4217/Currency.Reference.Iso4217.csproj
+      PACKAGE_NUSPEC_FILE_PATH: src/packages/Currency.Reference.Iso4217/Currency.Reference.Iso4217.nuspec
+      PACKAGE_ID: HawkN.Currency.Reference.Iso4217
+      OUTPUT_NUGET_DIR: nuget-packages
+      NUGET_SOURCE_URL: https://api.nuget.org/v3/index.json
+
+    steps:
+    - name: Checkout repository (full history)
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Extract version from tag
+      id: get_version
+      run: |
+        TAG_NAME=${{ github.ref_name }}
+        VERSION=${TAG_NAME#v}
+        echo "CURRENT_VERSION=$VERSION" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Check if package version already exists on NuGet.org
+      id: check_nuget
+      run: |
+        PACKAGE_ID_LOWER=$(echo "${{ env.PACKAGE_ID }}" | tr '[:upper:]' '[:lower:]')
+        VERSIONS=$(curl -s "https://api.nuget.org/v3-flatcontainer/${PACKAGE_ID_LOWER}/index.json")
+        if echo "$VERSIONS" | grep -w "${{ env.CURRENT_VERSION }}" > /dev/null; then
+          echo "Package version ${{ env.CURRENT_VERSION }} already exists on NuGet.org. Exiting..."
+          exit 1
+        fi
+      shell: bash
+
+    - name: Dotnet restore
+      run: dotnet restore ${{ env.SOLUTION_NAME }}
+
+    - name: Pack NuGet package
+      run: |
+        PACKAGE_FILE="${{ env.OUTPUT_NUGET_DIR }}/${{ env.PACKAGE_ID }}.${{ env.CURRENT_VERSION }}.nupkg"
+        dotnet pack ${{ env.PACKAGE_PROJECT_PATH }} \
+          /p:NuspecFile=${{ env.PACKAGE_NUSPEC_FILE_PATH }} \
+          --configuration Release \
+          -p:Version=${{ env.CURRENT_VERSION }} \
+          --output ${{ env.OUTPUT_NUGET_DIR }} --no-restore
+        if [ ! -f "$PACKAGE_FILE" ]; then
+          echo "Package file $PACKAGE_FILE not found!"
+          exit 1
+        fi
+
+    - name: Install Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+
+    - name: Install git-cliff
+      run: cargo install git-cliff
+
+    - name: Determine previous version
+      id: prev_tag
+      run: |
+        PREV=$(git tag --sort=-creatordate | sed -n '2p')
+        if [ -z "$PREV" ]; then PREV="8.0.0"; fi
+        echo "PREVIOUS_VERSION=$PREV" >> $GITHUB_ENV
+
+    - name: Create CHANGELOG.md
+      run: |
+        if git rev-parse ${{ env.PREVIOUS_VERSION }} >/dev/null 2>&1 && git rev-parse ${{ env.CURRENT_VERSION }} >/dev/null 2>&1; then
+          git-cliff ${{ env.PREVIOUS_VERSION }}..${{ env.CURRENT_VERSION }} > CHANGELOG.md
+        else
+          git-cliff --unreleased > CHANGELOG.md
+        fi
+
+    - name: Commit and push CHANGELOG.md
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        if ! git diff --exit-code CHANGELOG.md; then
+          git add CHANGELOG.md
+          git commit -m "docs(changelog): Update CHANGELOG for release ${{ env.CURRENT_VERSION }}"
+          git push
+        else
+          echo "No changes to commit"
+        fi
+      shell: bash
+
+    - name: Publish package to NuGet.org
+      run: |
+        PACKAGE_FILE="${{ env.OUTPUT_NUGET_DIR }}/${{ env.PACKAGE_ID }}.${{ env.CURRENT_VERSION }}.nupkg"
+        if [ -f "$PACKAGE_FILE" ]; then
+          dotnet nuget push "$PACKAGE_FILE" --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ env.NUGET_SOURCE_URL }} --skip-duplicate
+        else
+          echo "Package file $PACKAGE_FILE not found!"
+          exit 1
+        fi
+      shell: bash

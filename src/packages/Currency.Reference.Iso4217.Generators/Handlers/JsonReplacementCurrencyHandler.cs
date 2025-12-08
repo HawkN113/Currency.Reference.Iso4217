@@ -7,12 +7,12 @@ internal sealed class JsonReplacementCurrencyHandler(string jsonContent)
     {
         var matches = Regex.Matches(jsonContent, @"\{([^}]*)\}");
         var replacements = (from Match match in matches
-                select match.Groups[1].Value
+                            select match.Groups[1].Value
                 into obj
-                let code = Extract(obj, "Ccy")
-                let name = Extract(obj, "CcyNm")
-                where !string.IsNullOrEmpty(code)
-                select new { code, name })
+                            let code = Extract(obj, "Ccy")
+                            let name = Extract(obj, "CcyNm")
+                            where !string.IsNullOrEmpty(code)
+                            select new { code, name })
             .ToDictionary(x => x.code, x => x.name, StringComparer.OrdinalIgnoreCase);
         return replacements;
     }

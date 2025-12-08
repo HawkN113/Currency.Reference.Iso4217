@@ -2,7 +2,7 @@
 using Microsoft.CodeAnalysis;
 namespace Currency.Reference.Iso4217.Generators.Factories;
 
-public sealed class ErrorFactory
+public class ErrorFactory
 {
     private readonly List<ErrorDescription> _errorDescriptors = [];
     public void Create(ErrorDescription descriptor)
