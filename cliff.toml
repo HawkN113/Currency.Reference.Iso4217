@@ -33,7 +33,7 @@ commit_parsers = [
     { message = "^perf",      group = "⚡ Performance" },
     { message = "^refactor",  group = "🔧 Refactoring" },
     { message = "^style",     group = "🎨 Code Style" },
-    { message = "^doc",       group = "📚 Documentation" },
+    { message = "^docs",       group = "📚 Documentation" },
     { message = "^test",      group = "🧪 Tests" },
     { message = "^build|^ci", group = "🔄 CI / Build" },
 
