@@ -30,7 +30,7 @@
 ### Install via NuGet
 
 ```bash
-dotnet add package HawkN.Currency.Reference.Iso4217.Core --version 8.0.0
+dotnet add package HawkN.Currency.Reference.Iso4217.Core --version 8.0.1
 ```
 ---
 
