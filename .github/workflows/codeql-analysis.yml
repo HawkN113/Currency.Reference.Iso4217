@@ -9,8 +9,6 @@ on:
     types: [opened,synchronize,reopened]
     branches:
       - '**'
-  schedule: 
-    - cron: '11 3 * * 6'
 
   workflow_dispatch:
     inputs:
