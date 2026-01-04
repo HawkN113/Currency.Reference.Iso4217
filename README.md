@@ -324,6 +324,25 @@ This project is licensed under the MIT License.
 
 ---
 
+### Migration from `HawkN.Currency.Reference.Iso4217` to `HawkN.Iso.Currencies`
+
+The NuGet package [`HawkN.Currency.Reference.Iso4217`](https://www.nuget.org/packages/HawkN.Currency.Reference.Iso4217/) has been **replaced** by [`HawkN.Iso.Currencies`](https://www.nuget.org/packages/HawkN.Iso.Currencies/). 
+
+All **future fixes, updates, and enhancements** will be applied **only** to `HawkN.Iso.Currencies`.  
+
+**Users are strongly encouraged to migrate** to `HawkN.Iso.Currencies` as soon as possible to benefit from:
+
+- **Updated ISO4217 currency codes, names, numeric codes, and translations**  
+- **Automatic inclusion and updating** of embedded and external data files (CLDR data, CSV currency codes)  
+- **Ongoing maintenance and improvements**  
+
+**Migration Notes:**
+- Update namespaces to: `HawkN.Iso.Currencies.*`  
+- Most of the API is compatible, but **some class names or namespaces may have changed**  
+- Take advantage of **up-to-date, CLDR-based currency data** for your projects
+
+---
+
 ### References
 - [ISO 4217 Standard](https://www.iso.org/iso-4217-currency-codes.html)
 - [GitHub Repository](https://github.com/HawkN113/Currency.Reference.Iso4217)
