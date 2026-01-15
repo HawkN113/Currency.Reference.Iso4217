@@ -1,5 +1,29 @@
 # Currency.Reference.Iso4217
 
+### ⚠️ DEPRECATED — Currency.Reference.Iso4217
+
+> **This repository is deprecated and no longer maintained.**
+
+The functionality of this project has been **superseded by a newer, actively developed package** as part of the **HawkN.Iso** ecosystem.
+
+---
+
+### ✅ What should I use instead?
+
+➡️ **Use this package instead:**
+
+#### 👉 [`HawkN.Iso.Currencies`](https://github.com/HawkN113/HawkN.Iso.Currencies)
+
+It provides:
+
+- ✅ Strongly-typed ISO 4217 currencies
+- ✅ Better API design
+- ✅ Active maintenance
+- ✅ Integration with other ISO standards (countries, languages)
+- ✅ Clean namespace and long-term roadmap
+
+---
+
 [![NuGet](https://img.shields.io/nuget/v/HawkN.Currency.Reference.Iso4217?label=HawkN.Currency.Reference.Iso4217)](https://www.nuget.org/packages/HawkN.Currency.Reference.Iso4217/)
 ![Downloads](https://img.shields.io/nuget/dt/HawkN.Currency.Reference.Iso4217)
 [![GitHub license](https://img.shields.io/github/license/HawkN113/Currency.Reference.Iso4217)](https://github.com/HawkN113/Currency.Reference.Iso4217/blob/main/LICENSE)
